@@ -170,7 +170,7 @@
     endif
 -%}
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-navigation-wrapper{{sticky_header}}">
-<div class="header-navigation header-nav-hamburger{{header_transparent}}{% if section.settings.header_layout_style == 'style_1'%} header-nav-hamburger--style1 header-nav-hamburger--menu_center{% else %} header-nav-hamburger--style2{% endif %}">
+<div class="huan header-navigation header-nav-hamburger{{header_transparent}}{% if section.settings.header_layout_style == 'style_1'%} header-nav-hamburger--style1 header-nav-hamburger--menu_center{% else %} header-nav-hamburger--style2{% endif %}">
     <div class="container container-{{ section.settings.container }} d-flex flex-jc-between flex-align-center p-static o-unset{% if section.settings.sticky_header_width == 'full' %} sticky-container-full{% endif %}">
         {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -2202,6 +2202,21 @@ if (sticky != undefined || sticky != null) {
                     "type": "url",
                     "id": "banner_url_1",
                     "label": "t:sections.header.settings.mega_menu.label__8"
+                },
+                {
+                    "type": "text",
+                    "id": "title_banner",
+                    "label": "t:sections.general.settings.content.label__1"
+                },
+                {
+                    "type": "richtext",
+                    "id": "des_banner",
+                    "label" : "t:sections.image-banner.blocks.image.settings.content.label__2"
+                },
+                {
+                    "type": "text",
+                    "id": "button_banner",
+                    "label": "t:settings_schema.typography.settings.typography.button_text",
                 },
                 {
                     "type" : "header",

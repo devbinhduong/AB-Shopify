@@ -632,6 +632,19 @@
                                             {%- else -%}
                                                 <div class="not_img" style="--height_not_img: 337px">210 x 337px</div>
                                             {%- endif -%}
+                                            <div class="meganav_promo-text">
+                                                {% if title_banner != blank %}
+                                                    <h4 class="promo-text-heading">{{ title_banner }}</h4>
+                                                {% endif %}
+                                                {% if des_banner != blank %}
+                                                    <span class="promo-text-des">{{ des_banner }}</span>
+                                                {% endif %}
+                                                {% if button_banner != blank %}
+                                                    <div class="button button--primary">
+                                                    <span>{{ button_banner }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
