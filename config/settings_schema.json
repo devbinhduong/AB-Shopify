@@ -4565,6 +4565,16 @@
         "default": true
       },
       {
+        "type": "collection",
+        "id": "quick_search_collection_1",
+        "label": "Quick Search Collection 1",
+      },
+      {
+        "type": "collection",
+        "id": "quick_search_collection_2",
+        "label": "Quick Search Collection 2",
+      },
+      {
         "id": "quick_search_to_show",
         "type": "range",
         "min": 1,

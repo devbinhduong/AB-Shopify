@@ -92,8 +92,6 @@
   </announcement-slider>
 
   <script>
-    console.log('run js');
-
     class AnnouncementSlider extends HTMLElement {
       constructor() {
         super();
@@ -124,6 +122,22 @@
             autoplay: true,
             autoplaySpeed: 3000,
             swipeToSlide: true,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                },
+              },
+              {
+                breakpoint: 750,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                },
+              },
+            ],
           });
         }
       }

@@ -160,6 +160,35 @@
         .header-nav-hamburger .header-icons.header-icons-cart-number-position .cart-count-bubble .text{background-color: transparent !important}
     }
     @media (min-width:1025px) and (max-width:1280px){.header-nav-hamburger--style2 .header-logo{max-width:250px}.header-nav-hamburger--style2 .header-icons,.header-nav-hamburger--style2 .main-menu{width:100%;max-width:calc((100% - 250px)/ 2)}}@media screen and (min-width:1281px){.header-nav-hamburger--style2 .header-logo{max-width:300px}.header-nav-hamburger--style2 .header-icons,.header-nav-hamburger--style2 .main-menu{width:100%;max-width:calc((100% - 300px)/ 2)}}
+
+    /* Mint add css */
+    .quickSearch__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px 32px;
+    }
+    .quickSearch__logo {
+        flex: 0 0 216px;
+        max-width: 216px;
+    }
+
+    .quickSearch__form {
+        flex: 1;
+        padding: 0;
+        margin: 1px 0 0;
+        position: relative;
+        max-width: 447px !important;
+        width: 100%;
+    }
+    .container-full.quickSearch__container {
+        overflow: visible;
+    }
+
+    .container-full.quickSearch__container .quickSearch__form {
+        position: unset;
+    }
    </style>
 {%-liquid
     if request.page_type == 'index'
@@ -295,28 +324,59 @@
                                 </summary>
                                 <div class="search-modal modal__content{% if settings.show_quick_search %} quickSearch{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
                                     <div class="search-modal__content search-modal__content-bottom d-block p-relative maw-100 text-center" tabindex="-1">
-                                        <div class="container">
-                                            <button type="button" class="header-search-close button-effect search-modal__close-button link--text focus-inset d-block p-zero float-r text-right" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close', class: 'icon icon-close' %}</button>
-                                           {%- if settings.show_quick_search -%}
-                                                <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}" data-product-to-show="{{ settings.quick_search_to_show }}">
-                                            {%- endif -%}
-                                            <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-                                                <div class="field">
-                                                    <input class="search__input field__input form-input-placeholder" id="Search-In-Modal-Menu-Hamburger" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.search_a_product' | t }}" autocomplete="off" {%- if settings.show_quick_search -%}role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"{%- endif -%}>
-                                                    <input type="hidden" name="options[prefix]" value="last">
-                                                    <input type="hidden" name="type" value="product">
-                                                    <label class="field__label hiddenLabels" for="Search-In-Modal-Menu-Hamburger">{{ 'general.search.search' | t }}</label>
-                                                    <button class="button search__button field__button focus-inset pr-0 text-right" aria-label="{{ 'general.search.search' | t }}">{% render 'icon-search-06' %}</button>
+                                        <div class="container-full quickSearch__container">
+                                            <div class="quickSearch__wrapper">
+                                                <div class="quickSearch__logo">
+                                                    <a href="{{ routes.root_url }}" class="header__heading-link focus-inset d-flex flex-align-center">
+                                                            {%- liquid
+                                                                assign logo_transparent = block.settings.logo_transparent
+                                                                assign check_transparent = false
+                                                                if request.page_type == 'index' and section.settings.enable_transparent and logo_transparent != blank
+                                                                    assign check_transparent = true
+                                                                endif
+                                                            -%}
+                                                            {%- if block.settings.logo != blank or check_transparent -%}
+                                                                {%- assign logo = block.settings.logo -%}
+                                                                {%- assign logo_width = block.settings.logo_width -%}
+                                                                {%- assign logo_width_img = logo_width | append: 'x' -%}
+                                                                {%- assign logo_width_retina = logo_width | times: 2 | append: 'x'  -%}
+                                                                {%- assign logo_height = logo_width | divided_by: logo.aspect_ratio | round -%}
+                                                                {%- if logo != blank -%}
+                                                                    <img srcset="{{ logo | img_url: logo_width_img }}, {{ logo | img_url: logo_width_retina }} 2x" src="{{ logo | img_url: logo_width_img }}" loading="lazy" class="header__heading-logo logo__main w-100 h-auto ver-alg-mid d-inline-block" alt="{{ logo.alt | default: shop.name | escape }}" width="{{ logo_width }}" height="{{ logo_height }}">
+                                                                {%- endif -%}
+                                                                {%- if check_transparent -%}
+                                                                    <img srcset="{{ logo_transparent | img_url: logo_width_img }}, {{ logo_transparent | img_url: logo_width_retina }} 2x" src="{{ logo_transparent | img_url: logo_width_img }}" loading="lazy" class="header__heading-logo logo--transparent d-inline-block" alt="{{ logo.alt | default: shop.name | escape }}" width="{{ logo_width }}" height="{{ logo_height }}">
+                                                                {%- endif -%}
+                                                            {%- elsif block.settings.logo_text != blank -%}
+                                                                <span class="header__heading-text {{ block.settings.logo_text_transform }} d-block">{{ block.settings.logo_text }}</span>
+                                                            {%- else -%}
+                                                                <span class="header__heading-text {{ block.settings.logo_text_transform }} d-block">{{ shop.name }}</span>
+                                                            {%- endif -%}
+                                                        </a>
                                                 </div>
+                                                
                                                 {%- if settings.show_quick_search -%}
-                                                    {%- if settings.show_search_trending or settings.show_search_product -%}{%- render 'quick-searching-trending-products', sectionId: 'nav-hamburger-list-result' -%}{%- endif -%}
-                                                    {%- render 'predictive-search-results' -%}
+                                                    <predictive-search class="search-modal__form quickSearch__form" data-loading-text="{{ 'accessibility.loading' | t }}" data-product-to-show="{{ settings.quick_search_to_show }}">
                                                 {%- endif -%}
-                                            </form>
+                                                    <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+                                                        <div class="field">
+                                                            <input class="search__input field__input form-input-placeholder" id="Search-In-Modal-Menu-Hamburger" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.search_a_product' | t }}" autocomplete="off" {%- if settings.show_quick_search -%}role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"{%- endif -%}>
+                                                            <input type="hidden" name="options[prefix]" value="last">
+                                                            <input type="hidden" name="type" value="product">
+                                                            <label class="field__label hiddenLabels" for="Search-In-Modal-Menu-Hamburger">{{ 'general.search.search' | t }}</label>
+                                                            <button class="button search__button field__button focus-inset pr-0 text-right" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close', class: 'icon icon-close' %}</button>
+                                                        </div>
+                                                        {%- if settings.show_quick_search -%}
+                                                            {%- if settings.show_search_trending or settings.show_search_product -%}{%- render 'before-search-content', sectionId: 'nav-hamburger-list-result' -%}{%- endif -%}
+                                                            {%- render 'predictive-search-results' -%}
+                                                        {%- endif -%}
+                                                    </form>
+                                                {%- if settings.show_quick_search -%}
+                                                    </predictive-search>
+                                                {%- endif -%}
+                                                <button type="button" class="header-search-close quickSearch__close button-effect search-modal__close-button link--text focus-inset d-block p-zero float-r text-right" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close', class: 'icon icon-close' %}</button>
                                             </div>
-                                        {%- if settings.show_quick_search -%}
-                                            </predictive-search>
-                                        {%- endif -%}
+                                        </div>
                                     </div>
                                 </div>
                             </details>

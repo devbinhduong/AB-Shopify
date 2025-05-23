@@ -1,0 +1,221 @@
+<style>
+  .quickSearchResultsBlock {
+    display: none;
+  }
+
+  .quickSearchResultsBlock.is-show {
+    display: block;
+  }
+
+  .quickSearchTab__list {
+    display: flex;
+    gap: 24px;
+    background: none;
+    border: none;
+    margin-bottom: 32px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .quickSearchTab__list ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .quickSearchTab__list li {
+    margin: 0;
+  }
+
+  .quickSearchTab__list a {
+    display: flex;
+    padding: 10px 33px 10px 33px;
+    min-height: 45px;
+    font-size: 14px;
+  }
+
+  .quickSearchTab__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    border: none;
+    border-radius: 4px;
+    color: #000000;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .quickSearchTab__tab.active {
+    background: #fff;
+    border: 1px solid #000000;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .quickSearchTab__tab:not(.active):hover {
+    background: #ececec;
+  }
+
+  .quickSearchTab__item {
+    display: none;
+  }
+
+  .quickSearchTab__item.active {
+    display: block;
+  }
+</style>
+
+<div
+  class="quickSearchResultsBlock quickSearchResultsWidget quickSearchResultsWrap is-show"
+  data-quick-trending-products
+>
+  <div class="quickSearchResults custom-scrollbar">
+    <div class="container">
+      <div class="quickSearchTab__list">
+        <ul>
+          <li>
+            <a href="#search-all" class="quickSearchTab__tab active">Alle</a>
+          </li>
+          <li>
+            <a href="#search-tab1" class="quickSearchTab__tab">Bestseller</a>
+          </li>
+          <li>
+            <a href="#search-tab2" class="quickSearchTab__tab">Neuheiten</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="quickSearchTab__content">
+        <div class="quickSearchTab__item active" id="search-all">
+          <div class="dis-grid grid-col-1 md:grid-col-5 {% if swipe %} slider slider--tablet grid{% endif %}">
+            {%- if settings.quick_search_collection_1.products[0] != null -%}
+              {%- for product in settings.quick_search_collection_1.products limit: 5 -%}
+                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                  {% render 'product-grid-layout',
+                    product_card_product: product,
+                    show_add_to_cart: true,
+                    serial: forloop.index,
+                    sectionId: section.id,
+                    show_list: true,
+                    loading: true
+                  %}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for product in (1..5) -%}
+                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {% render 'product-card-placeholder', index: current %}
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          <div class="dis-grid grid-col-1 md:grid-col-5 {% if swipe %} slider slider--tablet grid{% endif %}">
+            {%- if settings.quick_search_collection_2.products[0] != null -%}
+              {%- for product in settings.quick_search_collection_2.products limit: 5 -%}
+                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                  {% render 'product-grid-layout',
+                    product_card_product: product,
+                    show_add_to_cart: true,
+                    serial: forloop.index,
+                    sectionId: section.id,
+                    show_list: true,
+                    loading: true
+                  %}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for product in (1..5) -%}
+                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {% render 'product-card-placeholder', index: current %}
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="quickSearchTab__item" id="search-tab1">
+          <div class="dis-grid grid-col-1 md:grid-col-5 {% if swipe %} slider slider--tablet grid{% endif %}">
+            {%- if settings.quick_search_collection_1.products[0] != null -%}
+              {%- for product in settings.quick_search_collection_1.products limit: 5 -%}
+                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                  {% render 'product-grid-layout',
+                    product_card_product: product,
+                    show_add_to_cart: true,
+                    serial: forloop.index,
+                    sectionId: section.id,
+                    show_list: true,
+                    loading: true
+                  %}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for product in (1..5) -%}
+                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {% render 'product-card-placeholder', index: current %}
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="quickSearchTab__item" id="search-tab2">
+          <div class="dis-grid grid-col-1 md:grid-col-5 {% if swipe %} slider slider--tablet grid{% endif %}">
+            {%- if settings.quick_search_collection_2.products[0] != null -%}
+              {%- for product in settings.quick_search_collection_2.products limit: 5 -%}
+                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                  {% render 'product-grid-layout',
+                    product_card_product: product,
+                    show_add_to_cart: true,
+                    serial: forloop.index,
+                    sectionId: section.id,
+                    show_list: true,
+                    loading: true
+                  %}
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for product in (1..5) -%}
+                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {% render 'product-card-placeholder', index: current %}
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const quickSearchResultsBlock = document.querySelector('.quickSearchResultsBlock');
+  const quickSearchTabList = document.querySelector('.quickSearchTab__list');
+  const quickSearchTabContent = document.querySelector('.quickSearchTab__content');
+
+  quickSearchTabList.addEventListener('click', function (event) {
+    if (event.target.classList.contains('quickSearchTab__tab')) {
+      event.preventDefault();
+      quickSearchTabList.querySelectorAll('.quickSearchTab__tab').forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      const targetId = event.target.getAttribute('href').substring(1);
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) {
+        quickSearchTabContent.querySelectorAll('.quickSearchTab__item').forEach(function (item) {
+          item.classList.remove('active');
+        });
+        targetContent.classList.add('active');
+      }
+    }
+  });
+</script>
