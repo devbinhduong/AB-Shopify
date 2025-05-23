@@ -100,6 +100,10 @@
                         assign mega_tyle = menuItem.settings.mega_tyle
                         assign product_limit = menuItem.settings.product_limit
 
+                        assign title_banner = menuItem.settings.title_banner
+                        assign des_banner = menuItem.settings.des_banner
+                        assign button_banner = menuItem.settings.button_banner
+
                         break
                 endcase
             endfor
@@ -157,7 +161,10 @@
                 collection_product: product_collection,
                 product_limit: product_limit,
                 mega_tyle: mega_tyle,
-                alignment: alignment
+                alignment: alignment,
+                title_banner: title_banner,
+                des_banner: des_banner,
+                button_banner: button_banner
 
             %}
         {%- else -%}
