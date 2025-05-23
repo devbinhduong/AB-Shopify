@@ -17,9 +17,9 @@
         halo.ready();
     });
 
-    window.onload = function() { 
+    document.addEventListener("DOMContentLoaded", function () {
         halo.init();
-    }
+    });
 
     var halo = {
         haloTimeout: null,

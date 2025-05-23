@@ -19,6 +19,7 @@
                         {%-  when 'menu' -%}
                             <div class="header-mobile--icon item__mobile--hamburger" style="--i-color: {{ block.settings.color }};">
                                 <button type="button" class="mobileMenu-toggle" data-mobile-menu aria-label="menu"><span class="mobileMenu-toggle__Icon"></span></button>
+                                <button type="button" class="mobileMenu-toggle-close" data-mobile-menu-close aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>    
                             </div>
                             <style>.nav-menu-tab{background: {{ block.settings.menu_tab_bg }};}</style>
                         {%-  when 'search' -%}
@@ -201,6 +202,10 @@
             this.header = document.querySelector('.section-header-mobile');
             this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
             this.headerBounds = {};
+
+            this.setHeaderHeight();
+            window.addEventListener("resize", (event) => { this.setHeaderHeight(); })
+            window.addEventListener("scroll", (event) => { this.setHeaderHeight(); })
     
             if (this.headerIsAlwaysSticky) {
             this.header.classList.add('shopify-section-header-sticky');
@@ -217,6 +222,11 @@
             window.addEventListener('scroll', this.onScrollHandler, false);
     
             this.createObserver();
+
+        }
+
+        setHeaderHeight() {
+          document.documentElement.style.setProperty('--header-height-mobile', `${this.header.getBoundingClientRect().bottom}px`);
         }
   
         disconnectedCallback() {
@@ -291,6 +301,9 @@
 
     document.querySelector('[data-mobile-menu]').addEventListener('click', () => {
         document.body.classList.toggle('menu_open');
+    })
+    document.querySelector('[data-mobile-menu-close]').addEventListener('click', () => {
+        document.body.classList.remove('menu_open');
     })
 
     function setCookie(cname, cvalue, exdays) {
