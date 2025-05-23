@@ -170,7 +170,7 @@
     endif
 -%}
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-navigation-wrapper{{sticky_header}}">
-<div class="huan header-navigation header-nav-hamburger{{header_transparent}}{% if section.settings.header_layout_style == 'style_1'%} header-nav-hamburger--style1 header-nav-hamburger--menu_center{% else %} header-nav-hamburger--style2{% endif %}">
+<div class="header-navigation header-nav-hamburger{{header_transparent}}{% if section.settings.header_layout_style == 'style_1'%} header-nav-hamburger--style1 header-nav-hamburger--menu_center{% else %} header-nav-hamburger--style2{% endif %}">
     <div class="container container-{{ section.settings.container }} d-flex flex-jc-between flex-align-center p-static o-unset{% if section.settings.sticky_header_width == 'full' %} sticky-container-full{% endif %}">
         {%- for block in section.blocks -%}
         {%- case block.type -%}

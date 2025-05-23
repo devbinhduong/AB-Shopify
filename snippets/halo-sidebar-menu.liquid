@@ -1,12 +1,8 @@
-<div class="halo-sidebar halo-sidebar-left halo-sidebar_menu {% if settings.mobile_menu == 'custom' %}custom-mobile-menu{% endif %}" id="navigation-mobile">
+<div class="halo-sidebar halo-sidebar-left halo-sidebar-bottom halo-sidebar_menu {% if settings.mobile_menu == 'custom' %}custom-mobile-menu{% endif %}" id="navigation-mobile">
     <div class="halo-sidebar-wrapper custom-scrollbar">
       {%- if settings.mobile_menu == 'default' -%}
         <div class="site-nav-mobile nav-menu-tab"></div>
         <div class="site-nav-mobile nav" data-navigation-mobile>
-          <div class="menu-heading-mobile halo-sidebar-header">
-            <span class="title">{{ 'general.common.menu' | t }}</span>
-            <button type="button" class="halo-sidebar-close" data-menu-close-sidebar aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
-          </div>
           <ul class="list-menu-loading" role="list">
             {%- for i in (1..8)-%}
               <li class="list-menu-loading__item"></li>
