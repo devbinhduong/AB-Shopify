@@ -22,7 +22,8 @@
     .announcement-bar .announcement-bar__message svg {display: inline-block;vertical-align: middle;width: 16px;height: 16px}
     .announcement-bar .layout--scroll .announcement-bar__message .underline {text-decoration: underline;text-decoration-thickness: 1px;text-underline-offset: 4px}
     #shopify-section-{{ section.id }} .announcement-bar__message, #shopify-section-{{ section.id }} .announcement-bar__message .message, #shopify-section-{{ section.id }} .announcement-bar__message a, #shopify-section-{{ section.id }} .announcement-bar__message p, #shopify-section-{{ section.id }} .top-mesage-countdown {
-        color: {{ section.settings.color_text }};font-size: {{ section.settings.font_size_text | append: 'px' }};font-style: {{ section.settings.font_style_text }};font-weight: {{ section.settings.font_weight_text }};{% unless section.settings.enable_close %}letter-spacing: 0 {% endunless %}}
+        color: {{ section.settings.color_text }};font-size: {{ section.settings.font_size_text | append: 'px' }};font-style: {{ section.settings.font_style_text }};font-weight: {{ section.settings.font_weight_text }}; letter-spacing: 0}
+    #shopify-section-{{ section.id }} .announcement-bar__message.underline > * {text-decoration: underline;}
     .announcement-bar .announcement-close.hasCountDown {width: 21px;height: 21px}
     #shopify-section-{{ section.id }} .announcement-bar .announcement-close svg {fill: {{ section.settings.color_text }}}
     #shopify-section-{{ section.id }} .announcement-bar .announcement-countdown .clock-item{color: var(--countdown-text-color);border: 1px solid var(--countdown-text-border);background-color: var(--countdown-text-background)}
@@ -64,6 +65,10 @@
         #shopify-section-{{ section.id }} .announcement-bar__message .message.font-size-mb {font-size: calc({{ section.settings.font_size_text | append: 'px' }} - 4px)}
         #shopify-section-{{ section.id }} .announcement-bar__message p.custom {font-size: 12px; font-weight: 400;letter-spacing: -0.01em;padding-left: 0;padding-right: 0;}
     }
+    p, span, a, button {
+        font-family: "Copyright Klim Type Foundry";
+        letter-spacing: 0;
+    }
   </style>
   <announcement-bar-component
     class="announcement-bar d-block"
@@ -97,7 +102,7 @@
                   {%- when 'announcement' -%}
                     {%- if block.settings.text != blank -%}
                       <div
-                        class="announcement-bar__message text-center"
+                        class="announcement-bar__message text-center {% if block.settings.enable_underline %} underline{% endif %}"
                         id="{{block.id}}"
                         style="--button-color-style: {{ block.settings.btn_color }};--button-border-style: {{ block.settings.btn_border_color }};--button-background-style: {% if block.settings.btn_bg_color_gradient != blank %}{{ block.settings.btn_bg_color_gradient }}{% else %}{{ block.settings.btn_bg_color }}{% endif %}"
                       >
@@ -131,7 +136,7 @@
               {%- when 'announcement' -%}
                 {%- if block.settings.text != blank -%}
                   <div
-                    class="announcement-bar__message text-center"
+                    class="announcement-bar__message text-center {% if block.settings.enable_underline %} underline{% endif %}"
                     id="{{block.id}}"
                     style="--button-color-style: {{ block.settings.btn_color }};--button-border-style: {{ block.settings.btn_border_color }};--button-background-style: {% if block.settings.btn_bg_color_gradient != blank %}{{ block.settings.btn_bg_color_gradient }}{% else %}{{ block.settings.btn_bg_color }}{% endif %}"
                   >
@@ -471,6 +476,12 @@
           "type": "color_background",
           "id": "btn_bg_color_gradient",
           "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_underline",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.enable_underline",
+          "default": true
         }
       ]
     },

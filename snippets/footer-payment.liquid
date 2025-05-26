@@ -4,7 +4,7 @@
   assign payment_type = block.settings.payment_type
   assign show_payment = block.settings.show_payment
 %}
-<div class="footer-block__list-payment footer__column-item footer__payment" style="--margin-top: {{ payment_margin_top  }}">
+<div class="footer-block__list-payment footer__column-item footer__payment" {% unless only_payment %}  style="--margin-top: {{ payment_margin_top  }}"{% endunless %}>
   {%- if heading_payment != blank -%}
     <h2 class="footer-block__heading">{{- heading_payment | escape -}}</h2>
   {%- endif -%} <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>

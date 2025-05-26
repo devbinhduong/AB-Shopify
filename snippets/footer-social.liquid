@@ -22,6 +22,11 @@
     
     assign show_payment = block.settings.show_payment 
     assign social_block_width = 25
+
+    if only_payment == true
+        assign social_block_width = 19
+    endif
+
     if block.settings.social_block_width != blank and block.settings.social_block_width != nil
         assign social_block_width = block.settings.social_block_width
     endif 
@@ -51,14 +56,17 @@
 {%- unless social_is_nested -%}
     <div class="footer-block__item footer-block__column footer-block__social_media text-{{ text_align }} {{ block__text_first }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--block-custom-width: {{ social_block_width }}%; --block-margin-bottom: 0px">
 {%- endunless -%}
-<div class="footer-block__list-social{% if enable_bg_social %} enable_bg_social{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--margin-top: {{ social_margin_top }}">
-    {%- if social_heading != blank -%}
-        <h2 class="footer-block__heading">{{- social_heading | escape -}}</h2>       
-    {%- endif -%}
-    <div class="item clearfix">{% render 'halo-social-media-icons' %}</div>  
-</div>
+{%- if only_payment != true -%}
+    <div class="footer-block__list-social{% if enable_bg_social %} enable_bg_social{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--margin-top: {{ social_margin_top }}">
+        {%- if social_heading != blank -%}
+            <h2 class="footer-block__heading">{{- social_heading | escape -}}</h2>       
+        {%- endif -%}
+        <div class="item clearfix">{% render 'halo-social-media-icons' %}</div>  
+    </div>
+{%- endif -%}
+
 {%- if show_payment and social_is_nested == false -%}
-    {% render 'footer-payment', block: block %}
+    {% render 'footer-payment', block: block, only_payment: only_payment %}
 {%- endif -%}    
 
 {%- unless social_is_nested -%}

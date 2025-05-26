@@ -32,16 +32,6 @@
     .announcement-bar .layout--slider .announcement-bar__message{display: none}
     .announcement-bar .layout--slider .announcement-bar__message:first-child{display: inline-block}
     .announcement-bar .slick-slider .announcement-bar__message{display: inline-block}
-    @media (max-width: 1400px){
-        {%- if arrow == true -%}
-            #shopify-section-{{ section.id }} .announcement-bar .layout--slider .row{max-width: 50%}
-        {%- endif -%}
-    }
-    @media (max-width: 1199px){
-        {%- if arrow == true -%}
-            #shopify-section-{{ section.id }} .announcement-bar .layout--slider .row{ max-width: 90%}
-        {%- endif -%}
-    }
     @media (max-width: 1024px){
         .announcement-bar .announcement-countdown+.announcement-close{top: 20%}
         #shopify-section-{{ section.id }} .announcement-bar__message .message.font-size-mb {font-size: calc({{ section.settings.font_size_text | append: 'px' }} - 2px)}
@@ -51,12 +41,18 @@
         .announcement-bar{background-position: inherit}
         .announcement-bar .announcement-countdown+.announcement-close{top: 18%}
         {%- endif -%}
-        {%- if arrow == true -%}
-            #shopify-section-{{ section.id }} .announcement-bar .layout--slider .row{max-width: 100%}
-            .announcement-bar .slick-arrow{display: none !important}
-        {%- endif -%}
         #shopify-section-{{ section.id }} .announcement-bar__message .message.font-size-mb {font-size: calc({{ section.settings.font_size_text | append: 'px' }} - 4px)}
         #shopify-section-{{ section.id }} .announcement-bar__message p.custom {font-size: 12px; font-weight: 400;letter-spacing: -0.01em;padding-left: 0;padding-right: 0;}
+    }
+    .announcement-bar__message.cursor-grab::before {
+      content: " ";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--color-text);
+      position: absolute;
+      left: 10px;
+      top: calc(50% - 3px);
     }
   </style>
   <announcement-slider
@@ -64,8 +60,8 @@
     role="region"
     aria-label="announcement slider"
   >
-    <div class="container-full layout--{{ section.settings.layout }} relative">
-      <div class="row" data-announcement-slider>
+    <div class="container-full layout--{{ section.settings.layout }} relative" style="margin-right: -20px;">
+      <div class="row" data-announcement-slider style="margin-left: -20px;">
         {%- liquid
           if section.blocks.size <= 10
             assign limitItems = 13 | minus: section.blocks.size
@@ -78,9 +74,9 @@
           {%- if block.settings.text != blank -%}
             <div class="announcement-bar__item-scroll">
               <div
-                class="announcement-bar__message text-center"
+                class="announcement-bar__message text-center cursor-grab"
                 id="{{block.id}}"
-                style="--button-color-style: {{ block.settings.btn_color }};--button-border-style: {{ block.settings.btn_border_color }};--button-background-style: {% if block.settings.btn_bg_color_gradient != blank %}{{ block.settings.btn_bg_color_gradient }}{% else %}{{ block.settings.btn_bg_color }}{% endif %}"
+                style="--button-color-style: {{ block.settings.btn_color }};--button-border-style: {{ block.settings.btn_border_color }};--button-background-style: {% if block.settings.btn_bg_color_gradient != blank %}{{ block.settings.btn_bg_color_gradient }}{% else %}{{ block.settings.btn_bg_color }}{% endif %}; --color-text: {{ section.settings.color_text }}"
               >
                 {{ block.settings.text }}
               </div>
@@ -120,7 +116,7 @@
             dots: false,
             arrows: showArrows,
             autoplay: true,
-            autoplaySpeed: 3000,
+            autoplaySpeed: 10000,
             swipeToSlide: true,
             responsive: [
               {
@@ -183,13 +179,13 @@
       "type": "color",
       "id": "color_text",
       "label": "t:sections.announcement-bar.blocks.announcement.settings.color_scheme.color_text",
-      "default": "#b05d5d"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "bg_color_text",
       "label": "t:settings_schema.colors.settings.colors_name.background_color",
-      "default": "#ffe8e8"
+      "default": "#000000"
     },
     {
       "type": "color_background",
@@ -290,7 +286,7 @@
       "max": 50,
       "step": 1,
       "unit": "t:sections.layout.mg_desktop.unit",
-      "default": 0
+      "default": 18
     },
     {
       "type": "range",
@@ -300,7 +296,7 @@
       "max": 50,
       "step": 1,
       "unit": "t:sections.layout.mg_desktop.unit",
-      "default": 0
+      "default": 18
     }
   ],
   "blocks": [

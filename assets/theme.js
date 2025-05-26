@@ -489,6 +489,7 @@
                 headerwraperSearchPC = $('.header-top .header__search'),
                 headerwraperSearchMB = $('#search-form-mobile .halo-sidebar-wrapper'),
                 searchDetails = $('.search_details'),
+                inputSearch = document.querySelector('.search_details input[type="search"]'),
                 predictiveSearchPC =  $('.header-top .header__search predictive-search'),
                 predictiveSearchMB = $('#search-form-mobile .halo-sidebar-wrapper predictive-search');
  
@@ -522,6 +523,10 @@
                 $('[data-search-menu]').on('click', (event) => {
                     event.preventDefault();
                     $('body').addClass('open_search_menu');
+
+                    // Mint start search function
+                    inputSearch.click();
+                    console.log("open_search_mobile", inputSearch);
                 });
             }
         },

@@ -1526,6 +1526,7 @@
               "font_size": "Font size",
               "link": "Link",
               "enable_arrows": "Show navigation arrows",
+              "enable_underline": "Show text underline",
               "info": "Only applicable when the layout setting is set to slider."
             },
             "color_scheme": {
