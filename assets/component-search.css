@@ -73,9 +73,7 @@ body:not(:has(predictive-search)) .quickSearchResultsWrap {
     height: auto;
     margin-right: 0;
 }
-.search-modal__form .search__button .icon-search-1 {
-    transform: rotate(-90deg);
-}
+
 .search-modal__content .search-modal__close-button{
     background-color: transparent;
     border-color: transparent;

@@ -2386,13 +2386,13 @@ input.form-input-hiddenPlaceholder::placeholder {
     position: absolute;
     top: 0px;
     right: 0px;
-    min-width: 23px;
-    min-height: 23px;
+    min-width: 18px;
+    height: 18px;
     text-align: center;
     border-radius: 50%;
     font-size: var(--font-body-size);
     font-weight: var(--font-weight-normal);
-    line-height: 22px;
+    line-height: 17px;
     letter-spacing: var(--body-letter-spacing);
     background-color: var(--color-global);
     color: var(--color-white);
@@ -2917,7 +2917,15 @@ input.form-input-hiddenPlaceholder::placeholder {
     display: inline-block;
     vertical-align: middle;
 }
-
+.header-mobile .header__iconItem.header__search {
+    background: #f8f8f8;
+    border-radius: 18px;
+    width: 142px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+}
 .header-top-right-group .header__search {
     margin-left: 20px;
 }
@@ -3005,10 +3013,6 @@ input.form-input-hiddenPlaceholder::placeholder {
     transition: transform 150ms ease, opacity 150ms ease;
 }
 
-.header__icon .icon-search-1 {
-    transform: rotate(-90deg);
-}
-
 .section-header-mobile {
     position: relative;
     z-index: 20;
@@ -3020,7 +3024,9 @@ input.form-input-hiddenPlaceholder::placeholder {
     padding: var(--p-top) 0 var(--p-bottom);
     display: block;
 }
-
+.header-mobile .container {
+    padding: 0 32px;
+}
 @media screen and (min-width: 1025px) {
     .section-header-mobile {
         display: none;
@@ -3036,12 +3042,14 @@ input.form-input-hiddenPlaceholder::placeholder {
 }
 
 .header-mobile__item {
-    min-width: 46px;
+    min-width: 41px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+.header-mobile__item.header-mobile__item--search {
+    margin-right: 4px;
+}
 .header-mobile__item:first-child {
     justify-content: flex-start;
 }
@@ -3092,8 +3100,8 @@ input.form-input-hiddenPlaceholder::placeholder {
     height: 26px;
 }
 .header-mobile--icon .header__icon--cart svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
 }
 
 .header-mobile--icon .header__icon--cart .bag-curved {
@@ -3171,8 +3179,8 @@ input.form-input-hiddenPlaceholder::placeholder {
 
 .mobileMenu-toggle,
 .mobileMenu-toggle-close {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     font-size: 0;
     overflow: hidden;
     position: relative;
@@ -3225,11 +3233,11 @@ input.form-input-hiddenPlaceholder::placeholder {
 }
 
 .mobileMenu-toggle__Icon::before {
-    top: -8px;
+    top: -7px;
 }
 
 .mobileMenu-toggle__Icon::after {
-    bottom: -8px;
+    bottom: -7px;
 }
 
 .mobileMenu-toggle.is-open .mobileMenu-toggle__Icon {
@@ -4188,7 +4196,7 @@ body.notify-me-show .halo-notify-popup {
     display: inline-block;
     vertical-align: middle;
     font-size: calc(var(--font-body-size) - 2px);
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-semibold);
     letter-spacing: 0;
     line-height: 15px;
     border-radius: 50px;
@@ -4738,7 +4746,6 @@ body.is-custom-information .background-overlay {
 .site-nav-mobile.nav-account .header__link--account,
 .site-nav-mobile.nav-account .header__icon {
     padding: 15px 20px !important;
-    border-top: 1px solid #e6e6e6;
 }
 
 .site-nav-mobile.nav-account .header__link--account .title {
@@ -5321,10 +5328,73 @@ body.is-custom-information .background-overlay {
         display: block;
     }
 
-    .halo-popup-wrapper-mobile .lookbook-mobile-item .mobile-lookbook-title,
-    .halo-popup-wrapper-mobile .lookbook-mobile-item .mobile-lookbook-price {
-        text-align: center;
+    /* START: Header */
+    .announcement-close {
+        width: 15px;
+        height: 15px;
+        right: 10px;
     }
+    .header__icon--cart .cart-count-bubble {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        min-width: 14px;
+        height: 14px;
+        font-size: 10px;
+        line-height: 14px;
+    }
+    .search-modal__form {
+        background-color: #fafafa;
+        border-bottom: 1px solid #e7e7e7;
+    }
+    .search-modal__form .search__button {
+        min-width: inherit;
+        text-overflow: unset;
+        padding: 1px 10px 4px;
+        border-radius: 0;
+        min-height: 30px;
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+    }
+    .search-modal__form .search__input {
+        padding: 3px 10px;
+        background-color: transparent;
+        border: 0;
+    }
+    .search-modal__form .search__button svg {
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+    }
+    .menu-heading-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 20px 3px 20px;
+    }
+    .halo-top-language .icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .halo-currency .currency-menu .icon svg {
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+        top: 1px;
+    }
+    .halo-sidebar_menu #HeaderLanguageList,
+    .halo-sidebar_menu .halo-currency .currency-menu {
+        padding: 10px 10px !important;
+    }
+    .halo-sidebar_menu #HeaderLanguageList .disclosure__item,
+    .halo-sidebar_menu .halo-currency .currency-menu .dropdown-item {
+        padding: 10px 10px 10px 10px !important;
+    }
+    .logo-m-none {
+        display: none !important;
+    }
+    /* END: Header */
 
     .halo-popup-wrapper-mobile .lookbook-mobile-item .mobile-lookbook-price {
         font-size: var(--product-price-font-size);
@@ -6365,7 +6435,7 @@ body.is-custom-information .background-overlay {
     }
 
     .header__icon:hover .icon-search-1 {
-        transform: rotate(-90deg) scale(1.15);
+        transform: scale(1.15);
     }
 
     .halo-top-language #HeaderLanguageLabel {
