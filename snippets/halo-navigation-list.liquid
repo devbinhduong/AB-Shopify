@@ -1,4 +1,4 @@
-<ul class="{{ listClass }} text-{{alignment}}" role="list">
+<ul class="{{ listClass }} text-{{alignment}}" role="list" data-drag-parent>
     {%- liquid
         if search.terms != blank and template.suffix == 'ajax_mega_menu'
             assign hide_menu_load = false

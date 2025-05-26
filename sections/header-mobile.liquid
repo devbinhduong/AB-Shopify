@@ -165,6 +165,8 @@
                                             {% render 'icon-cart-09' %}
                                         {%-  when '6' -%}
                                             {% render 'icon-cart-07', class: 'shopping-basket' %}
+                                        {%-  when '8' -%}
+                                            {% render 'icon-cart-12' %}
                                     {%- endcase -%}
                                     <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
                                     <div class="cart-count-bubble">
@@ -190,6 +192,104 @@
             {%- endfor -%}
         </div>
     </div>
+    {%- liquid
+        assign quick_menu_block = section.blocks | where: 'type', 'quick_menu' | first
+        assign bg_color_text = quick_menu_block.settings.bg_color_text
+        assign bg_color_text_gradient = quick_menu_block.settings.bg_color_text_gradient
+        assign color_text = quick_menu_block.settings.color_text
+       
+        assign mg_top_desktop = quick_menu_block.settings.mg_top_desktop
+        assign mg_top_tablet = quick_menu_block.settings.mg_top_tablet
+        assign mg_top_mobile = quick_menu_block.settings.mg_top_mobile
+
+        assign mg_bottom_desktop = quick_menu_block.settings.mg_bottom_desktop
+        assign mg_bottom_tablet = quick_menu_block.settings.mg_bottom_tablet
+        assign mg_bottom_mobile = quick_menu_block.settings.mg_bottom_mobile
+
+        assign padding_full_width = quick_menu_block.settings.padding_full_width
+
+        assign menu = quick_menu_block.settings.menu.links
+
+        assign font_size_text = quick_menu_block.settings.font_size_text | append: 'px'
+        assign font_style_text = quick_menu_block.settings.font_style_text
+        assign font_weight_text = quick_menu_block.settings.font_weight_text
+    -%}
+
+<style type="text/css">
+    .section-block-{{section.id}}.quick-menu {
+        display: block;
+        background: {% if bg_color_text_gradient != blank %}{{ bg_color_text_gradient }}{% else %}{{ bg_color_text }}{% endif %};
+    }
+    .section-block-{{section.id}}.quick-menu .container{
+        display: flex;
+        justify-content: center;
+        padding-inline: 24px;
+
+    }
+    .section-block-{{section.id}}.quick-menu .halo-row{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: clip;
+        gap: 64px;
+    }
+    .section-block-{{section.id}}.quick-menu .halo-row::-webkit-scrollbar {
+        display: none;
+    }
+    .section-block-{{section.id}}.quick-menu .halo-row .halo-item{
+        font-size: {{ font_size_text }};
+        line-height: calc({{ font_size_text }} + 6px);
+        font-weight: {{ font_weight_text }};
+        font-style: {{ font_style_text }};
+        color: {{ color_text }};
+        text-wrap: nowrap;
+        -webkit-user-drag: none;
+        user-drag: none;
+        user-select: none;
+    }
+    @media (max-width: 767px){
+        .section-block-{{section.id}} {
+            padding-top: {{ mg_top_mobile | append: 'px' }};
+            padding-bottom: {{ mg_bottom_mobile | append: 'px' }};
+        }
+        .section-block-{{section.id}}.quick-menu .halo-row{
+            gap: 24px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .section-block-{{section.id}} {
+            padding-top: {{ mg_top_desktop | append: 'px' }};
+            padding-bottom: {{ mg_bottom_desktop | append: 'px' }};
+        }
+    }
+
+    @media (min-width: 1025px) {
+        {% if section.settings.container == 'fullwidth' %}
+            .section-block-{{section.id}} .container-full {
+                padding-left: {{ padding_full_width | append: 'px' }};
+                padding-right: {{ padding_full_width | append: 'px' }};
+            }
+        {% endif %}
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        .section-block-{{section.id}} {
+            padding-top: {{ mg_top_tablet | append: 'px' }};
+            padding-bottom: {{ mg_bottom_tablet | append: 'px' }};
+        }
+    }
+</style>
+{% if menu != blank %}
+    <product-scroller class="section-block-{{section.id}} quick-menu">
+        <div class="container" data-drag-container>
+            <div class="halo-row" data-drag-parent>
+                {%- for link in menu -%}
+                    <a class="halo-item" data-drag-item href="{{ link.url }}">{{ link.title }}</a>
+                {%- endfor -%}
+            </div>
+        </div>
+    </product-scroller>
+{% endif %}
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header-mobile{% else %}div{% endif %}>
 
 {% javascript %}
@@ -200,6 +300,7 @@
   
         connectedCallback() {
             this.header = document.querySelector('.section-header-mobile');
+            this.headerContainer = this.header.querySelector('.container');
             this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
             this.headerBounds = {};
 
@@ -226,7 +327,7 @@
         }
 
         setHeaderHeight() {
-          document.documentElement.style.setProperty('--header-height-mobile', `${this.header.getBoundingClientRect().bottom}px`);
+          document.documentElement.style.setProperty('--header-height-mobile', `${this.headerContainer.getBoundingClientRect().bottom}px`);
         }
   
         disconnectedCallback() {
@@ -499,6 +600,170 @@
     ],
     "blocks": [
         {
+            "type": "quick_menu",
+            "name": "Quick menu",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "t:settings_schema.general.name"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "label": "t:sections.header.settings.menu.label__1",
+                    "default": "main-menu"
+                },
+                {
+                "type": "color",
+                "id": "color_text",
+                "label": "t:sections.announcement-bar.blocks.announcement.settings.color_scheme.color_text",
+                "default": "#212121"
+                },
+                {
+                "type": "color",
+                "id": "bg_color_text",
+                "label": "t:settings_schema.colors.settings.colors_name.background_color",
+                "default": "#f8f8f8"
+                },
+                {
+                "type": "color_background",
+                "id": "bg_color_text_gradient",
+                "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+                },
+                {
+                "type": "range",
+                "id": "font_size_text",
+                "label": "t:sections.announcement-bar.blocks.announcement.settings.text.font_size",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 16
+                },
+                {
+                "type": "select",
+                "id": "font_style_text",
+                "label": "t:sections.general.settings.typography.font_style",
+                "default": "italic",
+                "options": [
+                    {
+                    "value": "normal",
+                    "label": "t:settings_schema.typography.settings.font_style.options__1"
+                    },
+                    {
+                    "value": "italic",
+                    "label": "t:settings_schema.typography.settings.font_style.options__2"
+                    },
+                    {
+                    "value": "oblique",
+                    "label": "t:settings_schema.typography.settings.font_style.options__3"
+                    }
+                ]
+                },
+                {
+                "type": "select",
+                "id": "font_weight_text",
+                "label": "t:settings_schema.typography.settings.font_weight.label",
+                "default": "500",
+                "options": [
+                    {
+                    "value": "400",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__1"
+                    },
+                    {
+                    "value": "500",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__2"
+                    },
+                    {
+                    "value": "600",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__3"
+                    },
+                    {
+                    "value": "700",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__4"
+                    },
+                    {
+                    "value": "800",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__5"
+                    },
+                    {
+                    "value": "900",
+                    "label": "t:settings_schema.typography.settings.font_weight.options__6"
+                    }
+                ]
+                },
+                {
+                    "type": "header",
+                    "content": "t:sections.layout.margin_top"
+                },
+                {
+                    "type": "range",
+                    "id": "mg_top_desktop",
+                    "label": "t:sections.layout.mg_desktop.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                },
+                {
+                    "type": "range",
+                    "id": "mg_top_tablet",
+                    "label": "t:sections.layout.mg_tablet.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                },
+                {
+                    "type": "range",
+                    "id": "mg_top_mobile",
+                    "label": "t:sections.layout.mg_mobile.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                },
+                {
+                    "type": "header",
+                    "content": "t:sections.layout.margin_bottom"
+                },
+                {
+                    "type": "range",
+                    "id": "mg_bottom_desktop",
+                    "label": "t:sections.layout.mg_desktop.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                },
+                {
+                    "type": "range",
+                    "id": "mg_bottom_tablet",
+                    "label": "t:sections.layout.mg_tablet.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                },
+                {
+                    "type": "range",
+                    "id": "mg_bottom_mobile",
+                    "label": "t:sections.layout.mg_mobile.label",
+                    "min": 0,
+                    "max": 150,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 5
+                }
+            ]
+        },
+        {
             "type": "menu",
             "name": "Menu",
             "limit": 1,
@@ -549,7 +814,7 @@
                 {
                     "type": "range",
                     "id": "logo_width_mobile",
-                    "min": 50,
+                    "min": 30,
                     "max": 150,
                     "step": 5,
                     "unit": "t:sections.header.settings.logo_width.unit",
@@ -705,6 +970,10 @@
                         {
                             "value": "6",
                             "label": "t:sections.header.settings.header_icons.cart_7"
+                        },
+                        {
+                            "value": "8",
+                            "label": "Shopping badge custom"
                         }
                     ]
                 },
