@@ -6012,6 +6012,65 @@ body.is-custom-information .background-overlay {
     display: none;
   }
 
+
+    /* START: Header */
+    .announcement-close {
+        width: 15px;
+        height: 15px;
+        right: 10px;
+    }
+    .search-modal__form {
+        background-color: #fafafa;
+        border-bottom: 1px solid #e7e7e7;
+    }
+    .search-modal__form .search__button {
+        min-width: inherit;
+        text-overflow: unset;
+        padding: 1px 10px 4px;
+        border-radius: 0;
+        min-height: 30px;
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+    }
+    .search-modal__form .search__input {
+        padding: 3px 10px;
+        background-color: transparent;
+        border: 0;
+    }
+    .search-modal__form .search__button svg {
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+    }
+    .menu-heading-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 20px 3px 20px;
+    }
+    .halo-top-language .icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .halo-currency .currency-menu .icon svg {
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+        top: 1px;
+    }
+    .halo-sidebar_menu #HeaderLanguageList,
+    .halo-sidebar_menu .halo-currency .currency-menu {
+        padding: 10px 10px !important;
+    }
+    .halo-sidebar_menu #HeaderLanguageList .disclosure__item,
+    .halo-sidebar_menu .halo-currency .currency-menu .dropdown-item {
+        padding: 10px 10px 10px 10px !important;
+    }
+    .logo-m-none {
+        display: none !important;
+    }
+    /* END: Header */
   .disable-srollbar-mb::-webkit-scrollbar-thumb {
     display: none;
   }

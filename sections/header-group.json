@@ -21,7 +21,8 @@
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
-            "btn_bg_color_gradient": ""
+            "btn_bg_color_gradient": "",
+            "enable_underline": true
           }
         }
       },
@@ -39,70 +40,107 @@
         "font_weight_text": "500",
         "arrow_active": false,
         "content_max_width": 38,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 1,
+        "padding_bottom": 2
       }
     },
-    "announcement_slider_8JU4Pf": {
+    "announcement_slider_GhPiTU": {
       "type": "announcement-slider",
       "blocks": {
-        "announcement_BLndMW": {
+        "announcement_kAYYVm": {
           "type": "announcement",
           "settings": {
-            "text": "<p>🌟 Über 3 Millionen zufriedene Kunden</p>",
-            "btn_color": "#000000",
+            "text": "✅ 100 Tage Geld-Zurück-Garantie",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_6jPYi7": {
+        "announcement_czXhEa": {
           "type": "announcement",
           "settings": {
-            "text": "<p>✅ 100 Tage Geld-Zurück-Garantie</p>",
-            "btn_color": "#000000",
+            "text": "🚚 Versandkostenfrei ab 50€ in DE",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_JKNPjj": {
+        "announcement_4dih9U": {
           "type": "announcement",
           "settings": {
-            "text": "<p>🚚 Versandkostenfrei ab 50€ in DE</p>",
-            "btn_color": "#000000",
+            "text": "🔍 Von Experten entwickelt",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_x3byKx": {
+        "announcement_6emkry": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "<p>🔍 Von Experten entwickelt</p>",
-            "btn_color": "#000000",
+            "text": "🌟 Über 3 Millionen zufriedene Kunden",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_neCk4M": {
+          "type": "announcement",
+          "settings": {
+            "text": "✅ 100 Tage Geld-Zurück-Garantie",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_wRbENB": {
+          "type": "announcement",
+          "settings": {
+            "text": "🚚 Versandkostenfrei ab 50€ in DE",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_j679gY": {
+          "type": "announcement",
+          "settings": {
+            "text": "🔍 Von Experten entwickelt",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         }
       },
       "block_order": [
-        "announcement_BLndMW",
-        "announcement_6jPYi7",
-        "announcement_JKNPjj",
-        "announcement_x3byKx"
+        "announcement_kAYYVm",
+        "announcement_czXhEa",
+        "announcement_4dih9U",
+        "announcement_6emkry",
+        "announcement_neCk4M",
+        "announcement_wRbENB",
+        "announcement_j679gY"
       ],
-      "name": "Announcement Bar Slider",
+      "name": "Announcement Slider",
       "settings": {
         "layout": "slider",
+        "enable_close": true,
         "color_text": "#ffffff",
-        "bg_color_text": "#212121",
+        "bg_color_text": "#000000",
         "bg_color_text_gradient": "",
         "font_size_text": 12,
         "font_style_text": "normal",
         "font_weight_text": "500",
         "arrow_active": false,
         "content_max_width": 38,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 18,
+        "padding_bottom": 18
       }
     },
     "deb8dcfc-6e5c-495d-ad01-12fa1389160b": {
@@ -274,6 +312,28 @@
             "bg_mega_menu_bottom": "#f8f8f8"
           }
         },
+        "megamenu_style_5_ADDaNB": {
+          "type": "megamenu_style_5",
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1400,
+            "mega_tyle": "style2",
+            "item": "Magazin & Wissen",
+            "column": 4,
+            "menu_text_left": "",
+            "menu_text_left_sale": "",
+            "show_banner_1": true,
+            "banner_url_1": "shopify://collections/all",
+            "title_banner": "Montmorency Sauerkirche",
+            "des_banner": "<p>Entspannend und abwehrstark.</p>",
+            "button_banner": "Jetzt entdecken",
+            "product_limit": 4,
+            "show_product": false,
+            "product_title": "Featured Products",
+            "product_collection": "",
+            "bg_mega_menu_bottom": "#f8f8f8"
+          }
+        },
         "quick_menu_NjGxqA": {
           "type": "quick_menu",
           "settings": {
@@ -301,6 +361,7 @@
         "a95ae51a-e02d-42cd-8e35-232434188ac6",
         "megamenu_style_4_EKGe9r",
         "megamenu_style_5_WcPUfV",
+        "megamenu_style_5_ADDaNB",
         "quick_menu_NjGxqA"
       ],
       "settings": {
@@ -396,7 +457,7 @@
   },
   "order": [
     "announcement-bar",
-    "announcement_slider_8JU4Pf",
+    "announcement_slider_GhPiTU",
     "deb8dcfc-6e5c-495d-ad01-12fa1389160b",
     "header-mobile"
   ]
