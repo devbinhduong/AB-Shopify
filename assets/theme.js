@@ -179,6 +179,8 @@
             
             halo.checkScrollLayoutForRecenlyViewed();
             
+            this.handleHeaderMainMenu();
+            this.handleFooterLayout();
 
             let checkMenuMobile;
             window.innerWidth > 1024 ? checkMenuMobile = true : checkMenuMobile = false;
@@ -198,6 +200,9 @@
                     this.initMultiTab()
                     this.initMultiTabMobile()
                 }
+
+                this.handleHeaderMainMenu();
+                this.handleFooterLayout();
             });
         },
         
@@ -7200,6 +7205,49 @@
             } else {
                 stickyButtonMB.css('bottom','0px');
             }
+        },
+
+        handleHeaderMainMenu: function() {
+            var mainMenuWidth = document.querySelector('.header__inline-menu .list-menu')?.getBoundingClientRect().width || 0;
+
+            if (mainMenuWidth > 0) {
+                const mainMenu = document.querySelector('.header__inline-menu .list-menu');
+                if (mainMenu.scrollWidth > mainMenu.clientWidth) {
+                    console.log("active arrow")
+                } else {
+                    console.log("not active arrow")
+                }
+            }
+        },
+
+        handleFooterLayout: function () {
+            const footerLogo = document.querySelector(".footer-custom .footerBottom__left img");
+            const footerBottomLeft = document.querySelector(".footer-custom .footerBottom__left");
+            const firstFooterCol = document.querySelectorAll(".footer-custom .footer-block__item")[0];
+
+            if (!footerLogo || !firstFooterCol || !footerBottomLeft) return;
+
+            if (window.innerWidth < 768) {
+                footerBottomLeft.style.display = "none";
+
+                if (!firstFooterCol.querySelector(".footer-logo-clone")) {
+                    const clonedLogo = footerLogo.cloneNode(true);
+                    clonedLogo.classList.add("footer-logo-clone");
+                    firstFooterCol.appendChild(clonedLogo);
+                }
+            } else {
+                footerBottomLeft.style.display = "block";
+
+                const clonedLogo = firstFooterCol.querySelector(".footer-logo-clone");
+                if (clonedLogo) {
+                    clonedLogo.remove();
+                }
+            }
         }
     }
 })(jQuery);
+
+
+
+
+

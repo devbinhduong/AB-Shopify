@@ -1,0 +1,73 @@
+<style>
+  .footer__underline-wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--page-width);
+    padding: 32px 30px !important;
+  }
+
+  .footer__underline-images-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (width <= 767px) {
+    .footer__underline-wrapper {
+      padding: 20px;
+    }
+
+    .footer__underline-images-wrapper {
+    }
+  }
+</style>
+<div class="footer__underline-section " style="--bg-color: #f8f8f8; --text-color: #212121">
+  <div
+    id="trustpilot-widget-trustbox-0-wrapper"
+    style="z-index: 998; clear: both;margin-left: 0px; margin-right:  0px;margin-top: 30px; margin-bottom: 30px;"
+  ></div>
+  <div class="section footer__underline-wrapper">
+    <div class="footer__underline-images-wrapper">
+      <img src="//my-ne.com/cdn/shop/files/sw_strich_1.svg?v=1709795524" alt="">
+
+      <img src="//my-ne.com/cdn/shop/files/EU_Organic_Logo_Colour_54x36mm_1.svg?v=1709795515" alt="">
+    </div>
+
+    <div
+      class="trustpilot-widget"
+      data-locale="de-DE"
+      data-template-id="5419b637fa0340045cd0c936"
+      data-businessunit-id="64517c33fed1aeb46fc63572"
+      data-style-height="20px"
+      data-style-width="100%"
+      data-theme="light"
+      style="position: relative;"
+    >
+      <iframe
+        title="Auf Trustpilot veröffentlichte Kundenbewertungen"
+        loading="auto"
+        src="https://widget.trustpilot.com/trustboxes/5419b637fa0340045cd0c936/index.html?templateId=5419b637fa0340045cd0c936&amp;businessunitId=64517c33fed1aeb46fc63572#locale=de-DE&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light"
+        style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer Bottom App",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Footer Bottom App"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["footer"]
+  }
+}
+{% endschema %}
