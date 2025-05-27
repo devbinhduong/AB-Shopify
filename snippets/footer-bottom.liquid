@@ -1,4 +1,3 @@
-{% comment %} Receive block, type_footer_link_font_size {% endcomment %}
 {% liquid
   assign footer_bottom_bg = block.settings.footer_bottom_bg
   assign footer_bottom_bg_gradient = block.settings.footer_bottom_bg_gradient
@@ -23,11 +22,18 @@
     <div class="footer-block__bottom {% unless block.settings.enable_layout_grid %}not_flex{% endunless %} {% if show_payment == false %}not_payment{% endif %}">
       {%- if block.settings.show_copyright -%}
         <div class="footer__column-item footer__copyright">
-          <div class="copyright__content" style="--font-size: {{ type_footer_link_font_size }}px; --text-color: {{ block.settings.copyright_content_color }}">{{ block.settings.copyright_content | default: ' ' }}</div>
+          <div
+            class="copyright__content"
+            style="--font-size: {{ type_footer_link_font_size }}px; --text-color: {{ block.settings.copyright_content_color }}"
+          >
+            {{ block.settings.copyright_content | default: ' ' }}
+          </div>
         </div>
       {%- endif -%}
       {%- if block.settings.show_shop_name -%}
-        <div class="footer__column-item footer__shop_name"><small class="copyright__content">{{ block.settings.shop_name }}</small></div>
+        <div class="footer__column-item footer__shop_name">
+          <small class="copyright__content">{{ block.settings.shop_name }}</small>
+        </div>
       {%- endif -%}
       <div class="footer__column footer__column--info">
         {%- if show_payment -%}
