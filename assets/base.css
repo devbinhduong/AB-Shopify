@@ -5482,11 +5482,6 @@ body.is-custom-information .background-overlay {
         height: 15px;
         right: 10px;
     }
-    .header__icon--cart .cart-count-bubble {
-        position: absolute;
-        right: -12px;
-        top: -8px;
-    }
     .search-modal__form {
         background-color: #fafafa;
         border-bottom: 1px solid #e7e7e7;

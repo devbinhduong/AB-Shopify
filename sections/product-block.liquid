@@ -47,6 +47,7 @@
     assign pd_top_title = section.settings.pd_top_title
     assign fontsize_title = section.settings.fontsize_title
     assign fontsize_title_mb = section.settings.fontsize_title_mb
+    assign title_line_height = section.settings.title_line_height
     assign product_button_width = section.settings.product_button_width
     assign pd_top_product_button = section.settings.pd_top_product_button
     assign pd_bottom_product_button = section.settings.pd_bottom_product_button
@@ -313,7 +314,7 @@
         .section-block-{{section.id}},.section-block-{{section.id}} .halo-block-header .title .text {background: {% if product_bg_gradient != blank %}{{ product_bg_gradient }}{% else %}{{ product_bg }}{% endif %}}
     {%- endif -%}
     .product-block .halo-block {background-color: transparent}
-    .section-block-{{section.id}} .halo-block-header .title {color: {{ color_title }};font-size: {{ fontsize_title | append: 'px'  }};
+    .section-block-{{section.id}} .halo-block-header .title {color: {{ color_title }};font-size: {{ fontsize_title | append: 'px'  }}; line-height: {{ title_line_height }};
         {%- if section.settings.view_all != blank -%}
             {%- if section.settings.title_align == 'center' and section.settings.view_all_align == 'center' -%}
                 margin-bottom: {{ mg_bottom_title | append: 'px' }};
@@ -549,6 +550,10 @@
                 flex-basis: calc(100% / var(--count));width: calc(100% / var(--count))
             {%- endif -%}
         }
+    }
+
+    .halo-product-block .products-carousel.slick-slider .slick-list{
+        overflow: visible !important;
     }
 </style>
 <div class="product-block section-block-{{section.id}}" style="--grid-gap: {{ grid_gap }}">
@@ -1033,6 +1038,15 @@
         "step": 1,
         "unit": "t:sections.layout.fontsize.fontsize_title.unit",
         "default": 16
+    },
+    {
+        "type": "range",
+        "id": "title_line_height",
+        "label": "t:settings_schema.typography.settings.typography.label__1",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "default": 1.2
     },
     {
         "type": "range",

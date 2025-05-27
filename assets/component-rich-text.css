@@ -1,6 +1,11 @@
-.rich-text__blocks h2 {
+.rich-text__blocks h2,
+.rich-text__blocks h2 p{
     font-size: var(--fontsize-heading-style);
     color: var(--color-heading-style);
+    line-height: var(--heading-line-height-style);
+}
+.rich-text__blocks h2 p{
+   margin: 0;
 }
 
 .rich-text__blocks .rich-text__sub {
@@ -39,6 +44,8 @@
     max-width: var(--width-button-style);
     margin-top: var(--margin_top_button-style);
     margin-bottom: 10px;
+    font-size: var(--fontsize_button);
+    text-transform: none;
 }
 
 .btn_1_br_outside .rich-text__blocks .button:after {
@@ -296,7 +303,8 @@
 }
 
 @media (max-width: 767px) {
-    .rich-text__blocks h2 {
+    .rich-text__blocks h2,
+    .rich-text__blocks h2 p{
         font-size: var(--heading-size-mb-style);
     }
 

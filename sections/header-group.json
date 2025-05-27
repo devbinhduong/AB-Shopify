@@ -21,7 +21,8 @@
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
-            "btn_bg_color_gradient": ""
+            "btn_bg_color_gradient": "",
+            "enable_underline": true
           }
         }
       },
@@ -39,70 +40,107 @@
         "font_weight_text": "500",
         "arrow_active": false,
         "content_max_width": 38,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 1,
+        "padding_bottom": 2
       }
     },
-    "announcement_slider_8JU4Pf": {
+    "announcement_slider_GhPiTU": {
       "type": "announcement-slider",
       "blocks": {
-        "announcement_BLndMW": {
+        "announcement_kAYYVm": {
           "type": "announcement",
           "settings": {
-            "text": "<p>🌟 Über 3 Millionen zufriedene Kunden</p>",
-            "btn_color": "#000000",
+            "text": "✅ 100 Tage Geld-Zurück-Garantie",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_6jPYi7": {
+        "announcement_czXhEa": {
           "type": "announcement",
           "settings": {
-            "text": "<p>✅ 100 Tage Geld-Zurück-Garantie</p>",
-            "btn_color": "#000000",
+            "text": "🚚 Versandkostenfrei ab 50€ in DE",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_JKNPjj": {
+        "announcement_4dih9U": {
           "type": "announcement",
           "settings": {
-            "text": "<p>🚚 Versandkostenfrei ab 50€ in DE</p>",
-            "btn_color": "#000000",
+            "text": "🔍 Von Experten entwickelt",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         },
-        "announcement_x3byKx": {
+        "announcement_6emkry": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "<p>🔍 Von Experten entwickelt</p>",
-            "btn_color": "#000000",
+            "text": "🌟 Über 3 Millionen zufriedene Kunden",
+            "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
-            "btn_bg_color": "#ffffff"
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_neCk4M": {
+          "type": "announcement",
+          "settings": {
+            "text": "✅ 100 Tage Geld-Zurück-Garantie",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_wRbENB": {
+          "type": "announcement",
+          "settings": {
+            "text": "🚚 Versandkostenfrei ab 50€ in DE",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_j679gY": {
+          "type": "announcement",
+          "settings": {
+            "text": "🔍 Von Experten entwickelt",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
           }
         }
       },
       "block_order": [
-        "announcement_BLndMW",
-        "announcement_6jPYi7",
-        "announcement_JKNPjj",
-        "announcement_x3byKx"
+        "announcement_kAYYVm",
+        "announcement_czXhEa",
+        "announcement_4dih9U",
+        "announcement_6emkry",
+        "announcement_neCk4M",
+        "announcement_wRbENB",
+        "announcement_j679gY"
       ],
-      "name": "Announcement Bar Slider",
+      "name": "Announcement Slider",
       "settings": {
         "layout": "slider",
+        "enable_close": true,
         "color_text": "#ffffff",
-        "bg_color_text": "#212121",
+        "bg_color_text": "#000000",
         "bg_color_text_gradient": "",
         "font_size_text": 12,
         "font_style_text": "normal",
         "font_weight_text": "500",
         "arrow_active": false,
         "content_max_width": 38,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 18,
+        "padding_bottom": 18
       }
     },
     "deb8dcfc-6e5c-495d-ad01-12fa1389160b": {
@@ -111,8 +149,9 @@
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-0": {
           "type": "logo",
           "settings": {
-            "logo_position": "main_menu",
-            "logo_width": 185,
+            "logo_position": "always",
+            "logo": "shopify://shop_images/ne_logo_quer_tm_black.svg",
+            "logo_width": 215,
             "logo_width_fixed": 100,
             "logo_text": "",
             "logo_font_size": 20,
@@ -124,11 +163,11 @@
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-1": {
           "type": "main_menu",
           "settings": {
-            "menu": "",
-            "menu_top_spacing": 27,
-            "menu_bottom_spacing": 27,
+            "menu": "main-menu",
+            "menu_top_spacing": 35,
+            "menu_bottom_spacing": 35,
             "grid_gap_menu_item": 20,
-            "alignment": "center",
+            "alignment": "left",
             "bg_mega_menu": "#ffffff",
             "bg_mega_menu_gradient": "",
             "lv_1_color": "#232323",
@@ -143,11 +182,11 @@
             "sale_item_color": "#d12442",
             "label_position": "main_menu",
             "show_label_blink": true,
-            "new_label_1": "Theme Demo",
+            "new_label_1": "Naturkosmetik",
             "new_label_2": "",
             "new_label_3": "Home 21 - Yoga, Home 22 - Eyes Wears, Home 23 - Plant+ Garden, Home 24 - Bicycle, Mobile Sticky Toolbar",
-            "new_label_color": "#ffffff",
-            "new_label_bg": "#06bfe2",
+            "new_label_color": "#212121",
+            "new_label_bg": "#f0ff00",
             "new_label_bg_gradient": "",
             "sale_label_1": "Buy Ella",
             "sale_label_2": "",
@@ -175,20 +214,20 @@
             "show_customer": true,
             "customer_icon": "2",
             "text_font_size": 16,
-            "show_wishlist": true,
+            "show_wishlist": false,
             "show_wishlist_number": false,
             "wishlist_icon": "1",
             "show_cart": true,
             "show_cart_number_position": false,
-            "cart_icon": "6",
-            "show_language_currency": true,
+            "cart_icon": "10",
+            "show_language_currency": false,
             "language_currency_style": "style_1",
             "lang_cur_icon": "1",
             "show_search_sticky": true,
             "show_customer_sticky": true,
-            "show_wishlist_sticky": true,
+            "show_wishlist_sticky": false,
             "show_cart_sticky": true,
-            "show_language_currency_sticky": true,
+            "show_language_currency_sticky": false,
             "header_icons_color": "#232323",
             "header_icons_color_hover": "#232323",
             "cart_count_bubble_color": "#ffffff",
@@ -214,10 +253,11 @@
         },
         "a95ae51a-e02d-42cd-8e35-232434188ac6": {
           "type": "megamenu_style_2",
+          "disabled": true,
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "trend",
+            "item": "home",
             "column": 3,
             "show_banner_1": true,
             "banner_url_1": "shopify://collections/congue",
@@ -227,80 +267,89 @@
             "banner_url_3": "shopify://collections/nor-loremirus"
           }
         },
-        "f445a539-57b4-4c46-8bd1-43b584060d79": {
-          "type": "megamenu_style_3",
+        "megamenu_style_4_EKGe9r": {
+          "type": "megamenu_style_4",
+          "disabled": true,
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "mega_tyle": "style1",
-            "item": "collections",
+            "item": "home",
             "column": 5,
-            "show_banner_1": true,
-            "banner_url_1": "shopify://collections/cosmopolis",
-            "show_banner_2": true,
-            "banner_url_2": "shopify://collections/congue",
-            "show_banner_3": true,
-            "banner_url_3": "shopify://collections/metropolis",
-            "show_banner_4": true,
-            "banner_url_4": "shopify://collections/suito",
-            "show_banner_5": true,
-            "banner_url_5": "shopify://collections/nor-loremirus"
-          }
-        },
-        "ff26650f-5255-4f55-bc62-43d09087e0c0": {
-          "type": "megamenu_style_1",
-          "settings": {
-            "layout_block": "custom_width",
-            "header_custom_width_size": 1200,
-            "item": "demo",
-            "column": 5,
+            "menu_text_left": "",
+            "menu_text_left_sale": "",
             "show_banner_1": false,
             "banner_url_1": "",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "show_az_brand": false,
+            "az_brand_title": "All Brands A-Z",
+            "az_brand_link_text": "See All Brands",
+            "az_brand_url": "",
+            "bg_mega_menu_bottom": "#f8f8f8",
+            "az_brand_link_text_color": "#000000"
           }
         },
-        "f02cfa3f-b43c-4cb7-8a4a-dbf13e3df510": {
-          "type": "megamenu_style_1",
+        "megamenu_style_5_WcPUfV": {
+          "type": "megamenu_style_5",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1400,
-            "item": "Theme Demo",
-            "column": 5,
-            "show_banner_1": false,
-            "banner_url_1": "",
-            "show_product": false,
-            "product_title": "Featured Products",
-            "product_collection": ""
-          }
-        },
-        "558ddc88-cf44-4e9e-b8bd-73a399ede4c2": {
-          "type": "megamenu_style_1",
-          "settings": {
-            "layout_block": "custom_width",
-            "header_custom_width_size": 1200,
-            "item": "Shop",
+            "mega_tyle": "style2",
+            "item": "Nahrungsergänzung",
             "column": 4,
-            "show_banner_1": false,
-            "banner_url_1": "",
+            "menu_text_left": "menu-2",
+            "menu_text_left_sale": "",
+            "show_banner_1": true,
+            "banner_1": "shopify://shop_images/sauerkirsche.webp",
+            "banner_url_1": "shopify://collections/all",
+            "title_banner": "Montmorency Sauerkirche",
+            "des_banner": "<p>Entspannend und abwehrstark.</p>",
+            "button_banner": "Jetzt entdecken",
+            "product_limit": 4,
             "show_product": false,
             "product_title": "Featured Products",
-            "product_collection": ""
+            "product_collection": "",
+            "bg_mega_menu_bottom": "#f8f8f8"
           }
         },
-        "8aa855b4-08f6-405a-9122-5926c75cf7fb": {
-          "type": "megamenu_style_1",
+        "megamenu_style_5_ADDaNB": {
+          "type": "megamenu_style_5",
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1400,
-            "item": "Product",
-            "column": 5,
-            "show_banner_1": false,
-            "banner_url_1": "",
+            "mega_tyle": "style2",
+            "item": "Magazin & Wissen",
+            "column": 4,
+            "menu_text_left": "",
+            "menu_text_left_sale": "",
+            "show_banner_1": true,
+            "banner_url_1": "shopify://collections/all",
+            "title_banner": "Montmorency Sauerkirche",
+            "des_banner": "<p>Entspannend und abwehrstark.</p>",
+            "button_banner": "Jetzt entdecken",
+            "product_limit": 4,
             "show_product": false,
             "product_title": "Featured Products",
-            "product_collection": ""
+            "product_collection": "",
+            "bg_mega_menu_bottom": "#f8f8f8"
+          }
+        },
+        "quick_menu_NjGxqA": {
+          "type": "quick_menu",
+          "settings": {
+            "menu": "menu-2",
+            "color_text": "#212121",
+            "bg_color_text": "#f8f8f8",
+            "bg_color_text_gradient": "",
+            "font_size_text": 16,
+            "font_style_text": "italic",
+            "font_weight_text": "400",
+            "mg_top_desktop": 5,
+            "mg_top_tablet": 5,
+            "mg_top_mobile": 5,
+            "mg_bottom_desktop": 5,
+            "mg_bottom_tablet": 5,
+            "mg_bottom_mobile": 5
           }
         }
       },
@@ -310,21 +359,20 @@
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-2",
         "49459ccc-e7bb-40e5-8544-bf7b8e3000b5",
         "a95ae51a-e02d-42cd-8e35-232434188ac6",
-        "f445a539-57b4-4c46-8bd1-43b584060d79",
-        "ff26650f-5255-4f55-bc62-43d09087e0c0",
-        "f02cfa3f-b43c-4cb7-8a4a-dbf13e3df510",
-        "558ddc88-cf44-4e9e-b8bd-73a399ede4c2",
-        "8aa855b4-08f6-405a-9122-5926c75cf7fb"
+        "megamenu_style_4_EKGe9r",
+        "megamenu_style_5_WcPUfV",
+        "megamenu_style_5_ADDaNB",
+        "quick_menu_NjGxqA"
       ],
       "settings": {
-        "container": "1470",
+        "container": "1370",
         "padding_full_width": 0,
         "header_layout_style": "style_1",
         "header_navigation_bg": "#ffffff",
         "header_navigation_bg_gradient": "",
-        "sticky_header_type": "on_scroll",
+        "sticky_header_type": "always",
         "sticky_header_width": "default",
-        "enable_transparent": true,
+        "enable_transparent": false,
         "transparent_color": "#ffffff",
         "transparent_color_hover": "#ffffff",
         "border_color": "",
@@ -335,11 +383,16 @@
     "header-mobile": {
       "type": "header-mobile",
       "blocks": {
-        "7de2266e-0cd4-4fda-9f09-06f75a17f944": {
-          "type": "menu",
+        "550fbd21-75fb-4051-9dee-77d91b5239f0": {
+          "type": "logo",
           "settings": {
-            "color": "#232323",
-            "menu_tab_bg": "#000000"
+            "logo_mobile": "shopify://shop_images/Bildmarke_1.svg",
+            "logo_width_mobile": 30,
+            "logo_text": "",
+            "logo_font_size": 15,
+            "logo_font_weight": "900",
+            "logo_text_transform": "capitalize",
+            "logo_color": "#232323"
           }
         },
         "163e2cb5-14f2-4af6-9ac3-77193c082f53": {
@@ -348,45 +401,52 @@
             "color": "#232323"
           }
         },
-        "550fbd21-75fb-4051-9dee-77d91b5239f0": {
-          "type": "logo",
-          "settings": {
-            "logo_width_mobile": 115,
-            "logo_text": "",
-            "logo_font_size": 15,
-            "logo_font_weight": "900",
-            "logo_text_transform": "capitalize",
-            "logo_color": "#232323"
-          }
-        },
-        "20dae707-64c0-4ea3-a05e-561cae9836d8": {
-          "type": "customer",
-          "settings": {
-            "icon": "1",
-            "color": "#232323"
-          }
-        },
         "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d": {
           "type": "cart",
           "settings": {
-            "icon": "2",
+            "icon": "8",
             "color": "#232323",
             "color_bubble": "#ffffff",
             "bg_bubble": "#232323"
           }
+        },
+        "7de2266e-0cd4-4fda-9f09-06f75a17f944": {
+          "type": "menu",
+          "settings": {
+            "color": "#232323",
+            "menu_tab_bg": "#000000"
+          }
+        },
+        "quick_menu_9BhdPc": {
+          "type": "quick_menu",
+          "settings": {
+            "menu": "menu-2",
+            "color_text": "#212121",
+            "bg_color_text": "#f8f8f8",
+            "bg_color_text_gradient": "",
+            "font_size_text": 16,
+            "font_style_text": "italic",
+            "font_weight_text": "400",
+            "mg_top_desktop": 5,
+            "mg_top_tablet": 5,
+            "mg_top_mobile": 5,
+            "mg_bottom_desktop": 5,
+            "mg_bottom_tablet": 5,
+            "mg_bottom_mobile": 5
+          }
         }
       },
       "block_order": [
-        "7de2266e-0cd4-4fda-9f09-06f75a17f944",
-        "163e2cb5-14f2-4af6-9ac3-77193c082f53",
         "550fbd21-75fb-4051-9dee-77d91b5239f0",
-        "20dae707-64c0-4ea3-a05e-561cae9836d8",
-        "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d"
+        "163e2cb5-14f2-4af6-9ac3-77193c082f53",
+        "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d",
+        "7de2266e-0cd4-4fda-9f09-06f75a17f944",
+        "quick_menu_9BhdPc"
       ],
       "settings": {
         "background": "#ffffff",
         "gradient": "",
-        "sticky_header_type": "on_scroll",
+        "sticky_header_type": "always",
         "enable_transparent": false,
         "transparent_color": "#ffffff",
         "transparent_border_color": "",
@@ -397,7 +457,7 @@
   },
   "order": [
     "announcement-bar",
-    "announcement_slider_8JU4Pf",
+    "announcement_slider_GhPiTU",
     "deb8dcfc-6e5c-495d-ad01-12fa1389160b",
     "header-mobile"
   ]
