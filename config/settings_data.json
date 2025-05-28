@@ -171,7 +171,7 @@
     "product_card_layout": "02",
     "enable_custom_layout_card_1": true,
     "disable_product_card_border": false,
-    "product_block_image_ratio": "adapt",
+    "product_block_image_ratio": "square",
     "portrait_height": "90",
     "show_image_loading": true,
     "show_vendor": false,
