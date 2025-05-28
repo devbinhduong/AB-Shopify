@@ -530,8 +530,11 @@
                     $('body').addClass('open_search_menu');
 
                     // Mint start search function
-                    inputSearch.click();
-                    console.log("open_search_mobile", inputSearch);
+                    setTimeout(() => {
+                        $('.quickSearchResultsBlock').removeClass('hidden')
+                        $('.quickSearchResultsBlock').addClass('is-show')
+                        console.log("add class show")
+                    }, 500);
                 });
             }
         },

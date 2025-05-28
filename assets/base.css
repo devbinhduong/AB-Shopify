@@ -7891,10 +7891,14 @@ body.is-custom-information .background-overlay {
 }
 
 .dis-grid {
-  display: grid;
+  display: grid !important;
 }
 .flex {
   display: flex;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 .items-center {
