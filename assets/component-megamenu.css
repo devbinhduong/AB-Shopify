@@ -320,6 +320,7 @@
   }
   .header-navigation .header-logo {
     max-width: 300px;
+    margin-right: 56px;
   }
   .header-navigation .header-logo .header__heading-logo {
     width: var(--logo_width);

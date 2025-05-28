@@ -33,7 +33,7 @@
 }
 
 .product-card-layout-02 .card-information{
-	padding: 20px 20px 20px 20px;
+	padding: 16px;
 }
 
 .product-card-layout-02 .sidebarBlock-product .card-information {
@@ -342,7 +342,7 @@
 
 @media (max-width: 1024px){
 	.product-card-layout-02 .card-information {
-	    padding: 10px 10px 14px 10px !important;
+	    padding: 12px !important;
 	}
 
 	.product-card-layout-02 .products-carousel .product .card-action, .product-card-layout-02 .products-grid .product .card-action{
@@ -384,7 +384,7 @@
 	}
 
 	.product-card-layout-02 .card-information{
-		padding: 10px 5px 10px 5px !important;
+		padding: 12px !important;
 	}
 
 	.product-card-layout-02 .card-swatch .swatch-label{
@@ -423,16 +423,20 @@
       border: none;
     }
     .product-card-layout-02 .halo-productBadges{
-    	top: 5px;
+    	top: 15px;
     }
     
     .product-card-layout-02 .halo-productBadges--right{
-    	right: 5px;
+    	right: 15px;
     }
     
     .product-card-layout-02 .halo-productBadges--left{
-    	left: 5px;
+    	left: 15px;
     }
+	.halo-productBadges .badge{
+		font-size: calc(var(--badge-font-size) - 4px) !important;
+		line-height: calc(var(--badge-line-height) - 4px) !important;
+	}
 }
 @media (min-width: 552px) {
   .product-card-layout-02 .product-item.enable_custom_content .card .card-wishlist .wishlist-icon {
@@ -443,7 +447,7 @@
       padding-bottom: var(--btn-3-padding-bottom);
   }
   .product-card-layout-02 .halo-productBadges{
-      top: 10px;
+      top: 21px;
   }
   
   .product-card-layout-02 .halo-productBadges--right{
@@ -451,7 +455,7 @@
   }
   
   .product-card-layout-02 .halo-productBadges--left{
-      left: 10px;
+      left: 21px;
   }
   
   .product-card-layout-02 .card-product__group {
@@ -593,4 +597,47 @@
 	.product-card-layout-02 .quickshop-popup-show .card-compare:not(.card-compareIcon) {
 		bottom: 14px;
 	}
+}
+
+.product-card-layout-02 .product-item .card{
+	background-color: #fff;
+}
+.product-card-layout-02 .product-item .card .card-title{
+	min-height: 42px;
+}
+.product-card-layout-02 .price-button-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-top: 32px;
+}
+.product-card-layout-02 .price-button-wrapper .card-price{
+	margin-bottom: 0;
+}
+.product-card-layout-02 .price-button-wrapper .card-action {
+	width: auto;
+}
+.product-card-layout-02 .price-button-wrapper .button {
+	width: 40px;
+    height: 40px;
+    max-width: 40px;
+    padding: 0;
+    min-width: 0;
+	margin-inline: auto 0;
+	border-radius: 5px;
+}
+.product-card-layout-02 .price-button-wrapper .is-loading.button:before {
+	left: 25%;
+}
+.product-card-layout-02 .price-button-wrapper .button span{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+	pointer-events: none;
+}
+.product-card-layout-02 .price-button-wrapper .button span svg{
+	width: 24px;
+    height: 24px;
+    margin: 0;
 }

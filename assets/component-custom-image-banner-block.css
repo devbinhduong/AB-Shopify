@@ -12,6 +12,7 @@
 
 .customImageBanner-inner.text-left {
     padding-left: var(--align-items-spacing-lr-style);
+    padding-right: var(--align-items-spacing-lr-style);
 }
 
 .customImageBanner-inner.text-right {
@@ -37,6 +38,7 @@
 
 .customImageBanner-inner .title.custom-text-style {
     font-style: var(--font-text-style);
+    line-height: var(--line_height_title);
     display: block;
     margin-bottom: var(--mg-bottom-title-style);
 }
@@ -59,6 +61,7 @@
     text-transform: var(--text-transform-button-style);
     font-size: var(--font-size-button-style);
     min-width: var(--button-width-style);
+    font-weight: var(--btn_font_weight);
 }
 
 .btn_1_br_outside .customImageBanner-inner .spotlight-button.custom-button-style:after {
@@ -237,23 +240,25 @@
 @media (max-width: 1024px){
     .customImageBanner-inner .title.custom-text-style {
         font-size: var(--fontsize-mobile-text-style);
-        line-height: 26px;
+        line-height: var(--line_height_title_mb);
     }
 
     .customImageBanner-inner.text-left {
-        padding-left: 15px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
     .customImageBanner-inner.text-right {
-        padding-right: 15px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
     .custom-image-banner-block .content_absolute .content.align-items--top {
-        padding-top: 15px;
+        padding-top: 24px;
     }
 
     .custom-image-banner-block .content_absolute .content.align-items--bottom {
-        padding-bottom: 15px;
+        padding-bottom: 24px;
     }
 
     .customImageBanner-inner .title.custom-text-style {
@@ -262,6 +267,7 @@
 
     .customImageBanner-inner .des {
         margin-bottom: var(--margin-bottom-des-style-mb);
+        font-size: calc(var(--fontsize-text-style) - 2px);
     }
 
     .customImageBanner--largeImg[data-width="33.333333%"] .customImageBanner-inner .spotlight-button.custom-button-style,
@@ -319,10 +325,6 @@
 @media(max-width: 767px){
     .custom-image-banner-block .halo-row .halo-item{
         width: 100%;
-    }
-
-    .custom-image-banner-block .halo-row .halo-item+.halo-item:not(.slider__slide){
-        margin-top: 10px;
     }
 
     .custom-image-banner-block .halo-row.scroll-snap-mobile .halo-item+.halo-item{

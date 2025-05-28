@@ -224,7 +224,7 @@
                                     <p class="sub_title custom-text-style{% if block.settings.border_sub_title %} has-border{% endif %}" style="--color-text-style: {{ block.settings.color_sub_title }}; --fontsize-text-style: {{ block.settings.fontsize_sub_title | append: 'px' }}; --mg-bottom-sub-title-style: {{ block.settings.mg_bottom_sub_title | append: 'px' }}"><span>{{ block.settings.sub_title }}</span></p>
                                 {%- endif -%}
                                 {%- if block.settings.title != blank -%}
-                                    <h3 class="title custom-text-style" style="--color-text-style: {{ block.settings.color_title }}; --fontsize-text-style: {{ block.settings.fontsize_title | append: 'px' }}; --fontsize-mobile-text-style: {{ block.settings.fontsize_title_mb | append: 'px' }}; --font-text-style: {%- if block.settings.enable_style_italic -%}italic{%- else -%}normal{%- endif -%}; --mg-bottom-title-style: {{ block.settings.mg_bottom_title | append: 'px' }}; --mg-bottom-title-style-mb: {{ block.settings.mg_bottom_title_mb | append: 'px' }};">
+                                    <h3 class="title custom-text-style" style="--color-text-style: {{ block.settings.color_title }}; --fontsize-text-style: {{ block.settings.fontsize_title | append: 'px' }}; --fontsize-mobile-text-style: {{ block.settings.fontsize_title_mb | append: 'px' }}; --line_height_title: {{ block.settings.line_height_title }}px; --line_height_title_mb: {{ block.settings.line_height_title_mb }}px; --font-text-style: {%- if block.settings.enable_style_italic -%}italic{%- else -%}normal{%- endif -%}; --mg-bottom-title-style: {{ block.settings.mg_bottom_title | append: 'px' }}; --mg-bottom-title-style-mb: {{ block.settings.mg_bottom_title_mb | append: 'px' }};">
                                         <a{% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}"{% endif %} class="link_title"><span>{{ block.settings.title }}</span></a>
                                     </h3>
                                 {%- endif -%}
@@ -232,7 +232,7 @@
                                     <div class="des custom-text-style" style="--color-text-style: {{ block.settings.color_des }}; --fontsize-text-style: {{ block.settings.fontsize_des | append: 'px' }}; --margin-bottom-des-style: {{ block.settings.mg_bottom_des | append: 'px' }}; --margin-bottom-des-style-mb: {{ block.settings.mg_bottom_des_mb | append: 'px' }};">{{ block.settings.des }}</div>
                                 {%- endif -%}
                                 {%- if block.settings.button != blank -%}
-                                    <a {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}" aria-label="{{ block.settings.button }}"{% endif %} class="spotlight-button button custom-button-style" style="--color-button-style: {{ block.settings.color_button }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button != blank %}{{ block.settings.bg_gradient_color_button }}{% else %}{{ block.settings.bg_color_button | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button }}; --color-button-hover-style: {{ block.settings.color_button_hover }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover != blank %}{{ block.settings.bg_gradient_color_button_hover }}{% else %}{{ block.settings.bg_color_button_hover }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover }}; --text-transform-button-style: {{block.settings.btn_text_transform}}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}">
+                                    <a {% if block.settings.link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.link }}" aria-label="{{ block.settings.button }}"{% endif %} class="spotlight-button button custom-button-style" style="--color-button-style: {{ block.settings.color_button }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button != blank %}{{ block.settings.bg_gradient_color_button }}{% else %}{{ block.settings.bg_color_button | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button }}; --color-button-hover-style: {{ block.settings.color_button_hover }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover != blank %}{{ block.settings.bg_gradient_color_button_hover }}{% else %}{{ block.settings.bg_color_button_hover }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover }}; --text-transform-button-style: {{block.settings.btn_text_transform}}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}; --btn_font_weight: {{ block.settings.btn_font_weight }}">
                                         {%- if block.settings.btn_icon != blank -%}
                                             {{ block.settings.btn_icon }}
                                         {%- endif -%}
@@ -1525,6 +1525,26 @@
         },
         {
             "type": "range",
+            "id": "line_height_title",
+            "label": "t:settings_schema.typography.settings.typography.label__1",
+            "min": 10,
+            "max": 50,
+            "step": 1,
+            "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+            "default": 32
+        },
+        {
+            "type": "range",
+            "id": "line_height_title_mb",
+            "label": "t:sections.product_block.settings.line_height_mb",
+            "min": 10,
+            "max": 50,
+            "step": 1,
+            "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+            "default": 28
+        },
+        {
+            "type": "range",
             "id": "mg_bottom_title",
             "label": "t:settings_schema.typography.settings.typography.title_margin_bottom",
             "min": 0,
@@ -1610,6 +1630,38 @@
             "step": 1,
             "unit": "t:sections.layout.fontsize.fontsize_title.unit",
             "default": 16
+        },
+        {
+            "type": "select",
+            "id": "btn_font_weight",
+            "label": "t:settings_schema.typography.settings.font_weight.label",
+            "default": "500",
+            "options": [
+            {
+                "value": "400",
+                "label": "t:settings_schema.typography.settings.font_weight.options__1"
+            },
+            {
+                "value": "500",
+                "label": "t:settings_schema.typography.settings.font_weight.options__2"
+            },
+            {
+                "value": "600",
+                "label": "t:settings_schema.typography.settings.font_weight.options__3"
+            },
+            {
+                "value": "700",
+                "label": "t:settings_schema.typography.settings.font_weight.options__4"
+            },
+            {
+                "value": "800",
+                "label": "t:settings_schema.typography.settings.font_weight.options__5"
+            },
+            {
+                "value": "900",
+                "label": "t:settings_schema.typography.settings.font_weight.options__6"
+            }
+            ]
         },
         {
             "type": "range",

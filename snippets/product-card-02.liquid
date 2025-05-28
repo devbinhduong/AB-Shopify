@@ -206,6 +206,7 @@
                     class: 'card-list__hidden'
                 %}
               
+                <div class="price-button-wrapper">
                 {%- if show_price -%}
                     <div class="card-price">
                         {% render 'price',
@@ -215,6 +216,17 @@
                         %}
                     </div>
                 {%- endif -%}
+                {%- if settings.show_action -%}
+                    <div class="card-action{% if settings.show_compare and settings.product_compare_type == 'default' %} has-compare{% endif %}">
+                        {% render 'add-to-cart-form',
+                            product: product_card_product,
+                            id: 'form',
+                            position: position,
+                            sectionId: sectionId
+                        %}
+                    </div>
+                {%- endif -%}
+                </div>
 
                 {%- if product_card_product.metafields.custom.positive_vibes_almost_sold_out or product_card_product.metafields.custom.positive_vibes_recently_people_gave_review or product_card_product.metafields.custom.positive_vibes_top_best_seller -%}
                     <positive-vibes class="card-positive_vibes positive_vibes">
@@ -294,16 +306,6 @@
                     {%- endif -%}
                 </div>
             {%- else -%}
-                {%- if settings.show_action -%}
-                    <div class="card-action{% if settings.show_compare and settings.product_compare_type == 'default' %} has-compare{% endif %}">
-                        {% render 'add-to-cart-form',
-                            product: product_card_product,
-                            id: 'form',
-                            position: position,
-                            sectionId: sectionId
-                        %}
-                    </div>
-                {%- endif -%}
                 {%- if settings.show_action -%}
                     {% render 'add-to-cart-form-category-list',
                         product: product_card_product,
