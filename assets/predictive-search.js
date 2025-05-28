@@ -259,6 +259,8 @@ class PredictiveSearch extends HTMLElement {
     this.setLiveRegionResults();
     this.open();
     this.hideTrendingAndProducts();
+    this.handleSearchTabs();
+
     if ((window.show_multiple_currencies && typeof Currency != 'undefined' && Currency.currentCurrency != shopCurrency) || window.show_auto_currency) {
       Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');
     }
@@ -363,6 +365,35 @@ class PredictiveSearch extends HTMLElement {
         this.close();
         throw error;
       });
+  }
+
+  handleSearchTabs() {
+    var searchResultBlock = document.querySelector("#predictive-search-results"),
+        searchResultTabs = searchResultBlock?.querySelectorAll(".quickSearchTab__tab"),
+        searchResultTabContent = searchResultBlock?.querySelectorAll(".quickSearchTab__item");
+
+
+    if (!searchResultTabs) return;
+
+    searchResultTabs.forEach((tab) => {
+      tab.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = e.currentTarget.getAttribute("href").replace("#", "");
+
+        searchResultTabs.forEach((t) => t.classList.remove("active"));
+        searchResultTabContent.forEach((c) => {
+          c.classList.remove("active");
+          if (c.id === target) {
+            c.classList.add("active");
+
+            console.log('c.id', c.id);
+            
+          }
+        });
+        searchResultTabs.forEach((t) => t.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+      });
+    });
   }
 
   quickSearchTrendingClick(event) {
