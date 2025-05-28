@@ -1128,12 +1128,18 @@
                         if ($block.hasClass('ajax-loaded')) return;
 
                         var listTabs = $block.find('.list-product-tabs'),
+                            listTabsCustom = $block.find('.list-product-tabs-custom'),
                             tabLink = listTabs.find('[data-product-tabTop]'),
                             tabContent = $block.find('[data-product-TabContent]'),
                             limit = $block.data('limit');
-
-                        var linkActive = listTabs.find('.tab-links.active'),
+                        
+                        let linkActive = listTabs.find('.tab-links.active'),
                             activeTab = $block.find('.product-tabs-content .tab-content.active');
+                        if(listTabsCustom.length > 0){
+                            tabLink = listTabsCustom.find('[data-product-tabTop]'),
+                            linkActive = listTabsCustom.find('.tab-links.active');
+                            activeTab = $block.find('.product-tabs-content .tab-content.active');
+                        }
                             
                         if (!$block.hasClass('ajax-loaded')) {
                             halo.doAjaxProductTabs(
@@ -1145,7 +1151,6 @@
                                 $block
                             );
                         }
-                        
                         tabLink.off('click').on('click', function (e) {
                             e.preventDefault();
                             e.stopPropagation();
@@ -1156,9 +1161,7 @@
 
                                 tabLink.removeClass('active');
                                 tabContent.removeClass('active');
-
                                 if (!curTabContent.hasClass('loaded')) halo.doAjaxProductTabs(curTab.data('href'), curTabContent.find('.loading'), curTabContent.find('.products-load'), $block.attr('sectionid'), limit);
-                                
                                 curTab.addClass('active');
                                 curTabContent.addClass('active');
                                 curTabContent.find('.slick-slider').slick('refresh');
@@ -1342,7 +1345,7 @@
                                     },
                                     get slidesToScroll() {
                                         if(itemToShow !== undefined && itemToShow !== null && itemToShow !== '' && itemToShow !== 2.5 && itemToShow !== 3.5 && itemToShow !== 4.5 && itemToShow !== 5.5){
-                                            return this.slidesToScroll = itemToShow;
+                                            return this.slidesToScroll = 1;
                                         } else {
                                             return this.slidesToScroll = 1;
                                         }
@@ -1385,7 +1388,7 @@
                                                 if (productGrid.parents('.collection-column-2').length){
                                                     return this.slidesToScroll = 2;
                                                 } else{
-                                                    return this.slidesToScroll = itemToShow;
+                                                    return this.slidesToScroll = 1;
                                                 }
                                                
                                             }
