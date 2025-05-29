@@ -1143,6 +1143,7 @@
                             
                         if (!$block.hasClass('ajax-loaded')) {
                             halo.doAjaxProductTabs(
+                                linkActive,
                                 linkActive.data('href'), 
                                 activeTab.find('.loading'), 
                                 activeTab.find('.products-load'), 
@@ -1151,17 +1152,16 @@
                                 $block
                             );
                         }
+
                         tabLink.off('click').on('click', function (e) {
                             e.preventDefault();
                             e.stopPropagation();
-
                             if (!$(this).hasClass('active')) {
                                 const curTab = $(this),
                                     curTabContent = $(curTab.data('target'));
-
                                 tabLink.removeClass('active');
                                 tabContent.removeClass('active');
-                                if (!curTabContent.hasClass('loaded')) halo.doAjaxProductTabs(curTab.data('href'), curTabContent.find('.loading'), curTabContent.find('.products-load'), $block.attr('sectionid'), limit);
+                                if (!curTabContent.hasClass('loaded')) halo.doAjaxProductTabs(curTab, curTab.data('href'), curTabContent.find('.loading'), curTabContent.find('.products-load'), $block.attr('sectionid'), limit);
                                 curTab.addClass('active');
                                 curTabContent.addClass('active');
                                 curTabContent.find('.slick-slider').slick('refresh');
@@ -1183,7 +1183,7 @@
             });
         },
 
-        doAjaxProductTabs: function (handle, loadingElm, curTabContent, sectionId, limit, self) {
+        doAjaxProductTabs: function (curTab,handle, loadingElm, curTabContent, sectionId, limit, self) {
             $.ajax({
                 type: "get",
                 url: handle,
@@ -1203,7 +1203,14 @@
                         noProduct(curTabContent);
                     }
                     else {
-                        const res = halo.handleResponse($(data), 0, limit);
+                        let res = halo.handleResponse($(data), 0, limit);
+                        const icon_wrapper = curTab.find('.wrapper_svg').clone();
+                        res.forEach(item => {
+                            const $wrapper = $(item).find('.card-information__wrapper .card-title');
+                            if ($wrapper.length) {
+                                icon_wrapper.clone().insertBefore($wrapper);
+                            }
+                        });
                         curTabContent.html(res);
 
                         if(window.wishlist.show){
