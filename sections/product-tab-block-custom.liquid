@@ -3,6 +3,7 @@
 {%- liquid
     assign container = section.settings.container
     assign limit = section.settings.product_block_limit
+    assign show_product = section.settings.show_product
     assign image_ratio = settings.product_block_image_ratio
 
     assign block_title = section.settings.product_block_title
@@ -27,12 +28,21 @@
     assign mg_bottom_tablet = section.settings.mg_bottom_tablet
     assign mg_bottom_mobile = section.settings.mg_bottom_mobile
 
+    assign mg_top_desktop_banner = section.settings.mg_top_desktop_banner
+    assign mg_top_tablet_banner = section.settings.mg_top_tablet_banner
+    assign mg_top_mobile_banner = section.settings.mg_top_mobile_banner
+
+    assign mg_bottom_desktop_banner = section.settings.mg_bottom_desktop_banner
+    assign mg_bottom_tablet_banner = section.settings.mg_bottom_tablet_banner
+    assign mg_bottom_mobile_banner = section.settings.mg_bottom_mobile_banner
+
     assign padding_full_width = section.settings.padding_full_width
 
     assign mg_bottom_title = section.settings.mg_bottom_title
     assign mg_bottom_description = section.settings.mg_bottom_description
 
-    assign tab_types = section.settings.tab_types
+    assign fontsize_title_banner = section.settings.fontsize_title_banner
+    assign fontsize_title_banner_mb = section.settings.fontsize_title_banner_mb
 -%}
 <style>
     .section-block-{{section.id}} {
@@ -50,6 +60,7 @@
     }
     @media (min-width: 1200px){
         .section-block-{{section.id}} {padding-top: {{ mg_top_desktop | append: 'px' }};padding-bottom: {{ mg_bottom_desktop | append: 'px' }}}
+        banner-tabs.section-block-{{section.id}} {padding-top: {{ mg_top_desktop_banner | append: 'px' }};padding-bottom: {{ mg_bottom_desktop_banner | append: 'px' }}}
     }
     @media (min-width: 1025px) {
         {%- if section.settings.container == 'fullwidth' -%}
@@ -61,9 +72,11 @@
     }
     @media (min-width: 768px) and (max-width: 1199px) {
         .section-block-{{section.id}} {padding-top: {{ mg_top_tablet | append: 'px' }};padding-bottom: {{ mg_bottom_tablet | append: 'px' }}}
+        banner-tabs.section-block-{{section.id}} {padding-top: {{ mg_top_tablet_banner | append: 'px' }};padding-bottom: {{ mg_bottom_tablet_banner | append: 'px' }}}
     }
     @media (max-width: 767px) {
         .section-block-{{section.id}} {padding-top: {{ mg_top_mobile | append: 'px' }};padding-bottom: {{ mg_bottom_mobile | append: 'px' }}}
+        banner-tabs.section-block-{{section.id}} {padding-top: {{ mg_top_mobile_banner | append: 'px' }};padding-bottom: {{ mg_bottom_mobile_banner | append: 'px' }}}
         .section-block-{{section.id}} .section-introduction .title {font-size: {{ fontsize_title_mb | append: 'px'  }}}
     }
 
@@ -89,28 +102,30 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <product-scroller>
-                        <div class="list-product-tabs-wrapper" data-drag-container>
-                            <ul class="list-product-tabs-custom" data-drag-parent>
-                                {%  assign tab_type_first_handle = block_tab_type_first.settings.tab_type | downcase | hanndle %}
-                                {%- for block in block_tabs -%}
-                                    {% assign tab_type_handle = block.settings.tab_type |  downcase | hanndle %} 
-                                    {% if block.settings.icon != blank and block.settings.collection != blank %}
-                                    <li class="type-{{ tab_type_handle }} {% if tab_type_first_handle != blank and tab_type_first_handle != tab_type_handle %}hidden{% endif %}">
-                                        <button type="button" data-target="#product-tab-{{ section.id }}-{{ block.id }}" data-product-tabTop data-href="{{ collections[block.settings.collection].url }}?view=ajax_product_block" class="tab-links{% if forloop.first %} active{% endif %}">
-                                            <div class="wrapper_svg" style="--bg-tab: {{ block.settings.bg_tab }}">
-                                                {{ block.settings.icon }}
-                                            </div>
-                                            <div class="tab-title">
-                                                {{ block.settings.title }}
-                                            </div>
-                                        </button>
-                                    </li>
-                                    {% endif %}
-                                {%- endfor -%}
-                            </ul>
-                        </div>
-                    </product-scroller>
+                    {% if show_product %}
+                        <product-scroller>
+                            <div class="list-product-tabs-wrapper" data-drag-container>
+                                <ul class="list-product-tabs-custom" data-drag-parent>
+                                    {%  assign tab_type_first_handle = block_tab_type_first.settings.tab_type | downcase | hanndle %}
+                                    {%- for block in block_tabs -%}
+                                        {% assign tab_type_handle = block.settings.tab_type |  downcase | hanndle %} 
+                                        {% if block.settings.icon != blank %}
+                                        <li class="type-{{ tab_type_handle }} {% if tab_type_first_handle != blank and tab_type_first_handle != tab_type_handle %}hidden{% endif %}" data-number="{{ forloop.index0 }}">
+                                            <button type="button" data-target="#product-tab-{{ section.id }}-{{ block.id }}" data-product-tabTop data-href="{{ collections[block.settings.collection].url }}?view=ajax_product_block" class="tab-links{% if forloop.first %} active{% endif %}">
+                                                <div class="wrapper_svg" style="--bg-tab: {{ block.settings.bg_tab }}">
+                                                    {{ block.settings.icon }}
+                                                </div>
+                                                <div class="tab-title">
+                                                    {{ block.settings.title }}
+                                                </div>
+                                            </button>
+                                        </li>
+                                        {% endif %}
+                                    {%- endfor -%}
+                                </ul>
+                            </div>
+                        </product-scroller>
+                    {% endif %}
                 </div>
                 <div class="product-tabs-content">
                     {%- liquid
@@ -155,13 +170,6 @@
                                                 %}
                                             </div>
                                         {%- endfor -%}
-                                    {%- else -%}
-                                        {%- for product in (1..limit) -%}
-                                            <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                                                {%- capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture -%}
-                                                {% render 'product-card-placeholder', index: current %}
-                                            </div>
-                                        {%- endfor -%}
                                     {%- endif -%}
                             </div>
                         </div>
@@ -171,16 +179,101 @@
          </div>
     </div>
 </div>
+<banner-tabs class="section-block-{{section.id}} {% if show_product == false %}no-product{% endif %}">
+     <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+        {%- for block in block_tabs -%}
+            {%- liquid  
+                 assign image_first = block.settings.image_first
+                 assign image_left = block.settings.image_left
+                 assign title_left = block.settings.title_left
+                 assign description_left = block.settings.description_left
+                 assign text_link_left = block.settings.text_link_left
+                 assign link_left = block.settings.link_left
+                 assign image_right = block.settings.image_right
+                 assign title_right = block.settings.title_right
+                 assign description_right = block.settings.description_right
+                 assign text_link_right = block.settings.text_link_right
+                 assign link_right = block.settings. link_right
+            -%}
+            {% if image_left != blank or link_right != blank %}
+                <div class="halo-block-content-bottom {% if forloop.first == false %}hidden{% endif %} {% if settings.banner_animation == 'effect_fade_up' %}scroll-trigger animate--slide-in{% endif %}" data-number="{{ forloop.index0 }}">
+                    <div class="column-text">
+                        <product-scroller>
+                            <div class="list-product-tabs-wrapper" data-drag-container>
+                                <ul class="list-product-tabs-custom" data-drag-parent>
+                                    {%  assign tab_type_first_handle = block_tab_type_first.settings.tab_type | downcase | hanndle %}
+                                    {%- for block_2 in block_tabs -%}
+                                        {% assign tab_type_handle = block_2.settings.tab_type |  downcase | hanndle %} 
+                                        {% if block_2.settings.icon != blank %}
+                                        <li class="type-{{ tab_type_handle }} {% if tab_type_first_handle != blank and tab_type_first_handle != tab_type_handle %}hidden{% endif %}" data-number="{{ forloop.index0 }}">
+                                            <button type="button" data-target="#product-tab-{{ section.id }}-{{ block_2.id }}" data-product-tabTop data-href="{{ collections[block_2.settings.collection].url }}?view=ajax_product_block" class="tab-links{% if block.id == block_2.id %} active{% endif %}">
+                                                <div class="wrapper_svg" style="--bg-tab: {{ block_2.settings.bg_tab }}">
+                                                    {{ block_2.settings.icon }}
+                                                </div>
+                                                <div class="tab-title">
+                                                    {{ block_2.settings.title }}
+                                                </div>
+                                            </button>
+                                        </li>
+                                        {% endif %}
+                                    {%- endfor -%}
+                                </ul>
+                            </div>
+                        </product-scroller>
+                        <div class="column-text__column {% if image_first == false %}row-reverse{% endif %}">
+                            {% if image_left %}
+                                <div class="column-text__img">
+                                        <img src="{{ image_left | img_url: 'master' }}" alt="{{ image_left.alt | default: shop.name | escape }}">
+                                </div>
+                            {% endif %}
+                            {% if title_left != blank %}
+                                <div class="column-text__text-wrap">
+                                    <div class="column-text__text">
+                                        <h2 class="column-text__title" style="--fontsize_title_banner: {{ fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ fontsize_title_banner_mb }}px;">{{- title_left -}}</h2>
+                                        <div class="column-text__description">
+                                                {{- description_left -}}
+                                            </div>
+                                    </div>
+                                    <div class="column-text__link">
+                                        <a href="{{- link_left -}}">{{- text_link_left -}}</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if image_right != blank %}
+                        <div class="column-banner">
+                                <a href="{{- link_right -}}" class="image adaptive_height image-zoom w-100" style="padding-top: 100.0%" title="QMCar">
+                                
+                                        <img src="{{ image_right | img_url: 'master' }}" alt="{{ image_right.alt | default: shop.name | escape }}">
+                                
+                                    <div class="promo-text">
+                                        <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ fontsize_title_banner_mb }}px;">{{- title_right -}}</h4>
+                                        <span class="promo-text-des">{{- description_right -}}</span>
+                                        {% if text_link_right != blank %}
+                                            <div class="button button--primary">
+                                                <span>{{- text_link_right -}}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                            </a>  
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {%- endfor -%}
+    </div>
+</banner-tabs>
 </product-tabs-custom-section>
 
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll('.btn-tab-type');
-    const suplementsSubheading = document.querySelector('.custom_suplements_subheading');
-    const cosmeticsSubheading = document.querySelector('.custom_cosmetics_subheading');
+    const buttons = document.querySelectorAll('.section-block-{{section.id}} .btn-tab-type');
+    const tabLinks = document.querySelectorAll('.section-block-{{section.id}} [data-product-tabTop]');
     const descriptions = document.querySelectorAll('.section-block-{{section.id}} .content-top .description');
     const tabs = document.querySelectorAll('.section-block-{{section.id}} .content-top .list-product-tabs-custom li');
+    const banners = document.querySelectorAll('.section-block-{{section.id}} .halo-block-content-bottom');
 
     buttons.forEach(button => {
       button.addEventListener('click', function() {
@@ -209,6 +302,21 @@
         });
       });
     });
+
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const parentLi = this.closest('li');
+            const position = parseInt(parentLi.getAttribute('data-number'));
+            banners.forEach((item, index) => {
+            const positionItem = parseInt(item.getAttribute('data-number'));
+            if (positionItem === position) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+            });
+        })
+    })
   });
 </script>
 
@@ -254,6 +362,12 @@
             "step": 5,
             "unit": "t:sections.layout.fontsize.fontsize_title.unit",
             "default": 0
+        },
+        {
+            "type" : "checkbox",
+            "id" : "show_product",
+            "label": "Show product",
+            "default" : true
         },
         {
             "type" : "color",
@@ -356,12 +470,27 @@
         },
         {
             "type": "header",
-            "content": "Tab"
+            "content": "Tab banner"
         },
         {
-            "type": "textarea",
-            "id": "tab_types",
-            "label": "Tab Types"
+            "type": "range",
+            "id": "fontsize_title_banner",
+            "label": "t:settings_schema.typography.settings.typography.title_font_size",
+            "min": 10,
+            "max": 100,
+            "step": 1,
+            "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+            "default": 28
+        },
+        {
+            "type": "range",
+            "id": "fontsize_title_banner_mb",
+            "label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
+            "min": 10,
+            "max": 100,
+            "step": 1,
+            "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+            "default": 24
         },
         {
             "type": "header",
@@ -419,7 +548,7 @@
             ],
             "default": "4"
         },
-         {
+        {
             "type": "header",
             "content": "t:sections.layout.margin_top"
         },
@@ -486,6 +615,74 @@
             "step": 5,
             "unit": "t:sections.layout.mg_desktop.unit",
             "default": 50
+        },
+        {
+            "type": "header",
+            "content": "Section top padding banner"
+        },
+        {
+            "type": "range",
+            "id": "mg_top_desktop_banner",
+            "label": "t:sections.layout.mg_desktop.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mg_top_tablet_banner",
+            "label": "t:sections.layout.mg_tablet.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mg_top_mobile_banner",
+            "label": "t:sections.layout.mg_mobile.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
+        },
+        {
+            "type": "header",
+            "content": "Section bottom padding banner"
+        },
+        {
+            "type": "range",
+            "id": "mg_bottom_desktop_banner",
+            "label": "t:sections.layout.mg_desktop.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mg_bottom_tablet_banner",
+            "label": "t:sections.layout.mg_tablet.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "mg_bottom_mobile_banner",
+            "label": "t:sections.layout.mg_mobile.label",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 0
         }
     ],
     "blocks" : [
@@ -518,6 +715,70 @@
                     "type" : "collection",
                     "id" : "collection",
                     "label" : "t:settings_schema.typography.settings.typography.collection"
+                },
+                {
+                    "type": "header",
+                    "content": "Content left"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "image_first",
+                    "label": "Image first",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_left",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title_left",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description_left",
+                    "label": "Description"
+                },
+                {
+                    "type": "text",
+                    "id": "text_link_left",
+                    "label": "Text link"
+                },
+                {
+                    "type": "url",
+                    "id": "link_left",
+                    "label": "Link"
+                },
+                {
+                    "type": "header",
+                    "content": "Content right"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_right",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title_right",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description_right",
+                    "label": "Description"
+                },
+                {
+                    "type": "text",
+                    "id": "text_link_right",
+                    "label": "Text link"
+                },
+                {
+                    "type": "url",
+                    "id": "link_right",
+                    "label": "Link"
                 }
             ]
         },
