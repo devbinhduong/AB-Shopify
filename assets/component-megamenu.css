@@ -1400,6 +1400,7 @@
     align-items: flex-start;
     justify-content: flex-end;
     height: 100%;
+    width: 100%;
     padding: 24px;
 }
 .megamenu_style_5 .meganav_promo-text .promo-text-heading{
@@ -1412,8 +1413,10 @@
 }
 .megamenu_style_5 .meganav_promo-text .promo-text-des p,
 .megamenu_style_5 .meganav_promo-text .button{
+  display: inline-block;
   margin: 0;
   font-size: var(--font-mega-menu-lv3-size);
+  width: auto;
 }
 
 @media (min-width: 1440px) {

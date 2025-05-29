@@ -47,7 +47,7 @@ product-tabs-custom-section .list-product-tabs-custom .tab-links{
     max-width: 80px;
     margin-bottom: 28px;
 }
-product-tabs-custom-section .list-product-tabs-custom .tab-links .wrapper_svg{
+product-tabs-custom-section .wrapper_svg{
     background-color: var(--bg-tab);
     width: 80px;
     height: 80px;
@@ -60,7 +60,7 @@ product-tabs-custom-section .list-product-tabs-custom .tab-links .wrapper_svg{
 product-tabs-custom-section .list-product-tabs-custom .tab-links.active .wrapper_svg{
         border: 2px solid #212121;
 }
-product-tabs-custom-section .list-product-tabs-custom .tab-links .wrapper_svg svg{
+product-tabs-custom-section .wrapper_svg svg{
     width: 100%;
     height: 100%;
     max-width: 27px;
@@ -97,4 +97,143 @@ product-tabs-custom-section .list-product-tabs-custom .tab-links.active .tab-tit
     product-tabs-custom-section product-scroller{
         padding-left: 103px;
     }
+}
+
+banner-tabs{
+    display: block;
+}
+banner-tabs .halo-block-content-bottom{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+}
+banner-tabs product-scroller{
+    display: none;
+}
+banner-tabs.no-product product-scroller{
+    display: block;
+    flex: unset;
+    padding-inline: 0;
+}
+banner-tabs .halo-block-content-bottom .column-text,
+banner-tabs .halo-block-content-bottom .column-banner{
+    position: relative;     
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    min-width: 50%;
+    flex-grow: 1;
+}
+banner-tabs .halo-block-content-bottom .column-text .column-text__column{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+banner-tabs .halo-block-content-bottom .column-text .column-text__column.row-reverse{
+    flex-direction: column-reverse;
+}
+banner-tabs .column-text .column-text__img img{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+banner-tabs .column-text .column-text__text-wrap{
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 25px 0;
+}
+banner-tabs .column-text .column-text__text-wrap .column-text__text{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+banner-tabs .column-text .column-text__text-wrap .column-text__title{
+    min-width: 33.33%;
+    font-size: var(--fontsize_title_banner_mb);
+    line-height: calc( var(--fontsize_title_banner_mb) + 4px);
+    margin: 0;
+}
+banner-tabs .column-text .column-text__text-wrap .column-text__link{
+    margin-top: 15px;
+}
+banner-tabs .column-text .column-text__text-wrap .column-text__link a{
+    text-decoration: underline;
+}
+banner-tabs .column-banner .promo-text{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    padding: 0 24px 24px 24px;
+}
+banner-tabs .column-banner .promo-text .promo-text-heading{
+    font-size: var(--fontsize_title_banner_mb);
+    line-height: calc( var(--fontsize_title_banner_mb) + 4px);
+    margin-bottom: 8px;
+}
+banner-tabs .column-banner .promo-text .promo-text-des{
+    margin-block: 0 24px;
+}
+banner-tabs p{
+    margin: 0;
+}
+banner-tabs .column-banner .promo-text .button{
+    width: auto;
+    display: inline-block;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    banner-tabs .column-text .column-text__text-wrap .column-text__title,banner-tabs .column-banner .promo-text .promo-text-heading{
+        font-size: var(--fontsize_title_banner);
+        line-height: calc( var(--fontsize_title_banner) + 4px);
+    }
+    banner-tabs.no-product product-scroller{
+        padding-inline: 50px;
+    }
+}
+@media (min-width: 1024px) {
+    banner-tabs .halo-block-content-bottom .column-text,
+    banner-tabs .halo-block-content-bottom .column-banner{
+        width: 50%;
+    }
+    banner-tabs .column-text .column-text__text-wrap{
+        padding: 20px 50px;
+    }
+    banner-tabs .column-text .column-text__text-wrap .column-text__text{
+        flex-direction: row;
+        gap: 55px;
+    }
+    banner-tabs .column-banner .promo-text{
+        padding: 0 40px 40px 40px;
+    }
+    banner-tabs .column-text .column-text__text-wrap .column-text__title,banner-tabs .column-banner .promo-text .promo-text-heading{
+        font-size: var(--fontsize_title_banner);
+        line-height: calc( var(--fontsize_title_banner) + 4px);
+    }
+}
+
+
+product-tabs-custom-section .product-item .card .wrapper_svg{
+    background-color: var(--bg-tab);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px 16px 0;
+}
+product-tabs-custom-section .product-item .card .wrapper_svg svg{
+    width: 16px;
+    height: 16px;
 }
