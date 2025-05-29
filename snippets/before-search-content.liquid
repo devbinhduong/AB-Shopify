@@ -171,17 +171,26 @@
 
   function initialSlick() {
     $('.quickSearchTab__item--all').slick({
-      slidesToShow: 1,
+      slidesToShow: 1.5,
       slidesToScroll: 1,
       infinite: false,
     });
   }
 
+  function openSearchResults() {
+    const searchIcon = document.querySelector("[data-search-menu]");
+    if (!searchIcon) return;
+    
+    searchIcon.addEventListener("click", function () {
+      console.log("Search results opened");
+      
+      setTimeout(() => {
+        initialSlick();
+      }, 2000);
+    });
+  }
+
   activeSearchTab();
+  openSearchResults();
 
-  setTimeout(() => {
-    initialSlick();
-
-    console.log('run slick');
-  }, 6000);
 </script>

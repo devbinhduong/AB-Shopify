@@ -2,3 +2,4 @@
 theme = "178067112238"
 store = "qmcar"
 ignore = ["*.json", "*.scss","assets/dist"]
+theme-editor-sync = true
