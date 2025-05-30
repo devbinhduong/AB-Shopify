@@ -23,6 +23,8 @@
     assign color_title = section.settings.color_title
     assign fontsize_title = section.settings.fontsize_title
     assign fontsize_title_mb = section.settings.fontsize_title_mb
+    assign line_height_title = section.settings.line_height_title
+    assign line_height_title_mb = section.settings.line_height_title_mb
     assign margin_bottom_heading = section.settings.margin_bottom_heading
     assign color_des = section.settings.color_des
     assign fontsize_des = section.settings.fontsize_des
@@ -56,6 +58,24 @@
     assign content_gradient = section.settings.content_gradient
     assign button_text_transform = section.settings.block_button_text_transform
     assign button_text_fw = section.settings.block_button_fw
+
+    assign button_text = section.settings.button_text
+    assign button_link = section.settings.button_link
+    assign button_text_font_size = section.settings.button_text_font_size
+    assign button_text_font_weight = section.settings.button_text_font_weight
+    assign button_text_text_transform = section.settings.button_text_text_transform
+    assign pd_top_product_button = section.settings.pd_top_product_button
+    assign pd_bottom_product_button = section.settings.pd_bottom_product_button
+    assign mg_bottom_button = section.settings.mg_bottom_button
+    assign mg_bottom_button_mb = section.settings.mg_bottom_button_mb
+    assign color_button = section.settings.color_button
+    assign border_color_button = section.settings.border_color_button
+    assign bg_color_button = section.settings.bg_color_button
+    assign color_button_hover = section.settings.color_button_hover
+    assign border_color_button_hover = section.settings.border_color_button_hover
+    assign bg_color_button_hover = section.settings.bg_color_button_hover
+    assign height_image_custom = section.settings.height_image_custom
+    assign height_image_custom_mb = section.settings.height_image_custom_mb
 -%}
 <style>
     #shopify-section-{{section.id}} {padding-top: {{ mg_minus_desktop | times: 0.5 | append: 'px' }}}
@@ -75,7 +95,7 @@
             display: none;
         {%- endunless -%}
     }
-    .section-block-{{section.id}} .halo-block-header .title {color: {{ color_title }};font-size: {{ fontsize_title | append: 'px'  }};margin-bottom: {{ margin_bottom_heading | append: 'px' }}}
+    .section-block-{{section.id}} .halo-block-header .title {color: {{ color_title }};font-size: {{ fontsize_title | append: 'px'  }}; line-height: {{ line_height_title | append: 'px' }}; margin-bottom: {{ margin_bottom_heading | append: 'px' }}}
     .section-block-{{section.id}} .halo-block-header .rte {color: {{ color_des }};font-size: {{ fontsize_des | append: 'px'  }};margin-bottom: {{ margin_bottom_desheading | append: 'px' }}}
     .section-block-{{section.id}} .article-card {border-radius: {{ border_radius_item | append: 'px' }};overflow: hidden;background-color: {{ blog_item_bg }}}
     {%- if enable_border_box -%}
@@ -84,7 +104,7 @@
     .section-block-{{section.id}} .article-card__title a {color: {{ color_title_item }}}
     .section-block-{{section.id}} .article-card__author {color: {{ color_date_item }}}
     .section-block-{{section.id}} .article-card__des {color: {{ color_des_item }}}
-    .section-block-{{section.id}} .article-card__footer a {color: {{ color_button_item }};text-transform: {{ button_text_transform }};font-weight: {{ button_text_fw }}}
+    .section-block-{{section.id}} .article-card__footer a {color: {{ color_button_item }};text-transform: {{ button_text_transform }};font-weight: {{ button_text_fw }}; text-decoration: underline;}
     .section-block-{{section.id}} .article-card__footer a svg {fill: {{ color_button_item }}}
     .section-block-{{section.id}} .view_all {font-weight: var(--font-weight-view-all-style);margin-top: var(--mg-top-view-style);margin-bottom: var(--mg-bottom-view-style);color: var(--color-view-all-style)}
     .section-block-{{section.id}} .view_all:not(.has-border) {border-bottom: none}
@@ -138,11 +158,80 @@
             .section-block-{{section.id}} .halo-block-header .title {margin-bottom: {{ margin_bottom_heading | divided_by: 2 | append: 'px' }}}
             .section-block-{{section.id}} .article-card__info {padding: 22px 8px 28px}
         {%- endif -%}
-        .article-card__title { {% if settings.blog_title_font_size >= 18 %}font-size:{{settings.blog_title_font_size | minus : 4 | append: 'px' }};line-height: {{settings.blog_title_font_size | plus : 4 | append: 'px' }}{% else %} font-size:{{settings.blog_title_font_size | append: 'px' }}{% endif %} }
+        .article-card__title { {% if settings.blog_title_font_size >= 18 %}font-size:{{settings.blog_title_font_size | minus : 4 | append: 'px' }};line-height: {{settings.blog_title_font_size | minus : 3 | append: 'px' }}{% else %} font-size:{{settings.blog_title_font_size | append: 'px' }}{% endif %} }
+        .article-card__des, .article-card__footer { font-size: calc(var(--font-body-size) - 2px);}
     }
     @media (max-width: 767px) {
         .section-block-{{section.id}} {padding-top: {{ mg_top_mobile | append: 'px' }};padding-bottom: {{ mg_bottom_mobile | append: 'px' }}}
-        .section-block-{{section.id}} .halo-block-header .title {font-size: {{ fontsize_title_mb | append: 'px' }}}
+        .section-block-{{section.id}} .halo-block-header .title {font-size: {{ fontsize_title_mb | append: 'px' }}; line-height: {{ line_height_title_mb | append: 'px' }};}
+    }
+
+    .featured-blog-block .slick-slider .slick-track{
+        display: flex;
+    }
+    .featured-blog-block .slick-slider .slick-track .halo-item{
+        height: unset;
+    }
+    .featured-blog-block .slick-slider .slick-track .article-card{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .featured-blog-block .slick-slider .slick-track .article-card .article-card__info{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .featured-blog-block .slick-slider .slick-track .article-card .article-card__des{
+        margin-bottom: auto;
+    }
+    .featured-blog-block .slick-slider .slick-track .article-card .article-card__footer{
+        margin-top: var(--margin-bottom);
+    }
+    .featured-blog-block .slick-slider .slick-list{
+        overflow: visible !important;
+    }
+    .featured-blog-block .btn-wrapper{
+        display: flex;
+        margin-top: {{ mg_bottom_button }}px;
+    }
+    .featured-blog-block .btn-wrapper .button{
+        background: {{ bg_color_button }};
+        color: {{ color_button }};
+        border: 2px solid {{ border_color_button }};
+        padding-top: {{ pd_top_product_button | append: 'px' }};
+        padding-bottom: {{ pd_bottom_product_button | append: 'px' }};
+        font-size: {{ button_text_font_size | append: 'px' }};
+        font-weight:  {{ button_text_font_weight }};
+        text-transform: {{ button_text_text_transform }};
+        width: auto;
+    }
+    .featured-blog-block .btn-wrapper .button:hover{
+        background: {{ bg_color_button_hover }};
+        color: {{ color_button_hover }};
+        border: 2px solid {{ border_color_button_hover }};
+    }
+    {% if height_image_custom != blank %}
+        .featured-blog-block .article-card__image-wrapper a{
+            height: {{ height_image_custom }};
+        }
+        .featured-blog-block .article-card__image-wrapper a img{
+            object-fit: cover;
+        }
+    {% endif %}
+    @media (max-width: 767px){
+        .featured-blog-block .btn-wrapper{
+            display: flex;
+            margin-top: {{ mg_bottom_button_mb }}px;
+        }
+        .featured-blog-block .btn-wrapper .button{
+            width: 100%;
+        }
+        {% if height_image_custom != blank %}
+            .featured-blog-block .article-card__image-wrapper a{
+                height: {{ height_image_custom_mb }};
+            }
+        {% endif %}
     }
 </style>
 <div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}" data-loader-script="{{ 'halo.slide-blog.js' | asset_url }}">
@@ -167,7 +256,7 @@
             {%- assign blog = blogs[section.settings.blog_posts] -%}
             {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
                 {%- for article in blog.articles limit: section.settings.post_limit -%}
-                <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
+                <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | divided_by: 2 | append: 'px' }};">
                     {% render 'article-card-featured', 
                         article: article,
                         blog_show_author: blog_show_author,
@@ -207,6 +296,13 @@
                 {%- endfor -%}
             {%- endif -%}
         </div>
+        {% if button_text != blank %}
+            <div class="btn-wrapper">
+                <a href="{{ button_link }}" class="button">
+                        {{ button_text }}
+                </a>
+            </div>
+        {% endif %}
     </div>
     </div>
 {% schema %}
@@ -334,7 +430,7 @@
         "max": 50,
         "step": 1,
         "unit": "t:sections.layout.fontsize.fontsize_title.unit",
-        "default": 16
+        "default": 40
     },
     {  
         "type": "range",    
@@ -344,7 +440,27 @@
         "max": 50,  
         "step": 1,  
         "unit": "t:sections.layout.fontsize.fontsize_title.unit",   
-        "default": 16   
+        "default": 32
+    },
+    {
+        "type": "range",
+        "id": "line_height_title",
+        "label": "t:settings_schema.typography.settings.typography.label__1",
+        "min": 10,
+        "max": 70,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 51
+    },
+    {
+        "type": "range",
+        "id": "line_height_title_mb",
+        "label": "t:sections.product_block.settings.line_height_mb",
+        "min": 10,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 40
     },
     {
         "type" : "textarea",
@@ -519,6 +635,164 @@
     },
     {
         "type": "header",
+        "content": "Button view all"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "t:settings_schema.typography.settings.typography.button_text",
+        "default": "Show More",
+        "info" : "t:sections.product_block.settings.info_button_show_more"
+    },
+    {
+        "type": "url",
+        "id": "button_link",
+        "label": "t:settings_schema.typography.settings.typography.button_link"
+    },
+    {
+        "type": "range",
+        "id": "button_text_font_size",
+        "label": "t:settings_schema.typography.settings.font_size.label",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:settings_schema.typography.settings.font_size.unit",
+        "default": 14
+    },
+    {
+        "type": "select",
+        "id": "button_text_font_weight",
+        "label": "t:settings_schema.typography.settings.font_weight.label",
+        "default": "500",
+        "options": [
+        {
+            "value": "400",
+            "label": "t:settings_schema.typography.settings.font_weight.options__1"
+        },
+        {
+            "value": "500",
+            "label": "t:settings_schema.typography.settings.font_weight.options__2"
+        },
+        {
+            "value": "600",
+            "label": "t:settings_schema.typography.settings.font_weight.options__3"
+        },
+        {
+            "value": "700",
+            "label": "t:settings_schema.typography.settings.font_weight.options__4"
+        },
+        {
+            "value": "800",
+            "label": "t:settings_schema.typography.settings.font_weight.options__5"
+        },
+        {
+            "value": "900",
+            "label": "t:settings_schema.typography.settings.font_weight.options__6"
+        }]
+    },
+    {
+        "type": "select",
+        "id": "button_text_text_transform",
+        "label": "t:settings_schema.typography.settings.text_transform.label",
+        "default": "uppercase",
+        "options": [
+        {
+            "value": "none",
+            "label": "t:settings_schema.typography.settings.text_transform.options__1"
+        },
+        {
+            "value": "capitalize",
+            "label": "t:settings_schema.typography.settings.text_transform.options__2"
+        },
+        {
+            "value": "uppercase",
+            "label": "t:settings_schema.typography.settings.text_transform.options__3"
+        },
+        {
+            "value": "lowercase",
+            "label": "t:settings_schema.typography.settings.text_transform.options__4"
+        }]
+    },
+    {
+        "type": "range",
+        "id": "pd_top_product_button",
+        "label": "t:settings_schema.typography.settings.type_button_font.padding_top",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 12
+    },
+    {
+        "type": "range",
+        "id": "pd_bottom_product_button",
+        "label": "t:settings_schema.typography.settings.type_button_font.padding_bottom",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 12
+    },
+    {
+        "type": "range",
+        "id": "mg_bottom_button",
+        "id": "mg_bottom_button",
+        "label": "t:settings_schema.product_card.settings.product_title.label__9",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 40
+    },
+    {
+        "type": "range",
+        "id": "mg_bottom_button_mb",
+        "id": "mg_bottom_button_mb",
+        "label": "Top margin mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 32
+    },
+    {
+        "type" : "color",
+        "id" : "color_button",
+        "label": "t:sections.rich-text.blocks.button.settings.label_color",
+        "default" : "#212121"
+    },
+    {
+        "type" : "color",
+        "id" : "border_color_button",
+        "label": "t:settings_schema.colors.settings.colors_name.border_color",
+        "default" : "#212121"
+    },
+    {
+        "type" : "color",
+        "id" : "bg_color_button",
+        "label": "t:settings_schema.colors.settings.colors_name.background_color_2",
+        "default" : "#fff"
+    },
+    {
+        "type" : "color",
+        "id" : "color_button_hover",
+        "label": "t:sections.rich-text.blocks.button.settings.label_hover_color",
+        "default" : "#8b8b8b"
+    },
+    {
+        "type" : "color",
+        "id" : "border_color_button_hover",
+        "label": "t:settings_schema.colors.settings.colors_name.border_hover",
+        "default" : "#8b8b8b"
+    },
+    {
+        "type" : "color",
+        "id" : "bg_color_button_hover",
+        "label": "t:settings_schema.colors.settings.colors_name.background_hover",
+        "default" : "#fff"
+    },
+    {
+        "type": "header",
         "content": "t:sections.featured_blog.settings.blog.header"
     },
     {
@@ -559,6 +833,18 @@
         "max": 9,
         "step": 1,
         "default": 3
+    },
+    {
+        "type": "text",
+        "id": "height_image_custom",
+        "label": "Height image custom",
+        "default": "598px"
+    },
+    {
+        "type": "text",
+        "id": "height_image_custom_mb",
+        "label": "Height image custom mobile",
+        "default": "339px"
     },
     {
         "type": "range",
@@ -974,8 +1260,10 @@
                 "custom_width_title": 420,
                 "border_color_title": "#232323",
                 "color_title": "#232323",
-                "fontsize_title": 20,
-                "fontsize_title_mb": 20,
+                "fontsize_title": 40,
+                "fontsize_title_mb": 32,
+                "line_height_title": 51,
+                "line_height_title_mb": 40,
                 "featured_blog_des": "Phasellus lorem malesuada ligula pulvinar cosmo",
                 "color_des": "#3c3c3c",
                 "fontsize_des": 14
