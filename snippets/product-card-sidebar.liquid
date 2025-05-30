@@ -55,12 +55,14 @@
                         index: index
                     %}
                 {%- endif -%}
-                {% comment %} <a class="card-button" href="{{ product_card_product.url }}">{{ 'products.product.details' | t }}</a> {% endcomment %}
-                {%- if settings.show_action -%}
+                <div class="card-action">
+                    <a class="card-button" href="{{ product_card_product.url }}">{{ 'products.product.details' | t }}</a>
+                </div>
+                {% comment %} {%- if settings.show_action -%}
                     <div class="card-action">
                         {% render 'add-to-cart-form-sidebar', product: product_card_product, id: 'form', position: position, sectionId: sectionId %}
                     </div>
-                {%- endif -%}
+                {%- endif -%} {% endcomment %}
             </div>
         </div>
     </div>
