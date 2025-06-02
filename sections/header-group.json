@@ -127,7 +127,10 @@
         "announcement_wRbENB",
         "announcement_j679gY"
       ],
-      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 768px) {announcement-slider.announcement-bar.d-block {padding-top: 12px; padding-bottom: 13px; }}"
+      ],
+      "name": "Announcement Slider",
       "settings": {
         "layout": "slider",
         "enable_close": true,
@@ -163,7 +166,7 @@
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-1": {
           "type": "main_menu",
           "settings": {
-            "menu": "menu-demo",
+            "menu": "main-menu",
             "menu_top_spacing": 35,
             "menu_bottom_spacing": 35,
             "grid_gap_menu_item": 20,
@@ -251,6 +254,44 @@
             "product_collection": "vitaened-queollis-asmolem-tumet"
           }
         },
+        "a95ae51a-e02d-42cd-8e35-232434188ac6": {
+          "type": "megamenu_style_2",
+          "disabled": true,
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "home",
+            "column": 3,
+            "show_banner_1": true,
+            "banner_url_1": "shopify://collections/congue",
+            "show_banner_2": true,
+            "banner_url_2": "shopify://collections/scarvero",
+            "show_banner_3": true,
+            "banner_url_3": "shopify://collections/nor-loremirus"
+          }
+        },
+        "megamenu_style_4_EKGe9r": {
+          "type": "megamenu_style_4",
+          "disabled": true,
+          "settings": {
+            "layout_block": "custom_width",
+            "header_custom_width_size": 1200,
+            "item": "home",
+            "column": 5,
+            "menu_text_left": "",
+            "menu_text_left_sale": "",
+            "show_banner_1": false,
+            "banner_url_1": "",
+            "show_banner_2": false,
+            "banner_url_2": "",
+            "show_az_brand": false,
+            "az_brand_title": "All Brands A-Z",
+            "az_brand_link_text": "See All Brands",
+            "az_brand_url": "",
+            "bg_mega_menu_bottom": "#f8f8f8",
+            "az_brand_link_text_color": "#000000"
+          }
+        },
         "megamenu_style_5_WcPUfV": {
           "type": "megamenu_style_5",
           "settings": {
@@ -259,7 +300,7 @@
             "mega_tyle": "style2",
             "item": "Nahrungsergänzung",
             "column": 4,
-            "menu_text_left": "nahrungserg-nzung",
+            "menu_text_left": "menu-2",
             "menu_text_left_sale": "",
             "show_banner_1": true,
             "banner_1": "shopify://shop_images/sauerkirsche.webp",
@@ -282,10 +323,9 @@
             "mega_tyle": "style2",
             "item": "Magazin & Wissen",
             "column": 4,
-            "menu_text_left": "magazin-wissen",
+            "menu_text_left": "",
             "menu_text_left_sale": "",
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/magazine.webp",
             "banner_url_1": "shopify://collections/all",
             "title_banner": "Montmorency Sauerkirche",
             "des_banner": "<p>Entspannend und abwehrstark.</p>",
@@ -300,7 +340,7 @@
         "quick_menu_NjGxqA": {
           "type": "quick_menu",
           "settings": {
-            "menu": "beliebte-kategorien",
+            "menu": "menu-2",
             "color_text": "#212121",
             "bg_color_text": "#f8f8f8",
             "bg_color_text_gradient": "",
@@ -321,6 +361,8 @@
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-1",
         "sections--14682829619277__deb8dcfc-6e5c-495d-ad01-12fa1389160b-16808376403fcfa6e6-2",
         "49459ccc-e7bb-40e5-8544-bf7b8e3000b5",
+        "a95ae51a-e02d-42cd-8e35-232434188ac6",
+        "megamenu_style_4_EKGe9r",
         "megamenu_style_5_WcPUfV",
         "megamenu_style_5_ADDaNB",
         "quick_menu_NjGxqA"
@@ -381,7 +423,7 @@
         "quick_menu_9BhdPc": {
           "type": "quick_menu",
           "settings": {
-            "menu": "beliebte-kategorien",
+            "menu": "menu-2",
             "color_text": "#212121",
             "bg_color_text": "#f8f8f8",
             "bg_color_text_gradient": "",

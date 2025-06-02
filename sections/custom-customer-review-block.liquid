@@ -126,6 +126,9 @@
     .section-block-{{section.id}} .halo-block-header .title .text {padding: 0}
     .section-block-{{section.id}} .halo-block-header .title:before {display: none}
     .section-block-{{section.id}} .halo-block-header .subtext-review {color: {{ color_des }};font-size: {{ fontsize_des | append: 'px'  }}}
+    .section-block-{{section.id}} .slick-dots {
+        display: none !important;
+    }
 </style>
 <div class="customer-review-block customer-review-block--custom {% if section.settings.center_mode %} customer-review--center{% endif %} section-block-{{section.id}} {% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="customer-review-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-customer-review.js' | asset_url }}"{% endif %} data-check="{{ section.settings.show_arrow }}">
     <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -144,20 +147,22 @@
                 <div class="halo-item customer-review__item" {% if review_style == 'style_2' %}data-drag-item{% endif %}>
                     <div class="review_flex">
                         <div class="customer-review__item--left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style="--animation-order: 1;"{% endif %}>
-                            <div class="star-reviews">
-                                {%- assign star_number = block.settings.rating | remove: 'star' | plus: 0 -%}
-                                {%- for i in (1..5) -%}
-                                <span class="star--icon {% if i > star_number %}star-empty{% endif %}"></span>
-                                {%- endfor -%}
+                            <div class="hide-on-mb">
+                                <div class="star-reviews">
+                                    {%- assign star_number = block.settings.rating | remove: 'star' | plus: 0 -%}
+                                    {%- for i in (1..5) -%}
+                                    <span class="star--icon {% if i > star_number %}star-empty{% endif %}"></span>
+                                    {%- endfor -%}
+                                </div>
+
+                                {%- if block.settings.body != blank -%}
+                                <div class="customer-review__content">{{ block.settings.body }}</div>
+                                {%- endif -%}
+
+                                {%- if block.settings.heading != blank -%}
+                                    <span class="heading">{{ block.settings.heading }}</span>
+                                {%- endif -%}
                             </div>
-
-                            {%- if block.settings.body != blank -%}
-                            <div class="customer-review__content">{{ block.settings.body }}</div>
-                            {%- endif -%}
-
-                            {%- if block.settings.heading != blank -%}
-                                <span class="heading">{{ block.settings.heading }}</span>
-                            {%- endif -%}
 
                             {%- if product != nil -%}
                                 <div class="product">
@@ -179,8 +184,25 @@
                             
                         </div>
                         <div class="customer-review__item--right{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} data-cascade style="--animation-order: 1;"{% endif %}>
+                            <div class="hide-on-desktop">
+                                <div class="star-reviews">
+                                    {%- assign star_number = block.settings.rating | remove: 'star' | plus: 0 -%}
+                                    {%- for i in (1..5) -%}
+                                    <span class="star--icon {% if i > star_number %}star-empty{% endif %}"></span>
+                                    {%- endfor -%}
+                                </div>
+
+                                {%- if block.settings.body != blank -%}
+                                <div class="customer-review__content">{{ block.settings.body }}</div>
+                                {%- endif -%}
+
+                                {%- if block.settings.heading != blank -%}
+                                    <span class="heading">{{ block.settings.heading }}</span>
+                                {%- endif -%}
+                            </div>
+
                             {%- if block.settings.img_banner_url != blank -%}
-                                <div class="adaptive_height image{% if block.settings.image_slide_mb != blank %} slide-pc{% endif %}" style="padding-top: {% unless img_banner_url.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_banner_url.aspect_ratio | times: 110 }}%; --padding-top-fpmb: {{ 1 | divided_by: img_banner_url.aspect_ratio | times: 200 }}%{% else %}{{ 1 | divided_by: img_banner_url.aspect_ratio | times: 100 }}%{% endunless %}">
+                                <div class="adaptive_height image{% if block.settings.image_slide_mb != blank %} slide-pc{% endif %}  w-full" style="padding-top: {% unless img_banner_url.presentation.focal_point == '50.0% 50.0%' %}{{ 1 | divided_by: img_banner_url.aspect_ratio | times: 110 }}%; --padding-top-fpmb: {{ 1 | divided_by: img_banner_url.aspect_ratio | times: 200 }}%{% else %}{{ 1 | divided_by: img_banner_url.aspect_ratio | times: 100 }}%{% endunless %}">
                                         <a {% if block.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.link }}"{% endif %} title="{{ img_banner_url.alt | default: shop.name | escape }}" class="slide-image">
                                             <img {% if settings.enable_lazyload and forloop.first == false %}data-{% endif %}srcset="{%- if img_banner_url.width < 320 -%}{{ img_banner_url | image_url: width: img_banner_url.width }} 320w,{%- endif -%}
                                                 {%- if img_banner_url.width >= 320 -%}{{ img_banner_url | image_url: width: 375 }} 375w,{%- endif -%}

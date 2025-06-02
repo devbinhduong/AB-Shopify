@@ -4691,14 +4691,84 @@
         "default": true
       },
       {
+        "type": "header",
+        "content": "Quick Search Tab 1"
+      },
+      {
+        "type": "text",
+        "id": "quick_search_tab_1",
+        "label": "Quick Search Tab 1 Title",
+        "default": "Bestseller"
+      },
+      {
         "type": "collection",
         "id": "quick_search_collection_1",
         "label": "Quick Search Collection 1",
       },
       {
+          "type": "image_picker",
+          "id": "quick_search_image_1",
+          "label": "Image"
+      },
+      {
+          "type": "text",
+          "id": "quick_search_title_1",
+          "label": "Title"
+      },
+      {
+          "type": "richtext",
+          "id": "quick_search_description_1",
+          "label": "Description"
+      },
+      {
+          "type": "text",
+          "id": "quick_search_text_link_1",
+          "label": "Text link"
+      },
+      {
+          "type": "url",
+          "id": "quick_search_link_1",
+          "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "Quick Search Tab 2"
+      },
+      {
+        "type": "text",
+        "id": "quick_search_tab_2",
+        "label": "Quick Search Tab 2 Title",
+        "default": "Neuheiten"
+      },
+      {
         "type": "collection",
         "id": "quick_search_collection_2",
         "label": "Quick Search Collection 2",
+      },
+      {
+          "type": "image_picker",
+          "id": "quick_search_image_2",
+          "label": "Image"
+      },
+      {
+          "type": "text",
+          "id": "quick_search_title_2",
+          "label": "Title"
+      },
+      {
+          "type": "richtext",
+          "id": "quick_search_description_2",
+          "label": "Description"
+      },
+      {
+          "type": "text",
+          "id": "quick_search_text_link_2",
+          "label": "Text link"
+      },
+      {
+          "type": "url",
+          "id": "quick_search_link_2",
+          "label": "Link"
       },
       {
         "id": "quick_search_to_show",
