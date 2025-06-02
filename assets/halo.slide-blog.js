@@ -22,16 +22,36 @@
                             {
                                 breakpoint: 992,
                                 settings: {
+                                    slidesToShow: 2.5,
+                                    dots: false,
+                                }
+                            },
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 2.5,
+                                    dots: false,
+                                    arrows: false
+                                }
+                            },
+                            {
+                                breakpoint: 550,
+                                settings: {
                                     slidesToShow: 2,
-                                    dots: true,
                                     arrows: false,
                                 }
                             },
                             {
                                 breakpoint: 480,
                                 settings: {
+                                    slidesToShow: 1.5,
+                                    arrows: false,
+                                }
+                            },
+                            {
+                                breakpoint: 300,
+                                settings: {
                                     slidesToShow: 1,
-                                    dots: true,
                                     arrows: false,
                                 }
                             }

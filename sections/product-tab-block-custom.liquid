@@ -127,54 +127,56 @@
                         </product-scroller>
                     {% endif %}
                 </div>
-                <div class="product-tabs-content">
-                    {%- liquid
-                        assign product_limit = 0
-                        assign column = section.settings.product_block_per_row
-                        if infinite_scroll
-                            assign product_limit = limit
-                        endif
-                        assign column = section.settings.product_block_show
-                        assign dots = section.settings.product_block_dots
-                        assign dots_mb = section.settings.product_block_dots_mb
-                        assign arrows = section.settings.product_block_arrows
-                        assign arrows_mb = section.settings.product_block_arrows_mb
-                        assign enable_infinite = section.settings.enable_infinite
-                    -%}
-                    {%- for block in block_tabs -%}
-                        <div class="tab-content{% if forloop.first %} active{% endif %}" data-product-TabContent id="product-tab-{{ section.id }}-{{ block.id }}">
-                            <div class="products-carousel products-load column-{{ column }}" data-item-to-show="{{ column }}" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}">
-                                    {%- liquid
-                                        assign collection = block.settings.collection
-                                        for tag in current_tags 
-                                            if tag contains 'limit='
-                                                assign limit = tag | remove: 'limit='
-                                            elsif tag contains 'sectionId='
-                                                assign sectionId = tag | remove: 'sectionId='
-                                            elsif tag contains 'imageRatio='
-                                                assign image_ratio = tag | remove: 'imageRatio='
-                                            elsif tag contains 'swipe='
-                                                assign swipe = tag | remove: 'swipe='
-                                            elsif tag contains 'hasCountdown='
-                                                assign hasCountdown = tag | remove: 'hasCountdown='
-                                            endif
-                                        endfor
-                                    -%}
-                                    {%- if collection.products[0] != nil or collection != blank -%}
-                                        {%- for product in collection.products limit: limit -%}
-                                            <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
-                                                {% render 'product-card-loading',
-                                                    product_card_product: product,
-                                                    media_size: image_ratio,
-                                                    portrait_aspect_ratio: '133'
-                                                %}
-                                            </div>
-                                        {%- endfor -%}
-                                    {%- endif -%}
+                {% if show_product %}
+                    <div class="product-tabs-content">
+                        {%- liquid
+                            assign product_limit = 0
+                            assign column = section.settings.product_block_per_row
+                            if infinite_scroll
+                                assign product_limit = limit
+                            endif
+                            assign column = section.settings.product_block_show
+                            assign dots = section.settings.product_block_dots
+                            assign dots_mb = section.settings.product_block_dots_mb
+                            assign arrows = section.settings.product_block_arrows
+                            assign arrows_mb = section.settings.product_block_arrows_mb
+                            assign enable_infinite = section.settings.enable_infinite
+                        -%}
+                        {%- for block in block_tabs -%}
+                            <div class="tab-content{% if forloop.first %} active{% endif %}" data-product-TabContent id="product-tab-{{ section.id }}-{{ block.id }}">
+                                <div class="products-carousel products-load column-{{ column }}" data-item-to-show="{{ column }}" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}">
+                                        {%- liquid
+                                            assign collection = block.settings.collection
+                                            for tag in current_tags 
+                                                if tag contains 'limit='
+                                                    assign limit = tag | remove: 'limit='
+                                                elsif tag contains 'sectionId='
+                                                    assign sectionId = tag | remove: 'sectionId='
+                                                elsif tag contains 'imageRatio='
+                                                    assign image_ratio = tag | remove: 'imageRatio='
+                                                elsif tag contains 'swipe='
+                                                    assign swipe = tag | remove: 'swipe='
+                                                elsif tag contains 'hasCountdown='
+                                                    assign hasCountdown = tag | remove: 'hasCountdown='
+                                                endif
+                                            endfor
+                                        -%}
+                                        {%- if collection.products[0] != nil or collection != blank -%}
+                                            {%- for product in collection.products limit: limit -%}
+                                                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                                                    {% render 'product-card-loading',
+                                                        product_card_product: product,
+                                                        media_size: image_ratio,
+                                                        portrait_aspect_ratio: '133'
+                                                    %}
+                                                </div>
+                                            {%- endfor -%}
+                                        {%- endif -%}
+                                </div>
                             </div>
-                        </div>
-                    {%- endfor -%}
-                </div>
+                        {%- endfor -%}
+                    </div>
+                {% endif %}
             </div>
          </div>
     </div>
@@ -205,16 +207,18 @@
                                     {%- for block_2 in block_tabs -%}
                                         {% assign tab_type_handle = block_2.settings.tab_type |  downcase | hanndle %} 
                                         {% if block_2.settings.icon != blank %}
-                                        <li class="type-{{ tab_type_handle }} {% if tab_type_first_handle != blank and tab_type_first_handle != tab_type_handle %}hidden{% endif %}" data-number="{{ forloop.index0 }}">
-                                            <button type="button" data-target="#product-tab-{{ section.id }}-{{ block_2.id }}" data-product-tabTop data-href="{{ collections[block_2.settings.collection].url }}?view=ajax_product_block" class="tab-links{% if block.id == block_2.id %} active{% endif %}">
-                                                <div class="wrapper_svg" style="--bg-tab: {{ block_2.settings.bg_tab }}">
-                                                    {{ block_2.settings.icon }}
-                                                </div>
-                                                <div class="tab-title">
-                                                    {{ block_2.settings.title }}
-                                                </div>
-                                            </button>
-                                        </li>
+                                            {% if  block_2.settings.image_left != blank or  block_2.settings.link_right != blank %}
+                                                <li class="type-{{ tab_type_handle }} {% if tab_type_first_handle != blank and tab_type_first_handle != tab_type_handle %}hidden{% endif %}" data-number="{{ forloop.index0 }}">
+                                                    <button type="button" data-target="#product-tab-{{ section.id }}-{{ block_2.id }}" data-product-tabTop data-href="{{ collections[block_2.settings.collection].url }}?view=ajax_product_block" class="tab-links{% if block.id == block_2.id %} active{% endif %}">
+                                                        <div class="wrapper_svg" style="--bg-tab: {{ block_2.settings.bg_tab }}">
+                                                            {{ block_2.settings.icon }}
+                                                        </div>
+                                                        <div class="tab-title">
+                                                            {{ block_2.settings.title }}
+                                                        </div>
+                                                    </button>
+                                                </li>
+                                            {% endif %}
                                         {% endif %}
                                     {%- endfor -%}
                                 </ul>
