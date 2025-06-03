@@ -126,12 +126,18 @@
     .section-block-{{section.id}} .halo-block-header .title .text {padding: 0}
     .section-block-{{section.id}} .halo-block-header .title:before {display: none}
     .section-block-{{section.id}} .halo-block-header .subtext-review {color: {{ color_des }};font-size: {{ fontsize_des | append: 'px'  }}}
+
+    @media (max-width: 767px) {
+        .section-block-{{section.id}} .layout-body--custom_width{
+            padding-inline: 20px;
+        }
+    }
     .section-block-{{section.id}} .slick-dots {
         display: none !important;
     }
 </style>
 <div class="customer-review-block customer-review-block--custom {% if section.settings.center_mode %} customer-review--center{% endif %} section-block-{{section.id}} {% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="customer-review-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-customer-review.js' | asset_url }}"{% endif %} data-check="{{ section.settings.show_arrow }}">
-    <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container layout-body--{{ settings.layout_body }}{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
         {%- if section.settings.review_title != blank -%}
             <div class="halo-block-header text-{{ section.settings.title_align }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                 <h3 class="title" style="--margin-bottom-title: {{ section.settings.mg_bottom_title | append: 'px' }};--margin-bottom-title-mb:{% if  section.settings.mg_bottom_title > 50 %}{{ section.settings.mg_bottom_title | minus: 20 | append: 'px' }}{% else %} {{ section.settings.mg_bottom_title | append: 'px' }}{% endif %}"><span class="text">{{ section.settings.review_title }}</span></h3>

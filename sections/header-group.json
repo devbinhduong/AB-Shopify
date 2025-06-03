@@ -127,10 +127,7 @@
         "announcement_wRbENB",
         "announcement_j679gY"
       ],
-      "custom_css": [
-        "@media (max-width: 768px) {announcement-slider.announcement-bar.d-block {padding-top: 12px; padding-bottom: 13px; }}"
-      ],
-      "name": "Announcement Slider",
+      "disabled": true,
       "settings": {
         "layout": "slider",
         "enable_close": true,

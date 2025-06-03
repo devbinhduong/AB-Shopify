@@ -189,4 +189,19 @@
   @media (min-width: 767px) {
       .footer-7 .footer-block__newsletter .footer-block__subheading {margin-top: {{ block_newsletter.settings.mg_top_des | append: 'px' }}}
   }
+
+  .footer-custom .layout-body--custom_width {
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+  }
+  .footer-custom .layout-body--custom_width .halo-row{
+      margin-inline: 0;
+  }
+
+  @media (min-width: 767px)  {
+    .footer-custom .layout-body--custom_width {
+      padding-left: 32px !important;
+      padding-right: 32px !important;
+    }
+  }
 </style>

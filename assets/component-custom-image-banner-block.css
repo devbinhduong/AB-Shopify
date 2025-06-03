@@ -237,6 +237,12 @@
     margin-bottom: var(--item-spacing-style);
 }
 
+@media(max-width: 1239px){
+    .custom-image-banner-block .halo-row .halo-item{
+        width: 100%;
+    }
+}
+
 @media (max-width: 1024px){
     .customImageBanner-inner .title.custom-text-style {
         font-size: var(--fontsize-mobile-text-style);
@@ -323,10 +329,6 @@
 }
 
 @media(max-width: 767px){
-    .custom-image-banner-block .halo-row .halo-item{
-        width: 100%;
-    }
-
     .custom-image-banner-block .halo-row.scroll-snap-mobile .halo-item+.halo-item{
         margin-top: 0;
     }

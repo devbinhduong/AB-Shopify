@@ -1,3 +1,6 @@
+.rich-text__blocks{
+    padding-inline: 20px;
+}
 .rich-text__blocks h2,
 .rich-text__blocks h2 p{
     font-size: var(--fontsize-heading-style);

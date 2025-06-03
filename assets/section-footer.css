@@ -2,8 +2,8 @@
   display: inline-block;
   vertical-align: top;
   width: var(--block-custom-width);
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .footer__content-top {

@@ -186,7 +186,7 @@
     "product_quick_view_type": "default",
     "group_quickview_wishlist": "left",
     "product_content_text_align": "left",
-    "show_badge": true,
+    "show_badge": false,
     "badge_postion": "left",
     "sale_badge_type": "text",
     "point_product_swatch_custom": "30px",

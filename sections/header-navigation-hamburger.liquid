@@ -189,6 +189,11 @@
     .container-full.quickSearch__container .quickSearch__form {
         position: unset;
     }
+
+    .header-navigation .layout-body--custom_width {
+      padding-left: 32px !important;
+      padding-right: 32px !important;
+    }
    </style>
 {%-liquid
     if request.page_type == 'index'
@@ -200,7 +205,7 @@
 -%}
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-navigation-wrapper{{sticky_header}}">
 <div class="header-navigation header-nav-hamburger{{header_transparent}}{% if section.settings.header_layout_style == 'style_1'%} header-nav-hamburger--style1 header-nav-hamburger--menu_center{% else %} header-nav-hamburger--style2{% endif %}">
-    <div class="container container-{{ section.settings.container }} d-flex flex-jc-between flex-align-center p-static o-unset{% if section.settings.sticky_header_width == 'full' %} sticky-container-full{% endif %}">
+    <div class="{% if section.settings.container == 'container'  %}container layout-body--{{ settings.layout_body }}{% else %}container-{{ section.settings.container }}{% endif %} d-flex flex-jc-between flex-align-center p-static o-unset{% if section.settings.sticky_header_width == 'full' %} sticky-container-full{% endif %}">
         {%- for block in section.blocks -%}
         {%- case block.type -%}
             {%- when 'logo' -%}
@@ -808,6 +813,10 @@ if (sticky != undefined || sticky != null) {
             "label": "t:sections.layout.container.option",
             "default": "1770",
             "options": [
+                {
+                    "value": "container",
+                    "label": "t:sections.layout.container.option1"
+                },
                 {
                     "value": "1170",
                     "label": "t:sections.layout.container.option4"
