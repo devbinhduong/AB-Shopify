@@ -555,6 +555,28 @@
     .halo-product-block .products-carousel.slick-slider .slick-list{
         overflow: visible !important;
     }
+    .section-block-{{section.id}} .layout-body--custom_width {
+        padding-left: 20px !important;
+        padding-right: 0 !important;
+    }
+    @media screen and (min-width: 767px) {
+        .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 148px !important;
+            padding-right: 32px !important;
+        }
+    }
+    @media screen and (min-width: 1450px) {
+        .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 32px !important;
+        }
+    }
 </style>
 <div class="product-block section-block-{{section.id}}" style="--grid-gap: {{ grid_gap }}">
     {%- if block_title != blank -%}

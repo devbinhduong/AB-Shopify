@@ -29,7 +29,7 @@
 >
   {%- if section.blocks.size > 0 -%}
     <div class="footer__content-top{% if section.settings.show_footer_top_bg_img %} footer__content-bg{% endif %}{% if block_newsletter.settings.enable_top and position_social == 7 %} enable_newsletter_social{% endif %}">
-      <div class="container container-{{ section.settings.container }}">
+      <div class="{% if section.settings.container == 'full' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1370' %}container-1370{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1570' %}container-1570{% elsif section.settings.container == '1770' %}container-1770{% else %}container layout-body--{{ settings.layout_body }}{% endif %}">
         <div class="halo-row column-{{column}}">
           {%- for block in section.blocks -%}
             {%- if forloop.first and block.type == 'text' -%}
@@ -500,6 +500,10 @@
       "default": "1170",
       "options": [
         {
+            "value": "container",
+            "label": "t:sections.layout.container.option1"
+        },
+        {
           "value": "1170",
           "label": "t:sections.layout.container.option4"
         },
@@ -777,7 +781,7 @@
       "label": "t:settings_schema.typography.settings.type_button_font.padding_top",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 2,
       "unit": "t:settings_schema.typography.settings.font_size.unit",
       "default": 50
     },
@@ -787,7 +791,7 @@
       "label": "t:settings_schema.typography.settings.type_button_font.padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 5,
+      "step": 2,
       "unit": "t:settings_schema.typography.settings.font_size.unit",
       "default": 50
     },

@@ -19,7 +19,7 @@
   {%- endif -%}
 </style>
 <div class="footer__content-bottom">
-  <div class="container container-{{ container }}">
+  <div class="{% if container == 'full' %}container-full{% elsif container == '1170' %}container-1170{% elsif container == '1370' %}container-1370{% elsif container == '1470' %}container-1470{% elsif container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% else %}container layout-body--{{ settings.layout_body }}{% endif %}">
     <div class="footer-block__bottom flex items-end justify-between">
       <div class="footerBottom__left">
         <img src="{{ block.settings.left_logo  | img_url: '41x41' }}" alt="{{ store.name }}" class="footer__logo">

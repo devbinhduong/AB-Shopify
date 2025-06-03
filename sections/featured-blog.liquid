@@ -233,9 +233,26 @@
             }
         {% endif %}
     }
+
+    .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+
+    @media screen and (min-width: 960px) {
+        .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 148px !important;
+            padding-right: 32px !important;
+        }
+    }
+    @media screen and (min-width: 1450px) {
+        .section-block-{{section.id}} .layout-body--custom_width {
+            padding-left: 32px !important;
+        }
+    }
 </style>
 <div class="featured-blog-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="featured-blog-{{section.id}}" data-loader-script="{{ 'halo.slide-blog.js' | asset_url }}">
-    <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
+    <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container layout-body--{{ settings.layout_body }}{% endif %}">
         {%- if section.settings.featured_blog_title != blank -%}
             <div class="halo-block-header text-{{ section.settings.title_align }} view_all-{{ section.settings.view_all_pos }}">   
                 <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %}style="--animation-order: 0;"{% endif %}><span class="text">{{ section.settings.featured_blog_title }}</span></h3>
@@ -252,11 +269,11 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div class="{% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};">
+        <div class="{% if section.settings.blog_posts != blank %}halo-row{% else %}halo-row-placeholder{% endif %} column-{{ section.settings.blog_results_per_row }}{% if section.settings.post_limit == 2 %} disable_dots_tablet{% endif %}" data-rows="{{ section.settings.blog_results_per_row }}" data-blogs-slider style="--row-distance-style: {{ section.settings.item_distance | times: 0.5 | prepend: '-' | append: 'px' }};">
             {%- assign blog = blogs[section.settings.blog_posts] -%}
             {%- if section.settings.blog_posts != blank and section.settings.blog_posts.articles_count > 0 -%}
                 {%- for article in blog.articles limit: section.settings.post_limit -%}
-                <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | divided_by: 2 | append: 'px' }};">
+                <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | times: 0.5 | append: 'px' }};">
                     {% render 'article-card-featured', 
                         article: article,
                         blog_show_author: blog_show_author,
@@ -282,7 +299,7 @@
                 {% for i in (1..section.settings.post_limit) -%}
                     {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
                     {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
-                    <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }};">
+                    <div class="halo-item" id="block-{{article.id}}" style="--item-distance-style: {{ section.settings.item_distance | times: 0.5 | append: 'px' }};">
                         <div class="article-card">
                             <div class="article-card__image-wrapper" style="--margin-bottom: {{ margin_bottom_image | append: 'px' }}">
                                 {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}

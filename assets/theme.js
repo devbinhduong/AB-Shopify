@@ -1156,9 +1156,15 @@
                         tabLink.off('click').on('click', function (e) {
                             e.preventDefault();
                             e.stopPropagation();
+                            
                             if (!$(this).hasClass('active')) {
                                 const curTab = $(this),
-                                    curTabContent = $(curTab.data('target'));
+                                    curTabContent = $(curTab.data('target')),
+                                    show_product = curTab.data('show-product');
+                                if(!show_product){
+                                    window.location.href = curTab.data('href');
+                                    return;
+                                }
                                 tabLink.removeClass('active');
                                 tabContent.removeClass('active');
                                 if (!curTabContent.hasClass('loaded')) halo.doAjaxProductTabs(curTab, curTab.data('href'), curTabContent.find('.loading'), curTabContent.find('.products-load'), $block.attr('sectionid'), limit);
@@ -1211,6 +1217,10 @@
                                 icon_wrapper.clone().insertBefore($wrapper);
                             }
                         });
+                        let $lastItem = curTabContent.find('.product:last:has(.column-banner)');
+                        if ($lastItem.length) {
+                            res.push($lastItem[0]);
+                        }
                         curTabContent.html(res);
 
                         if(window.wishlist.show){
@@ -1322,8 +1332,8 @@
                             var percent = ((slick.currentSlide / (slick.slideCount - itemToShow)) * 100) + '%';
                             progressBar.css('--percent', percent);
                         });
-                    }
-                  
+                    }                                     
+
                     productGrid.slick({
                         mobileFirst: true,
                         adaptiveHeight: true,
@@ -1335,7 +1345,7 @@
                         dots: itemDotsMb,
                         nextArrow: window.arrows.icon_next,
                         prevArrow: window.arrows.icon_prev,
-                        rtl: window.rtl_slick,
+                        rtl: window.rtl_slick,                                          
                         responsive: 
                         [
                             {
@@ -1567,12 +1577,6 @@
                         ]
                     });
 
-                    if (productGrid.hasClass('enable_progress_bar')) {
-                        productGrid.on('afterChange', (event, slick, nextSlide) => {
-                            var percent = ((nextSlide / (slick.slideCount - itemToShow)) * 100) + '%';
-                            progressBar.css('--percent', percent);
-                        });
-                    }
                     if (productGrid.hasClass('enable_counter_number')) {
                         var slickNext = productGrid.find('.slick-next');
                         productGrid.closest('.halo-block, .special-banner__product, .cust-prod-widget__product').find('.products-counter-number').appendTo(slickNext);

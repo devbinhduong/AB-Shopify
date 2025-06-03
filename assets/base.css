@@ -3025,7 +3025,7 @@ input.form-input-hiddenPlaceholder::placeholder {
     display: block;
 }
 .header-mobile .container {
-    padding: 0 32px;
+    padding: 0 32px !important;
 }
 @media screen and (min-width: 1025px) {
     .section-header-mobile {
@@ -6329,14 +6329,6 @@ body.is-custom-information .background-overlay {
         fill: var(--arrow-color-hover);
     }
 
-    .body-custom-width .slick-arrow.slick-prev {
-        left: 15px;
-    }
-
-    .body-custom-width .slick-arrow.slick-next {
-        right: 15px;
-    }
-
     .style-arrows-8 .slick-dots li,
     .style-arrows-8 .slider-dots li {
         margin: 0 20px;
@@ -6436,12 +6428,6 @@ body.is-custom-information .background-overlay {
     .body-full-width.template-customers\/account .wrapper-body .container,
     .body-full-width.template-customers\/addresses .wrapper-body .container {
         max-width: 1200px;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .body-custom-width .wrapper-body .container {
-        max-width: var(--body-custom-width-container);
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -7533,3 +7519,11 @@ body.is-custom-information .background-overlay {
     font-style: normal;
     font-display: swap;
 }
+
+
+.body-custom-width .container {
+    max-width: var(--body-custom-width-container);
+    padding-left: 0;
+    padding-right: 0;
+}
+

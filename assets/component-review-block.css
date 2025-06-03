@@ -1,5 +1,6 @@
 .customer-review-block .halo-block-header .title {
     margin-bottom: var(--margin-bottom-title);
+    margin-left: 32px;
 }
 
 .customer-review-block .halo-block-header .subtext-review {
@@ -8,6 +9,7 @@
 
 .customer-review-block .customer-review-slide {
     padding-bottom: 10px;
+    margin-inline: 0;
 }
 
 .customer-review__item .review_flex {
@@ -284,6 +286,8 @@
 
     .customer-review__item .review_flex > div {
         width: 100%;
+        padding-left: 0;
+        margin-left: 0;
     }
 
     .customer-review__item .review_flex > div + div {
@@ -296,6 +300,7 @@
     /* End: Style 2 */
     .customer-review-block .halo-block-header .title {
         margin-bottom: var(--margin-bottom-title-mb);
+        margin-left: 0;
     }
 }
 
@@ -443,8 +448,9 @@
 }
 .customer-review-block--custom .customer-review__item--left {
     max-width: 400px;
-    padding-left: 50px;
+    padding-left: 40px;
     padding-right: 0;
+    margin-left: 50px;
 }
 .customer-review-block--custom .customer-review__item--right {
     width: 50%;

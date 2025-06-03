@@ -630,7 +630,6 @@ class ProductScroller extends HTMLElement {
             return wrapper.clientWidth < wrapper.scrollWidth
         }
         let containerOverflowing = isOverflowing(this.container)
-
         if (containerOverflowing) {
             this.dragToScroll(this.container)
             return 
