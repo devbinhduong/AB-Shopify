@@ -63,6 +63,63 @@
   .quickSearchTab__item--all {
     /* display: flex; */
   }
+  .quickSearchResultsBlock .quickSearchTab__item {
+    display: block;
+  }
+
+  #predictive-search-results .quickSearchTab__item:not(.active) {
+    display: none;
+  }
+  .show-search-all .blockProductSearch--first,
+  .show-search-all .blockProductSearch--second {
+    display: block;
+  }
+
+  .show-search-all .blockProductSearch__image {
+    display: none;
+  }
+  .show-search-tab1 .blockProductSearch--second {
+    display: none;
+  }
+
+  .show-search-tab2 .blockProductSearch--first {
+    display: none;
+  }
+
+  .show-search-tab1 .blockProductSearch--first,
+  .show-search-tab2 .blockProductSearch--second {
+    width: 88% !important;
+  }
+
+  .blockProductSearch__heading {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: left;
+  }
+
+  .blockProductSearch {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .quickSearchTab__content  {
+   
+  }
+
+  .quickSearchTab__content .slick-list {
+      overflow: visible;
+      clip-path: inset(0 -100% 0 0);
+      margin-left: -16px;
+      margin-right: -16px;
+  }
+
+  .blockProductSearch__image {
+    width: 100%;
+    max-width: 370px;
+    min-width: 370px;
+  }
 </style>
 
 <div
@@ -77,74 +134,123 @@
             <a href="#search-all" class="quickSearchTab__tab active">Alle</a>
           </li>
           <li>
-            <a href="#search-tab1" class="quickSearchTab__tab">Bestseller</a>
+            <a href="#search-tab1" class="quickSearchTab__tab">{{ settings.quick_search_tab_1 }}</a>
           </li>
           <li>
-            <a href="#search-tab2" class="quickSearchTab__tab">Neuheiten</a>
+            <a href="#search-tab2" class="quickSearchTab__tab">{{ settings.quick_search_tab_2 }}</a>
           </li>
         </ul>
       </div>
 
-      <div class="quickSearchTab__content">
+      <div class="quickSearchTab__content show-search-all">
         <div class="quickSearchTab__item quickSearchTab__item--all active" id="search-all">
-          <div class="dis-grid grid-col-1 md:grid-col-5 flex-1">
-            {%- if settings.quick_search_collection_1.products[0] != null -%}
-              {%- for product in settings.quick_search_collection_1.products limit: 5 -%}
-                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
-                  {% render 'product-grid-layout',
-                    product_card_product: product,
-                    show_add_to_cart: true,
-                    serial: forloop.index,
-                    sectionId: section.id,
-                    show_list: true,
-                    loading: true
-                  %}
+          <div class="blockProductSearch blockProductSearch--first">
+            <h5 class="blockProductSearch__heading">{{ settings.quick_search_tab_1 }}</h5>
+            <div class="flex">
+              <div class="dis-grid grid-col-1 md:grid-col-5 flex-1">
+              {%- if settings.quick_search_collection_1.products[0] != null -%}
+                {%- for product in settings.quick_search_collection_1.products limit: 5 -%}
+                  <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                    {% render 'product-grid-layout',
+                      product_card_product: product,
+                      show_add_to_cart: true,
+                      serial: forloop.index,
+                      sectionId: section.id,
+                      show_list: true,
+                      loading: true
+                    %}
+                  </div>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for product in (1..5) -%}
+                  <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                    {% render 'product-card-placeholder', index: current %}
+                  </div>
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+             {% if settings.quick_search_image_1 != blank %}
+                <div class="blockProductSearch__image">
+                        <a href="{{- settings.quick_search_link_1 -}}" class="image" style="padding-top: 100.0%" title="QMCar">
+                          <img src="{{ settings.quick_search_image_1 | img_url: 'master' }}" alt="{{ settings.quick_search_image_1.alt | default: shop.name | escape }}">
+                        
+                        <div class="promo-text">
+                            <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ fontsize_title_banner_mb }}px;">{{- settings.quick_search_title_1 -}}</h4>
+                            <span class="promo-text-des">{{- settings.quick_search_description_1 -}}</span>
+                            {% if settings.quick_search_text_link_1 != blank %}
+                                <div class="button button--primary">
+                                    <span>{{- settings.quick_search_text_link_1 -}}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </a>  
                 </div>
-              {%- endfor -%}
-            {%- else -%}
-              {%- for product in (1..5) -%}
-                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                  {% render 'product-card-placeholder', index: current %}
-                </div>
-              {%- endfor -%}
-            {%- endif -%}
+              {% endif %}
+            </div>
           </div>
 
-          <div class="dis-grid grid-col-1 md:grid-col-5 flex-1">
-            {%- if settings.quick_search_collection_2.products[0] != null -%}
-              {%- for product in settings.quick_search_collection_2.products limit: 5 -%}
-                <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
-                  {% render 'product-grid-layout',
-                    product_card_product: product,
-                    show_add_to_cart: true,
-                    serial: forloop.index,
-                    sectionId: section.id,
-                    show_list: true,
-                    loading: true
-                  %}
+          <div class="blockProductSearch blockProductSearch--second">
+            <h5 class="blockProductSearch__heading">{{ settings.quick_search_tab_2 }}</h5>
+            <div class="flex">
+              <div class="dis-grid grid-col-1 md:grid-col-5 flex-1">
+              {%- if settings.quick_search_collection_2.products[0] != null -%}
+                {%- for product in settings.quick_search_collection_2.products limit: 5 -%}
+                  <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
+                    {% render 'product-grid-layout',
+                      product_card_product: product,
+                      show_add_to_cart: true,
+                      serial: forloop.index,
+                      sectionId: section.id,
+                      show_list: true,
+                      loading: true
+                    %}
+                  </div>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for product in (1..5) -%}
+                  <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
+                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                    {% render 'product-card-placeholder', index: current %}
+                  </div>
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+
+             {% if settings.quick_search_image_2 != blank %}
+                <div class="blockProductSearch__image">
+                        <a href="{{- settings.quick_search_link_2 -}}" class="image" style="padding-top: 100.0%" title="QMCar">
+                          <img src="{{ settings.quick_search_image_2 | img_url: 'master' }}" alt="{{ settings.quick_search_image_2.alt | default: shop.name | escape }}">
+                        
+                        <div class="promo-text">
+                            <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ fontsize_title_banner_mb }}px;">{{- settings.quick_search_title_2 -}}</h4>
+                            <span class="promo-text-des">{{- settings.quick_search_description_2 -}}</span>
+                            {% if settings.quick_search_text_link_2 != blank %}
+                                <div class="button button--primary">
+                                    <span>{{- settings.quick_search_text_link_2 -}}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </a>  
                 </div>
-              {%- endfor -%}
-            {%- else -%}
-              {%- for product in (1..5) -%}
-                <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
-                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                  {% render 'product-card-placeholder', index: current %}
-                </div>
-              {%- endfor -%}
-            {%- endif -%}
+              {% endif %}
+            </div>
           </div>
         </div>
-
-        <div class="quickSearchTab__item" id="search-tab1">content 1</div>
-
-        <div class="quickSearchTab__item" id="search-tab2">content 2</div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  function initialSlick() {
+    $('.quickSearchTab__item--all').slick({
+      slidesToShow: 1.5,
+      slidesToScroll: 1,
+      infinite: false,
+    });
+  }
+    
   function activeSearchTab() {
     const quickSearchResultsBlock = document.querySelector('.quickSearchResultsBlock');
     const quickSearchTabList = document.querySelector('.quickSearchTab__list');
@@ -157,28 +263,24 @@
           tab.classList.remove('active');
         });
         event.target.classList.add('active');
+        
         const targetId = event.target.getAttribute('href').substring(1);
-        const targetContent = document.getElementById(targetId);
-        if (targetContent) {
-          quickSearchTabContent.querySelectorAll('.quickSearchTab__item').forEach(function (item) {
-            item.classList.remove('active');
+
+        if (targetId) {
+          const searchIdList = quickSearchTabList.querySelectorAll('a').forEach(function (link) {
+            const id = link.getAttribute('href').substring(1);
+            quickSearchTabContent.classList.remove("show-" + id);
           });
-          targetContent.classList.add('active');
+          
+          quickSearchTabContent.classList.add("show-" + targetId);
         }
       }
     });
   }
 
-  function initialSlick() {
-    $('.quickSearchTab__item--all').slick({
-      slidesToShow: 1.5,
-      slidesToScroll: 1,
-      infinite: false,
-    });
-  }
-
   function openSearchResults() {
     const searchIcon = document.querySelector("[data-search-menu]");
+    const closeButton = document.querySelector(".quickSearch__close");
     if (!searchIcon) return;
     
     searchIcon.addEventListener("click", function () {
@@ -186,8 +288,15 @@
       
       setTimeout(() => {
         initialSlick();
-      }, 2000);
+      }, 500);
     });
+
+    if (closeButton) {
+      closeButton.addEventListener("click", function () {
+        $('.quickSearchTab__item--all').slick('unslick');
+        console.log("Search results closed");
+      });
+    }
   }
 
   activeSearchTab();
