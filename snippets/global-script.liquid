@@ -153,6 +153,9 @@
         cart_feedback : `{{ 'products.product.cart_feedback' | t }}`
     };
     {% if settings.show_calculator_free_shipping_message %}
+        window.free_shipping_price_1 = 500;
+        window.free_shipping_price_2 = 800;
+
         {% if settings.calculator_free_shipping_message_price != blank %}
             window.free_shipping_price = {{ settings.calculator_free_shipping_message_price }};
         {% else %}

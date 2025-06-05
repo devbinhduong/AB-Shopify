@@ -12,14 +12,18 @@ class FreeShippingMeter extends HTMLElement {
     static classLabel2 = 'progress-60';
     static classLabel3 = 'progress-100';
     static freeshipPrice = parseInt(window.free_shipping_price);
+    static priceRequired1 = parseInt(window.free_shipping_price_1);
+    static priceRequired2 = parseInt(window.free_shipping_price_2);
 
     connectedCallback() {
         this.freeShippingEligible = 0;
         this.progressBar = this.querySelector('[data-shipping-progress]');
+        this.progressBar2 = this.querySelector('[data-shipping-progress-2]');
         this.messageElement = this.querySelector('[data-shipping-message]');
         this.textEnabled = this.progressBar?.dataset.textEnabled === 'true';
         this.shipVal = window.free_shipping_text.free_shipping_1;
-        this.progressMeter = this.querySelector('[ data-free-shipping-progress-meter]');
+        this.progressMeter1 = this.querySelector('[data-free-shipping-progress-meter-1]');
+        this.progressMeter2 = this.querySelector('[data-free-shipping-progress-meter-2]');
 
         this.addEventListener('change', this.onCartChange.bind(this));
 
@@ -52,28 +56,46 @@ class FreeShippingMeter extends HTMLElement {
         const cartTotalPriceRounded = parseFloat(cartTotalPriceFormatted);
 
         let freeShipBar = Math.abs((cartTotalPriceRounded * 100) / FreeShippingMeter.freeshipPrice);
+        let freeShipBar1 = Math.abs((cartTotalPriceRounded * 100) / FreeShippingMeter.priceRequired1);
+        
+        let freeShipBar2 = 0;
+
+
         if (freeShipBar >= 100) {
             freeShipBar = 100;
         }
+
+        if (freeShipBar1 >= 100) {
+            freeShipBar1 = 100;
+
+            freeShipBar2 = Math.abs(((cartTotalPriceRounded - FreeShippingMeter.priceRequired1) * 100) / FreeShippingMeter.priceRequired2);
+
+            if (freeShipBar2 >= 100) {
+                freeShipBar2 = 100;
+            }
+        }
+
+
+        console.log(`Free Shipping Bar: ${freeShipBar1}% | Free Shipping Price: ${FreeShippingMeter.priceRequired1} | Cart Total Price: ${cartTotalPriceFormatted}`);
+        
+        console.log(`Free Shipping Bar 2: ${freeShipBar2}% | Free Shipping Price 2: ${FreeShippingMeter.priceRequired2} | Cart Total Price: ${cartTotalPriceFormatted}`);
         
         const text = this.getText(cartTotalPriceFormatted, freeShipBar);
-        const classLabel = this.getClassLabel(freeShipBar);
+        const classLabel1 = this.getClassLabel(freeShipBar1);
+        const classLabel2 = this.getClassLabel(freeShipBar2);
 
-        this.setProgressWidthAndText(freeShipBar, text, classLabel);
+        this.setProgressWidthAndText(freeShipBar1, freeShipBar2, text, classLabel1, classLabel2);
     }
 
     getText(cartTotalPrice, freeShipBar) {
         let text;
 
         if (cartTotalPrice == 0) {
-            this.progressBar.classList.add('progress-hidden');
             text = '<span>' + FreeShippingMeter.freeShippingText + ' ' + Shopify.formatMoney(FreeShippingMeter.freeshipPrice * 100, window.money_format) +'!</span>';
         } else if (cartTotalPrice >= FreeShippingMeter.freeshipPrice) {
-            this.progressBar.classList.remove('progress-hidden');
             this.freeShippingEligible = 1;
             text = FreeShippingMeter.freeShippingText1;
         } else {
-            this.progressBar.classList.remove('progress-hidden');
             const remainingPrice = Math.abs(FreeShippingMeter.freeshipPrice - cartTotalPrice);
             text = '<span>' + FreeShippingMeter.freeShippingText2 + ' </span>' + Shopify.formatMoney(remainingPrice * 100, window.money_format) + '<span> ' +  FreeShippingMeter.freeShippingText3 + ' </span><span class="text">' + FreeShippingMeter.freeShippingText4 + '</span>';
             this.shipVal = window.free_shipping_text.free_shipping_2;
@@ -100,22 +122,32 @@ class FreeShippingMeter extends HTMLElement {
         return classLabel;
     }
     
-    resetProgressClass(classLabel) {
+    resetProgressClass(classLabel1, classLabel2) {
         this.progressBar.classList.remove('progress-30');
         this.progressBar.classList.remove('progress-60');
         this.progressBar.classList.remove('progress-100');
         this.progressBar.classList.remove('progress-free');
 
-        this.progressBar.classList.add(classLabel);
+        this.progressBar2.classList.remove('progress-30');
+        this.progressBar2.classList.remove('progress-60');
+        this.progressBar2.classList.remove('progress-100');
+        this.progressBar2.classList.remove('progress-free');
+
+        this.progressBar.classList.add(classLabel1);
+        this.progressBar2.classList.add(classLabel2);
+
+        console.log(`Progress Class 1: ${classLabel1}, Progress Class 2: ${classLabel2}`);
+        
     }
     
-    setProgressWidthAndText(freeShipBar, text, classLabel) {
+    setProgressWidthAndText(freeShipBar1, freeShipBar2, text, classLabel1, classLabel2) {
         setTimeout(() => {
-            this.resetProgressClass(classLabel);
+            this.resetProgressClass(classLabel1, classLabel2);
 
-            this.progressMeter.style.width = `${freeShipBar}%`;
+            this.progressMeter1.style.width = `${freeShipBar1}%`;
+            this.progressMeter2.style.width = `${freeShipBar2}%`;
             if (this.textEnabled) {
-                const textWrapper = this.progressMeter.querySelector('.text').innerHTML = `${freeShipBar.toFixed(2)}%`;
+                const textWrapper = this.progressMeter1.querySelector('.text').innerHTML = `${freeShipBar1.toFixed(2)}%`;
             }
 
             this.messageElement.innerHTML = text;
