@@ -21,7 +21,7 @@
     endif
 -%}
 
-<form action="{{ routes.cart_url }}/add" method="post" class="variants" id="{{ id }}-{{ product.id }}-{{ sectionId }}{% if check %}-list{% endif %}" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+<form action="{{ routes.cart_url }}/add" method="post" class="variants tets1221212121212" id="{{ id }}-{{ product.id }}-{{ sectionId }}{% if check %}-list{% endif %}" data-product-id="{{ product.id }}" enctype="multipart/form-data">
     {%- if sold_out -%}
         {%- if settings.show_notify_form -%}
             <a class="button button-ATC card-button is-notify-me" href="{{ product.url }}" data-btn-addToCart>

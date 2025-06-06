@@ -8,6 +8,8 @@ class FreeShippingMeter extends HTMLElement {
     static freeShippingText2 = window.free_shipping_text.free_shipping_message_2;
     static freeShippingText3 = window.free_shipping_text.free_shipping_message_3;
     static freeShippingText4 = window.free_shipping_text.free_shipping_message_4;
+    static freeShippingTextFree = window.free_shipping_text.free_shipping_message_free;
+    static freeShippingTextGift = window.free_shipping_text.free_shipping_message_gift;
     static classLabel1 = 'progress-30';
     static classLabel2 = 'progress-60';
     static classLabel3 = 'progress-100';
@@ -60,6 +62,8 @@ class FreeShippingMeter extends HTMLElement {
         
         let freeShipBar2 = 0;
 
+        let text2 = "";
+
 
         if (freeShipBar >= 100) {
             freeShipBar = 100;
@@ -70,33 +74,36 @@ class FreeShippingMeter extends HTMLElement {
 
             freeShipBar2 = Math.abs(((cartTotalPriceRounded - FreeShippingMeter.priceRequired1) * 100) / FreeShippingMeter.priceRequired2);
 
+            text2 = FreeShippingMeter.freeShippingTextFree;
+
             if (freeShipBar2 >= 100) {
                 freeShipBar2 = 100;
+
+                text2 = FreeShippingMeter.freeShippingTextGift;
+
             }
         }
-
-
-        console.log(`Free Shipping Bar: ${freeShipBar1}% | Free Shipping Price: ${FreeShippingMeter.priceRequired1} | Cart Total Price: ${cartTotalPriceFormatted}`);
-        
-        console.log(`Free Shipping Bar 2: ${freeShipBar2}% | Free Shipping Price 2: ${FreeShippingMeter.priceRequired2} | Cart Total Price: ${cartTotalPriceFormatted}`);
         
         const text = this.getText(cartTotalPriceFormatted, freeShipBar);
         const classLabel1 = this.getClassLabel(freeShipBar1);
         const classLabel2 = this.getClassLabel(freeShipBar2);
 
-        this.setProgressWidthAndText(freeShipBar1, freeShipBar2, text, classLabel1, classLabel2);
+        this.setProgressWidthAndText(freeShipBar1, freeShipBar2, text, text2, classLabel1, classLabel2);
     }
 
     getText(cartTotalPrice, freeShipBar) {
         let text;
 
+        console.log('remaining price',Math.abs(FreeShippingMeter.priceRequired1 - cartTotalPrice));
+        
+
         if (cartTotalPrice == 0) {
-            text = '<span>' + FreeShippingMeter.freeShippingText + ' ' + Shopify.formatMoney(FreeShippingMeter.freeshipPrice * 100, window.money_format) +'!</span>';
-        } else if (cartTotalPrice >= FreeShippingMeter.freeshipPrice) {
+            text = '<span>' + FreeShippingMeter.freeShippingText + ' ' + Shopify.formatMoney(FreeShippingMeter.priceRequired1 * 100, window.money_format) +'!</span>';
+        } else if (cartTotalPrice >= FreeShippingMeter.priceRequired1) {
             this.freeShippingEligible = 1;
             text = FreeShippingMeter.freeShippingText1;
         } else {
-            const remainingPrice = Math.abs(FreeShippingMeter.freeshipPrice - cartTotalPrice);
+            const remainingPrice = Math.abs(FreeShippingMeter.priceRequired1 - cartTotalPrice);
             text = '<span>' + FreeShippingMeter.freeShippingText2 + ' </span>' + Shopify.formatMoney(remainingPrice * 100, window.money_format) + '<span> ' +  FreeShippingMeter.freeShippingText3 + ' </span><span class="text">' + FreeShippingMeter.freeShippingText4 + '</span>';
             this.shipVal = window.free_shipping_text.free_shipping_2;
         }
@@ -135,12 +142,9 @@ class FreeShippingMeter extends HTMLElement {
 
         this.progressBar.classList.add(classLabel1);
         this.progressBar2.classList.add(classLabel2);
-
-        console.log(`Progress Class 1: ${classLabel1}, Progress Class 2: ${classLabel2}`);
-        
     }
     
-    setProgressWidthAndText(freeShipBar1, freeShipBar2, text, classLabel1, classLabel2) {
+    setProgressWidthAndText(freeShipBar1, freeShipBar2, text, text2, classLabel1, classLabel2) {
         setTimeout(() => {
             this.resetProgressClass(classLabel1, classLabel2);
 
@@ -149,8 +153,11 @@ class FreeShippingMeter extends HTMLElement {
             if (this.textEnabled) {
                 const textWrapper = this.progressMeter1.querySelector('.text').innerHTML = `${freeShipBar1.toFixed(2)}%`;
             }
-
-            this.messageElement.innerHTML = text;
+            if (text2 != "") {
+                this.messageElement.innerHTML = text2;
+            } else {
+                this.messageElement.innerHTML = text;
+            }
 
             if ((window.show_multiple_currencies && typeof Currency != 'undefined' && Currency.currentCurrency != shopCurrency) || window.show_auto_currency) {
                 Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');

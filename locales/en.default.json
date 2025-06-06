@@ -738,9 +738,11 @@
     "general": {
       "free_shipping_message": "Free shipping for all orders over",
       "free_shipping_message_1": "You qualify for free shipping!",
-      "free_shipping_message_2": "Only",
-      "free_shipping_message_3": "away from",
-      "free_shipping_message_4": "free shipping",
+      "free_shipping_message_2": "Nur",
+      "free_shipping_message_3": "€ vom kostenlosen Versand entfernt!",
+      "free_shipping_message_4": "",
+      "free_shipping_message_free": "Deine Bestellung ist für den kostenlosen Versand qualifiziert!",
+      "free_shipping_message_gift": "Kostenloses Geschenk wurde hinzugefügt!",
       "free_shipping_1": "Free",
       "free_shipping_2": "TBD"
     }

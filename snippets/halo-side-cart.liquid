@@ -95,16 +95,7 @@
                         {%- if item.selling_plan_allocation != nil -%}
                             <p class="cart-item-allocation">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                         {%- endif -%}
-                        {%- if item.discounts.size > 0 -%}
-                            <ul class="cart-discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                                {%- for discount in item.line_level_discount_allocations -%}
-                                    <li class="discounts__discount" data-auto-discount="{{ discount.total_savings }}">
-                                        {%- render 'icon-discount' -%}
-                                        {{ discount.discount_application.title }}
-                                    </li>
-                                {%- endfor -%}
-                            </ul>
-                        {%- endif -%}
+                        
                         <div class="previewCartItem-change">
                             {%- liquid 
                                 if item.original_price != item.final_price
@@ -225,6 +216,19 @@
                                 </quantity-popover>
                             {%- endif -%}
                         </div>
+
+                        {%- if item.discounts.size > 0 -%}
+                            <ul class="cart-discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                                {%- for discount in item.line_level_discount_allocations -%}
+                                    <li class="discounts__discount" data-auto-discount="{{ discount.total_savings }}">
+                                        <span class="icon">
+                                            {%- render 'icon-discount-2' -%}
+                                        </span>
+                                        {{ discount.discount_application.title }}
+                                    </li>
+                                {%- endfor -%}
+                            </ul>
+                        {%- endif -%}
                     </div>
                     <button type="button" class="previewCartItem-remove{% if has_qty_rules or has_vol_pricing %} has_vol_pricing{% endif %}" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" title="{{ 'sections.cart.remove_title' | t: title: item.title }}">
                         Entfernen

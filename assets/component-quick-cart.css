@@ -72,7 +72,7 @@
     letter-spacing: var(--body-letter-spacing);
     color: var(--product-title-color);
     text-transform: var(--product-title-text-transform);
-    margin: 0 0 10px 0;
+    margin: 0;
 }
 
 .previewCartItem-vendor {
@@ -97,10 +97,11 @@
     display: block;
     font-size: var(--font-body-size);
     font-weight: var(--font-weight-normal);
-    color: var(--color-text2);
+    /* color: var(--color-text2); */
+    color: #8b8b8b;
     text-transform: capitalize;
     letter-spacing: var(--body-letter-spacing);
-    line-height: var(--body-line-height);
+    line-height: 20px;
 }
 
 .previewCartItem-edit {
@@ -138,7 +139,8 @@
 .previewCartItem-qty {
     display: inline-block;
     vertical-align: middle;
-    width: 94px;
+    width: 100%;
+    max-width: 132px;
     margin-top: 15px;
     position: relative;
 }
@@ -349,6 +351,13 @@
     letter-spacing: var(--body-letter-spacing);
     line-height: var(--body-line-height);
     padding: 3px 0;
+}
+
+.card-discount .discounts__discount .icon {
+    margin-top: 2px;
+    margin-right: 8px;
+    width: 0.9rem;
+    height: 0.9rem;
 }
 
 .previewCartTotals .previewCartTotals-label,
@@ -713,12 +722,19 @@ body.cart-sidebar-show .halo-cart-sidebar {
 
 .halo-cart-sidebar .previewCartItem-price .discounts__discount,
 .cart-discounts .discounts__discount {
-    font-size: calc(var(--font-body-size) - 2px);
-    font-weight: var(--font-weight-normal);
-    color: var(--color-text2);
+    /* font-size: calc(var(--font-body-size) - 2px); */
+    /* font-weight: var(--font-weight-normal); */
+    /* color: var(--color-text2); */
     letter-spacing: var(--body-letter-spacing);
     line-height: var(--body-line-height);
-    padding-top: 3px;
+
+    color: #2e8f76;
+    padding: 3px 0;
+    background-color: #e8f5f2;
+    margin-top: 12px;
+    padding: 8px 20px 8px 15px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .halo-cart-sidebar .previewCartItem-price .previewCartItem-saving-price {
@@ -1055,7 +1071,7 @@ body:not(.quick_shop_option_3) .previewCartCollection .product-card__button2 {
     }
 
     .previewCartItem-price {
-        width: calc(100% - 80px);
+        width: calc(100% - 132px);
         margin-bottom: 0;
     }
 

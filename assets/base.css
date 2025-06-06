@@ -1503,12 +1503,21 @@ button.disabled,
 .haloCalculatorShipping__wrapper {
     display: flex;
     flex-wrap: nowrap;
+    align-items: flex-end;
 }
 .haloCalculatorShipping__wrapper .progress {
     position: relative;
     width: 100%;
     flex: 1;
     margin-bottom: 0;
+}
+
+.haloCalculatorShipping__wrapper .progress.progress-free .cart-bar-text > span{
+    display: none;
+}
+
+.haloCalculatorShipping__wrapper .progress.progress-free .icon-checkmark {
+    display: block;
 }
 
 .haloCalculatorShipping {
@@ -1535,15 +1544,24 @@ button.disabled,
 .haloCalculatorShipping__wrapper .cart-bar-details .icon-checkmark {
     display: none;
 }
-.haloCalculatorShipping__wrapper .cart-bar-details.done .icon-checkmark {
-    display: block;
-}
 .haloCalculatorShipping__wrapper .cart-bar-details .icon {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
     color: #fff;
 }
+
+.haloCalculatorShipping__wrapper .cart-bar-details .icon.icon-checkmark {
+    color: #59b79f;
+    width: 24px;
+    height: 24px;
+}
+
+.haloCalculatorShipping__wrapper .cart-bar-details .icon-checkmark svg {
+    fill: none;
+    stroke: none;
+}
+
 .haloCalculatorShipping__wrapper .cart-bar-details .icon svg {
     width: 100%;
     height: 100%;
@@ -1592,7 +1610,7 @@ button.disabled,
     width: 3px;
     height: 16px;
     border-radius: 50px;
-    background: #000;
+    background: var(--free-shipping-bg-1);
     opacity: 1;
     min-height: 16px;
     min-width: 3px;
@@ -1601,6 +1619,10 @@ button.disabled,
     left: auto;
     z-index: 1;
     position: absolute;
+}
+
+.haloCalculatorShipping__wrapper .progress.progress-free::after {
+    background: var(--free-shipping-bg-4);
 }
 
 .halo-cart-sidebar .previewCartItem-change {
@@ -7165,11 +7187,6 @@ body.is-custom-information .background-overlay {
     }
     /* END: Slideshow */
 
-    /* START: Calculator Free Shipping Message */
-    .haloCalculatorShipping {
-        padding: 0 20px;
-    }
-    /* END: Calculator Free Shipping Message */
 
     /* Start: Sidebar Animation */
     .body-content-wrapper {
