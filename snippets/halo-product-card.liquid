@@ -67,11 +67,11 @@
                             {%- if sold_out -%}
                                 {%- if settings.show_notify_form -%}
                                     <a class="button button-ATC is-notify-me" href="{{ product.url }}" data-btn-addToCart>
-                                        {{ 'notify_form.general.label' | t }}
+                                        <span>{% render 'icon-plus' %}</span>
                                     </a>
                                 {%- else -%}
                                     <a class="button button-ATC" href="{{ product.url }}" disabled="disabled">
-                                        {{ 'products.product.out_of_stock' | t }}
+                                        <span>{% render 'icon-plus' %}</span>
                                     </a>
                                 {%- endif -%}
                             {%- else -%}

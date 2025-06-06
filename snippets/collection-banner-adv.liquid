@@ -54,7 +54,16 @@
     assign product_space_between_vert_mb = section.settings.product_space_between_vert_mb
     assign product_space_between_horiz_desk = section.settings.product_space_between_horiz_desk
     assign product_space_between_horiz_mb = section.settings.product_space_between_horiz_mb
+
+    if section.settings.show_banner_1
+        assign products_per_page = products_per_page | minus: 2
+    elsif section.settings.show_banner_2
+        assign products_per_page = products_per_page | minus: 2
+    elsif section.settings.show_banner_3
+        assign products_per_page = products_per_page | minus: 2
+    endif
 -%}
+
 
 <style type="text/css" media="screen">
     {%- if has_sidebar -%}
@@ -77,45 +86,71 @@
     #CollectionSection-{{ section.id }}{padding-top: {{ padding_top }};padding-bottom: {{ padding_bottom }}}
 
     {%- if has_sidebar -%}
-        #CollectionSection-{{ section.id }} .sidebarBlock-heading, .sidebarBlock .sidebarBlock-slide__content-close{font-family: var(--sidebar-heading-font);font-size: {{ sidebar_heading_font_size | append: 'px' }};font-weight: {{ sidebar_heading_font_weight }};text-transform: {{ sidebar_heading_text_transform }}}
+        #CollectionSection-{{ section.id }} .sidebarBlock-heading, .sidebarBlock .sidebarBlock-slide__content-close{font-family: var(--sidebar-heading-font);font-size: {{ sidebar_heading_font_size | append: 'px' }}; line-height: {{ sidebar_heading_font_size | plus: 4 | append: 'px' }};font-weight: {{ sidebar_heading_font_weight }};text-transform: {{ sidebar_heading_text_transform }}}
         #CollectionSection-{{ section.id }} .facets-horizontal .widget_filter {font-size: {{ sidebar_heading_font_size | append: 'px' }}}
     {%- endif -%}
 
     @media (max-width: 1024px) {#CollectionSection-{{ section.id }}{padding-top: {{ padding_top_tablet }};padding-bottom: {{ padding_bottom_tablet }}}}
     @media (max-width: 550px) {#CollectionSection-{{ section.id }}{padding-top: {{ padding_top_mobile }};padding-bottom: {{ padding_bottom_mobile }}}}
+
+    #CollectionProductGrid{
+        padding-top: 16px;
+        background: #fafafa;
+    }
+
 </style>
 
 <div data-section-id="{{ section.id }}" data-section-type="collection" id="CollectionSection-{{ section.id }}" data-section="{{ section.id }}" class="collection-banner-adv">
-    {%- if settings.layout != '4' or sidebar_type != 'horizontal' -%}
-        <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
-    {%- endif -%}
-        <div class="halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
-            {%- if has_sidebar -%}
+    <div class="halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
+        {%- if has_sidebar -%}
+            <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
                 {{ 'component-main-sidebar.css' | asset_url | stylesheet_tag }}
-                <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">
-                    <button type="button" class="halo-sidebar-close" data-close-sidebar role="button"><span class="visually-hidden">{{ 'general.common.close' | t }}</span> {% render 'icon-close' %}</button>
-                    <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}</span></div>
-                    <div class="halo-sidebar-wrapper custom-scrollbar{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                        {% render 'collection-sidebar',
-                            results: collection,
-                            section: section,
-                            sort_by: sort_by,
-                            sidebar_type: sidebar_type,
-                            show_filter: show_filter,
-                            show_sorting: show_sorting,
-                            show_collapse: sidebar_collapse,
-                            sidebar_collapse: sidebar_collapse_default,
-                            filter_swatch: filter_swatch,
-                            filter_swatch_type: filter_swatch_type,
-                            filter_rectangle: filter_rectangle
-                        %}
+                <div class="filter-bar">
+                    <div class="mobile-filters">
+                        <a type="button" class="button button--primary button--arrow" data-sidebar>Filtern & Sortieren</a>
+                        <a href="#show-product-tab-popup" class="button button--primary button--arrow">Schnellempfehlung</a>
+                    </div>
+                    <div class="filter-bar__inner">
+                        <button type="button" class="filter-bar__button" aria-expanded="false" aria-controls="filter-bar-filters">
+                            Filtern & Sortieren
+                            {% if total_active_values > 0 %}
+                                <span class="facets__count custom-count" aria-hidden="true"><span>{{ total_active_values }}</span></span>
+                            {% endif %}
+                            <span class="filter-bar__button-icon">
+                                {% render 'icon-arrow-down' %}
+                            </span>
+                        </button>
+                        <p class="filter-bar__results-count">
+                            {{ collection.products_count }} Ergebnisse
+                        </p>
+                        {% if sidebar_type == 'horizontal' %}
+                            <a href="#show-product-tab-popup" class="button button--primary button--arrow">Schnellempfehlung <span>{% render 'icon-arrow-custom' %}</span></a>
+                        {% endif %}
+                    </div>
+                    <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">
+                        <button type="button" class="halo-sidebar-close" data-close-sidebar role="button"><span class="visually-hidden">{{ 'general.common.close' | t }}</span>Close</button>
+                        <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}</span></div>
+                        <div class="halo-sidebar-wrapper custom-scrollbar{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                            {% render 'collection-sidebar',
+                                results: collection,
+                                section: section,
+                                sort_by: sort_by,
+                                sidebar_type: sidebar_type,
+                                show_filter: show_filter,
+                                show_sorting: show_sorting,
+                                show_collapse: sidebar_collapse,
+                                sidebar_collapse: sidebar_collapse_default,
+                                filter_swatch: filter_swatch,
+                                filter_swatch_type: filter_swatch_type,
+                                filter_rectangle: filter_rectangle
+                            %}
+                        </div>
                     </div>
                 </div>
-            {%- endif -%}
-            <div class="page-content" id="CollectionProductGrid">
-                {%- if settings.layout == '4' and sidebar_type == 'horizontal' -%}
-                    <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
-                {%- endif -%}
+            </div>
+        {%- endif -%}
+        <div class="page-content" id="CollectionProductGrid">
+            <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
                 {%- for block in section.blocks -%}
                     {%- if block.type == 'lookbook' -%}
                         {%- liquid
@@ -206,46 +241,73 @@
                                 {%- for product in collection.products -%}
                                     {%- if paginate.current_page == 1 and section.settings.show_banner -%}
                                         {%- if forloop.index == banner_position_1 and section.settings.show_banner_1 -%}
-                                          <li class="product banner" data-product-banner="1" data-first-position="{{ banner_position_1 }}">
-                                              <div class="grid-item banner-img">
-                                                <a class="animate-scale"{% if section.settings.link_banner_1 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_1 }}"{% endif %}>
-                                                  {%- if section.settings.img_banner1 != blank -%}
-                                                      {%- assign height = section.settings.img_banner1.width | divided_by: section.settings.img_banner1.aspect_ratio | round -%}
-                                                       <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner1 | img_url: 'master' }}" src="{{ section.settings.img_banner1 | img_url: 'master' }}" alt="{{ section.settings.img_banner1.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner1.width}}" height="{{height}}">
-                                                  {%- else -%}
-                                                      <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
-                                                  {%- endif -%}
+                                            <li class="product banner" data-product-banner="1" data-first-position="{{ banner_position_1 }}">
+                                                <div class="grid-item banner-img">
+                                                <a class="image adaptive_height image-zoom w-100" style="padding-bottom: 80.148%;"{% if section.settings.link_banner_1 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_1 }}"{% endif %}>
+                                                    {%- if section.settings.img_banner1 != blank -%}
+                                                        {%- assign height = section.settings.img_banner1.width | divided_by: section.settings.img_banner1.aspect_ratio | round -%}
+                                                        <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner1 | img_url: 'master' }}" src="{{ section.settings.img_banner1 | img_url: 'master' }}" alt="{{ section.settings.img_banner1.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner1.width}}" height="{{height}}">
+                                                    {%- else -%}
+                                                        <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
+                                                    {%- endif -%}
+                                                    <div class="promo-text" style="--color_text_banner: {{ section.settings.color_text_banner }};">
+                                                        <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ section.settings.fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ section.settings.fontsize_title_banner_mb }}px;">{{- section.settings.title_banner_1 -}}</h4>
+                                                        <span class="promo-text-des" style="--fontsize_des_banner: {{ section.settings.fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ section.settings.fontsize_des_banner_mb }}px;">{{- section.settings.description_banner_1 -}}</span>
+                                                        {% if section.settings.text_link_banner_1 != blank %}
+                                                            <div class="button button--primary" style="--fontsize_des_banner: {{ section.settings.fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ section.settings.fontsize_des_banner_mb }}px;">
+                                                                <span>{{- section.settings.text_link_banner_1 -}}</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
                                                 </a>
-                                              </div>
-                                          </li>
+                                                </div>
+                                            </li>
                                         {%- endif -%}
                                         {%- if forloop.index == banner_position_2 and section.settings.show_banner_2 -%}
-                                          <li class="product banner" data-product-banner="2" data-first-position="{{ banner_position_2 }}">
-                                              <div class="grid-item banner-img">
-                                                <a class="animate-scale"{% if section.settings.link_banner_2 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_2 }}"{% endif %}>
-                                                  {%- if section.settings.img_banner2 != blank -%}
-                                                      {%- assign height = section.settings.img_banner2.width | divided_by: section.settings.img_banner2.aspect_ratio | round -%}
-                                                       <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner2 | img_url: 'master' }}" src="{{ section.settings.img_banner2 | img_url: 'master' }}" alt="{{ section.settings.img_banner2.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner2.width}}" height="{{height}}">
-                                                  {%- else -%}
-                                                      <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
-                                                  {%- endif -%}
+                                            <li class="product banner" data-product-banner="2" data-first-position="{{ banner_position_2 }}">
+                                                <div class="grid-item banner-img">
+                                                <a class="image adaptive_height image-zoom w-100" style="padding-bottom: 80.148%;"{% if section.settings.link_banner_2 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_2 }}"{% endif %}>
+                                                    {%- if section.settings.img_banner2 != blank -%}
+                                                        {%- assign height = section.settings.img_banner2.width | divided_by: section.settings.img_banner2.aspect_ratio | round -%}
+                                                        <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner2 | img_url: 'master' }}" src="{{ section.settings.img_banner2 | img_url: 'master' }}" alt="{{ section.settings.img_banner2.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner2.width}}" height="{{height}}">
+                                                    {%- else -%}
+                                                        <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
+                                                    {%- endif -%}
+                                                    <div class="promo-text" style="--color_text_banner: {{ section.settings.color_text_banner }};">
+                                                        <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ section.settings.fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ section.settings.fontsize_title_banner_mb }}px;">{{- section.settings.title_banner_2 -}}</h4>
+                                                        <span class="promo-text-des" style="--fontsize_des_banner: {{ section.settings.fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ section.settings.fontsize_des_banner_mb }}px;">{{- section.settings.description_banner_2 -}}</span>
+                                                        {% if section.settings.text_link_banner_2 != blank %}
+                                                            <div class="button button--primary" style="--fontsize_des_banner: {{ fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ fontsize_des_banner_mb }}px;">
+                                                                <span>{{- section.settings.text_link_banner_2 -}}</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
                                                 </a>
-                                              </div>
-                                          </li>
+                                                </div>
+                                            </li>
                                         {%- endif -%}
                                         {%- if forloop.index == banner_position_3 and section.settings.show_banner_3 -%}
-                                          <li class="product banner" data-product-banner="3" data-first-position="{{ banner_position_3 | plus: 2 }}">
-                                              <div class="grid-item banner-img">
-                                                <a class="animate-scale"{% if section.settings.link_banner_3 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_3 }}"{% endif %}>
-                                                  {%- if section.settings.img_banner3 != blank -%}
-                                                      {%- assign height = section.settings.img_banner3.width | divided_by: section.settings.img_banner3.aspect_ratio | round -%}
-                                                       <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner3 | img_url: 'master' }}" src="{{ section.settings.img_banner3 | img_url: 'master' }}" alt="{{ section.settings.img_banner3.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner3.width}}" height="{{height}}">
-                                                  {%- else -%}
-                                                      <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
-                                                  {%- endif -%}
+                                            <li class="product banner" data-product-banner="3" data-first-position="{{ banner_position_3 | plus: 2 }}">
+                                                <div class="grid-item banner-img">
+                                                <a class="image adaptive_height image-zoom w-100" style="padding-bottom: 80.148%;"{% if section.settings.link_banner_3 == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.link_banner_3 }}"{% endif %}>
+                                                    {%- if section.settings.img_banner3 != blank -%}
+                                                        {%- assign height = section.settings.img_banner3.width | divided_by: section.settings.img_banner3.aspect_ratio | round -%}
+                                                        <img {% if settings.enable_lazyload %}data-{% endif %}srcset="{{ section.settings.img_banner3 | img_url: 'master' }}" src="{{ section.settings.img_banner3 | img_url: 'master' }}" alt="{{ section.settings.img_banner3.alt | default: shop.name | escape }}" loading="lazy" width="{{section.settings.img_banner3.width}}" height="{{height}}">
+                                                    {%- else -%}
+                                                        <div class="not_img" style="--height_not_img: 560px">420 x 560px</div>
+                                                    {%- endif -%}
+                                                    <div class="promo-text" style="--color_text_banner: {{ section.settings.color_text_banner }};">
+                                                        <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ section.settings.fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ section.settings.fontsize_title_banner_mb }}px;">{{- section.settings.title_banner_3 -}}</h4>
+                                                        <span class="promo-text-des" style="--fontsize_des_banner: {{ section.settings.fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ section.settings.fontsize_des_banner_mb }}px;">{{- section.settings.description_banner_3 -}}</span>
+                                                        {% if section.settings.text_link_banner_3 != blank %}
+                                                            <div class="button button--primary" style="--fontsize_des_banner: {{ section.settings.fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ section.settings.fontsize_des_banner_mb }}px;">
+                                                                <span>{{- section.settings.text_link_banner_3 -}}</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
                                                 </a>
-                                              </div>
-                                          </li>
+                                                </div>
+                                            </li>
                                         {%- endif -%}
                                         <li class="product{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} style="--animation-order: {{ forloop.index }};"{% endif %}>
                                             {% render 'product-grid-layout',
@@ -294,25 +356,34 @@
                             assign show_description = block.settings.show_collection_description
                             assign desc_alignment = block.settings.desc_alignment
                         -%}
-                      {%- if show_description -%}
+                        {%- if show_description -%}
                         <div class="articleLookbook-block" style="--lookbook-margin-bottom: {{ margin_bottom | append: 'px' }}";>
                             <div class="articleLookbook-item">
                                 <div class="articleLookbook-des text-{{ desc_alignment }}" style="--lb-fontsize-des: {{ fontsize_des }};--lb-line-height-des: {{ fontsize_des | plus: 10 | append: 'px'}};--lb-margin-top-des: {{ margin_top_des }};--lb-title-des: {{ des_color }}">{{ description }}</div>
                             </div>
                         </div>
-                      {%- endif -%}
+                        {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
-
-                {%- if settings.layout == '4' and sidebar_type == 'horizontal' -%}
-                    </div>
-                {%- endif -%}
             </div>
         </div>
-    {%- if settings.layout != '4' or sidebar_type == 'horizontal' -%}
-        </div>
-    {%- endif -%}
+    </div>
     <div class="loading-overlay loading-overlay--custom">
         <div class="loading-overlay__spinner" aria-label="{{ 'general.button_load_more.loading' | t }}"><svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterBarButton = document.querySelector('.filter-bar .filter-bar__button');
+        const filterBarFilters = document.querySelector('.filter-bar .halo-sidebar-wrapper');
+
+        if (filterBarButton && filterBarFilters) {
+            filterBarButton.addEventListener('click', function () {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                filterBarFilters.classList.toggle('is-visible');
+            });
+        }
+    });
+</script>

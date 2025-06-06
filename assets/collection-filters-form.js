@@ -390,6 +390,15 @@ class CollectionFiltersForm extends HTMLElement {
         const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element));
         const countsToRender = Array.from(facetDetailsElements).find(matchesIndex);
 
+        const sortByElement = document.querySelector('#CollectionFiltersForm .js-filter.sidebarBlock-SortBy');
+        if(sortByElement){
+            let sortByHeading = sortByElement.querySelector('.sidebarBlock-heading .facets__text');
+            const textActive = sortByElement.querySelector('.facets__item input[type=radio]:checked + .form-label--radio');
+            if(textActive){
+                sortByHeading.textContent = textActive.textContent;
+            }
+        }
+
         // Remove filters that are no longer returned from the server
         const facetDetailsElementsFromDom = document.querySelectorAll('#CollectionFiltersForm .js-filter');
         Array.from(facetDetailsElementsFromDom).forEach((currentElement) => {
@@ -398,12 +407,12 @@ class CollectionFiltersForm extends HTMLElement {
                 currentElement.remove();
             }
         });
-
         facetsToRender.forEach((element) => {
             const targetElement = document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`);
             if (targetElement) {
                 targetElement.innerHTML = element.innerHTML;
             } else {
+                if(element.classList.contains('sidebarBlock-SortBy')) return;
                 document.querySelector('#CollectionFiltersForm').appendChild(element);
             }
         });
@@ -413,7 +422,7 @@ class CollectionFiltersForm extends HTMLElement {
 
         CollectionFiltersForm.renderActiveFacets(parsedHTML);
 
-        if (countsToRender) CollectionFiltersForm.renderCounts(countsToRender, event.target.closest('.js-filter'));
+        if (countsToRender) CollectionFiltersForm.renderCounts(countsToRender, event?.target.closest('.js-filter'));
 
         if (sessionStorage.getItem('filterDisplayType') === 'show-more') {
             const remainingSidebarBlocks = Array.from(facetDetailsElements).filter(element => element.dataset.typeList && element.dataset.index !== indexTarget)

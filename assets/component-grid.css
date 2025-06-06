@@ -148,7 +148,7 @@ body.open-mobile-sidebar .halo-grid-content {
 
 @media (min-width: 420px){
 	.page-sidebar{
-		max-width: 300px;
+		max-width: 411px;
 	}
 }
 
@@ -231,7 +231,8 @@ body.open-mobile-sidebar .halo-grid-content {
 		max-width: 100%;
 		position: relative;
 		top: unset!important;
-		margin-bottom: 15px;
+		margin-bottom: 0;
+		float: none;
 	}
 
 	.page-sidebar.page-sidebar--horizontal + .page-content{
@@ -246,3 +247,4 @@ body.open-mobile-sidebar .halo-grid-content {
 	    padding-left: 60px;
 	}
 }
+

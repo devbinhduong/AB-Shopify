@@ -17,7 +17,7 @@
 {%- if paginate.parts.size > 0 -%}
     <div class="{{ class | default: 'pagination-wrapper' }}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
         <nav class="pagination style--{{ settings.pagination_style }} text-{{ settings.pagination_align }}{% if show_infinite_scrolling == 'infinite' %} pagination-infinite style-{{ settings.infinite_scroll_style }}{% endif %}" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
-            <div class="pagination-page-item pagination-page-total">
+            {% comment %} <div class="pagination-page-item pagination-page-total">
                 <span>{{ 'sections.collection_template.start_count' | t }}</span>
                 <span data-total-start>{{ paginate.current_offset | plus: 1 }}</span>
                 <span>-</span>
@@ -39,7 +39,7 @@
                 <div class="pagination-total-progress">
                     <span style="width: {{ total_progress }}" class="pagination-total-item"></span>
                 </div>
-            </div>
+            </div> {% endcomment %}
             {%- if show_infinite_scrolling == 'show_more' or show_infinite_scrolling == 'infinite' -%}
                 <div class="pagination-page-item pagination-page-infinite">
                     <a class="{% if settings.infinite_scroll_style == '1' %}link link-underline{% else %}button button--secondary{% endif %}{% unless paginate.next %} disabled{% endunless %}"

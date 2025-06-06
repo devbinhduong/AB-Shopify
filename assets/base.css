@@ -164,10 +164,6 @@ option.soldout {
     width: 10%;
 }
 
-.wrapper-body {
-    padding-bottom: 80px;
-}
-
 .template-index .wrapper-body {
     padding-bottom: 0px;
     overflow: hidden;
@@ -1915,7 +1911,7 @@ label {
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--body-letter-spacing);
     line-height: var(--body-line-height);
-    text-transform: capitalize;
+    text-transform: none;
     text-align: left;
     color: var(--form-label);
 }
@@ -5072,10 +5068,6 @@ body.is-custom-information .background-overlay {
         padding-left: 8px;
         padding-right: 8px;
     }
-
-    .wrapper-body {
-        padding-bottom: 50px;
-    }
     /* END: Container; */
 
     /* START: Halo Row */
@@ -7523,7 +7515,13 @@ body.is-custom-information .background-overlay {
 
 .body-custom-width .container {
     max-width: var(--body-custom-width-container);
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+@media screen and (min-width: 960px) {
+    .body-custom-width .container {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}

@@ -67,8 +67,9 @@ banner-tabs product-scroller  .list-product-tabs-custom .tab-links{
     justify-content: center;
     margin: 0 auto;
 }
-product-scroller .list-product-tabs-custom .tab-links.active .wrapper_svg{
-        border: 2px solid #212121;
+product-scroller .list-product-tabs-custom .tab-links.active .wrapper_svg,
+.no-product product-scroller .list-product-tabs-custom .tab-links:hover .wrapper_svg{
+    border: 2px solid #212121;
 }
 .wrapper_svg svg{
     width: 100%;
@@ -82,7 +83,8 @@ product-scroller .list-product-tabs-custom .tab-links.active .wrapper_svg{
     margin-top: 10px;
     line-height: normal;
 }
-.list-product-tabs-custom .tab-links.active .tab-title{
+.list-product-tabs-custom .tab-links.active .tab-title,
+.no-product .list-product-tabs-custom .tab-links:hover .tab-title{
     font-weight: 600;
 }
 
@@ -187,7 +189,7 @@ banner-tabs .column-text .column-text__text-wrap .column-text__link{
 banner-tabs .column-text .column-text__text-wrap .column-text__link a{
     text-decoration: underline;
 }
-banner-tabs .column-banner .promo-text{
+.promo-text{
     position: absolute;
     z-index: 2;
     top: 0;
@@ -199,30 +201,35 @@ banner-tabs .column-banner .promo-text{
     width: 100%;
     padding: 0 24px 24px 24px;
 }
-banner-tabs .column-banner .promo-text .promo-text-heading{
+.promo-text .promo-text-heading{
     font-size: var(--fontsize_title_banner_mb);
     line-height: calc( var(--fontsize_title_banner_mb) + 4px);
     margin-bottom: 8px;
+    color: var(--color_text_banner);
 }
-banner-tabs .column-banner .promo-text .promo-text-des{
+.promo-text .promo-text-des{
     margin-block: 0 24px;
+    font-size: var(--fontsize_des_banner_mb);
+    line-height: calc( var(--fontsize_des_banner_mb) + 6px);
+    color: var(--color_text_banner);
 }
-banner-tabs p{
+banner-tabs p, .promo-text p{
     margin: 0;
 }
-banner-tabs .column-banner .promo-text .button{
+.promo-text .button{
     width: auto;
     display: inline-block;
     margin: 0;
 }
 
 @media (min-width: 768px) {
-    banner-tabs .column-text .column-text__text-wrap .column-text__title,banner-tabs .column-banner .promo-text .promo-text-heading{
+    banner-tabs .column-text .column-text__text-wrap .column-text__title,.promo-text .promo-text-heading{
         font-size: var(--fontsize_title_banner);
         line-height: calc( var(--fontsize_title_banner) + 4px);
     }
     banner-tabs .column-text .column-text__text-wrap .column-text__description,
-    banner-tabs .column-text .column-text__text-wrap .column-text__link{
+    banner-tabs .column-text .column-text__text-wrap .column-text__link,
+    .promo-text .promo-text-des{
         font-size: var(--fontsize_des_banner);
         line-height: calc( var(--fontsize_des_banner) + 6px);
     }
@@ -245,10 +252,10 @@ banner-tabs .column-banner .promo-text .button{
         flex-direction: row;
         gap: 55px;
     }
-    banner-tabs .column-banner .promo-text{
+    .promo-text{
         padding: 0 40px 40px 40px;
     }
-    banner-tabs .column-text .column-text__text-wrap .column-text__title,banner-tabs .column-banner .promo-text .promo-text-heading{
+    banner-tabs .column-text .column-text__text-wrap .column-text__title,.promo-text .promo-text-heading{
         font-size: var(--fontsize_title_banner);
         line-height: calc( var(--fontsize_title_banner) + 4px);
     }
