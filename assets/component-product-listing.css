@@ -672,6 +672,7 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
 
 .productListing.productGrid .product.banner img {
     width: 100%;
+    height: auto;
 }
 
 .productListing.halo-row--masonry {
@@ -1077,6 +1078,13 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
         width: 50%;
         margin-top: var(--space-between-horiz-mb);
     }
+    .productGrid .product.banner,
+    .productGrid.column-2 .product.banner,
+    .productGrid.column-3 .product.banner,
+    .productGrid.column-4 .product.banner,
+    .productGrid.column-5 .product {
+        width: 100%;
+    }
 
     .productGrid .product:nth-child(-n+2),
     .productGrid.column-2 .product:nth-child(-n+2),
@@ -1126,6 +1134,11 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
         width: 33.3333333%;
         margin-top: 30px
     }
+    .productGrid.column-3 .product.banner,
+    .productGrid.column-4 .product.banner, 
+    .productGrid.column-5 .product.banner{
+        width: 66.6666667%;
+    }
 
     .productGrid.column-3 .product:nth-child(-n+3),
     .productGrid.column-4 .product:nth-child(-n+3),
@@ -1156,6 +1169,10 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
     .productGrid.column-5 .product {
         width: 25%;
     }
+    .productGrid.column-4 .product.banner,
+    .productGrid.column-5 .product.banner {
+        width: 50%;
+    }
 
     .productGrid.column-4 .product:nth-child(-n+4),
     .productGrid.column-5 .product:nth-child(-n+5) {
@@ -1175,16 +1192,16 @@ body.product-card-layout-05 .productList .product-item.quickshop-popup-show .car
 
 @media (min-width: 1025px) {
     .productListing {
-        margin-bottom: 60px;
+        margin-bottom: 16px;
     }
 
     .productListing.halo-row--masonry {
         margin-bottom: 0;
     }
-
     .productGrid {
         /* margin-left: -15px;
         margin-right: -15px; */
+       
         margin-left: calc(-.5 * var(--space-between-vert-desk));
         margin-right: calc(-.5 * var(--space-between-vert-desk));
     }

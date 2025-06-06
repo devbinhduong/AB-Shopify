@@ -86,31 +86,36 @@
     }
 
     .section-block-{{section.id}} .layout-body--custom_width {
-        padding-left: 20px !important;
-        padding-right: 0 !important;
+        padding-left: 20px;
+        padding-right: 0;
     }
     @media screen and (min-width: 767px) {
         .section-block-{{section.id}} .layout-body--custom_width {
-            padding-left: 24px !important;
-            padding-right: 24px !important;
+            padding-left: 24px;
+            padding-right: 24px;
         }
     }
 
     @media screen and (min-width: 960px) {
         .section-block-{{section.id}} .layout-body--custom_width {
-            padding-left: 148px !important;
-            padding-right: 32px !important;
+            padding-left: 148px;
+            padding-right: 32px;
         }
     }
     @media screen and (min-width: 1450px) {
         .section-block-{{section.id}} .layout-body--custom_width {
-            padding-left: 32px !important;
+            padding-left: 32px;
         }
     }
 
     .section-block-{{section.id}}.no-product .layout-body--custom_width {
-        padding-left: 25px !important;
-        padding-right: 25px !important;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    product-tabs-custom-section banner-tabs.section-block-{{section.id}} .layout-body--custom_width {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
 </style>
@@ -211,7 +216,7 @@
     </div>
 </div>
 <banner-tabs class="section-block-{{section.id}} {% if show_product == false %}no-product{% endif %}">
-     <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+     <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container layout-body--custom_width{% endif %}">
         {%- for block in block_tabs -%}
             {%- liquid  
                  assign image_first = block.settings.image_first

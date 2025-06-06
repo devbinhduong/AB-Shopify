@@ -330,6 +330,70 @@
         }]
     },
     {
+        "type": "range",
+        "id": "sidebar_heading_font_size_mb",
+        "label": "t:settings_schema.typography.settings.font_size.label_mb",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "unit": "t:settings_schema.typography.settings.font_size.unit",
+        "default": 14
+    },
+    {
+        "type": "select",
+        "id": "sidebar_heading_font_weight_mb",
+        "label": "t:settings_schema.typography.settings.font_weight.label_mb",
+        "default": "700",
+        "options": [
+        {
+            "value": "400",
+            "label": "t:settings_schema.typography.settings.font_weight.options__1"
+        },
+        {
+            "value": "500",
+            "label": "t:settings_schema.typography.settings.font_weight.options__2"
+        },
+        {
+            "value": "600",
+            "label": "t:settings_schema.typography.settings.font_weight.options__3"
+        },
+        {
+            "value": "700",
+            "label": "t:settings_schema.typography.settings.font_weight.options__4"
+        },
+        {
+            "value": "800",
+            "label": "t:settings_schema.typography.settings.font_weight.options__5"
+        },
+        {
+            "value": "900",
+            "label": "t:settings_schema.typography.settings.font_weight.options__6"
+        }]
+    },
+    {
+        "type": "select",
+        "id": "sidebar_heading_text_transform_mb",
+        "label": "Text style mobile",
+        "default": "uppercase",
+        "options": [
+        {
+            "value": "normal",
+            "label": "t:settings_schema.typography.settings.text_transform.options__1"
+        },
+        {
+            "value": "capitalize",
+            "label": "t:settings_schema.typography.settings.text_transform.options__2"
+        },
+        {
+            "value": "uppercase",
+            "label": "t:settings_schema.typography.settings.text_transform.options__3"
+        },
+        {
+            "value": "lowercase",
+            "label": "t:settings_schema.typography.settings.text_transform.options__4"
+        }]
+    },
+    {
         "type": "header",
         "content": "t:sections.main-collection-product-grid.settings.header__3.content"
     },
@@ -546,6 +610,52 @@
         "info": "t:sections.main-collection-product-grid.settings.header__5.info"
     },
     {
+        "type" : "color",
+        "id" : "color_text_banner",
+        "label": "Color text",
+        "default" : "#fff"
+    },
+    {
+        "type": "range",
+        "id": "fontsize_title_banner",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 28
+    },
+    {
+        "type": "range",
+        "id": "fontsize_title_banner_mb",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 24
+    },
+    {
+        "type": "range",
+        "id": "fontsize_des_banner",
+        "label": "t:settings_schema.typography.settings.typography.des_font_size",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 16
+    },
+    {
+        "type": "range",
+        "id": "fontsize_des_banner_mb",
+        "label": "t:settings_schema.typography.settings.typography.des_font_size_mb",
+        "min": 10,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 14
+    },
+    {
         "type" : "checkbox",
         "id" : "show_banner",
         "label" : "t:sections.main-collection-product-grid.settings.product.enable_banner",
@@ -568,6 +678,21 @@
         "type" : "image_picker",
         "id" : "img_banner1",
         "label" : "t:sections.main-sidebar.blocks.image_gallery.settings.general.image_1"
+    },
+    {
+        "type": "text",
+        "id": "title_banner_1",
+        "label": "Title 1"
+    },
+    {
+        "type": "richtext",
+        "id": "description_banner_1",
+        "label": "Description 1"
+    },
+    {
+        "type": "text",
+        "id": "text_link_banner_1",
+        "label": "Text link 1"
     },
     {
         "type": "url",
@@ -593,6 +718,21 @@
         "label" : "t:sections.main-sidebar.blocks.image_gallery.settings.general.image_2"
     },
     {
+        "type": "text",
+        "id": "title_banner_2",
+        "label": "Title 2"
+    },
+    {
+        "type": "richtext",
+        "id": "description_banner_2",
+        "label": "Description 2"
+    },
+    {
+        "type": "text",
+        "id": "text_link_banner_2",
+        "label": "Text link 2"
+    },
+    {
         "type": "url",
         "id": "link_banner_2",
         "label": "t:sections.main-sidebar.blocks.image_gallery.settings.general.link_2"
@@ -614,6 +754,21 @@
         "type" : "image_picker",
         "id" : "img_banner3",
         "label" : "t:sections.main-sidebar.blocks.image_gallery.settings.general.image_3"
+    },
+    {
+        "type": "text",
+        "id": "title_banner_3",
+        "label": "Title 3"
+    },
+    {
+        "type": "richtext",
+        "id": "description_banner_3",
+        "label": "Description 3"
+    },
+    {
+        "type": "text",
+        "id": "text_link_banner_3",
+        "label": "Text link 3"
     },
     {
         "type": "url",

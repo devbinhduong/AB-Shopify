@@ -1,3 +1,11 @@
+<style>
+    .section-block-{{section.id}} .layout-body--custom_width {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
+
+
 {%- if section.blocks.size > 0 -%}
     {%-liquid
         assign autoplay = section.settings.autoplay
@@ -10,7 +18,7 @@
     -%}
 
     <div class="slideshow-wrapper section-block-{{section.id}}" id="slideshow-wrapper-{{section.id}}" {% if section.blocks.size > 1 %}data-loader-script="{{ 'halo.slide-show.js' | asset_url }}"{% endif %} allow-transparent-header>
-        <div class="{% if container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% elsif container == '1920' %}container-1920{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+        <div class="{% if container == '1170' %}container-1170{% elsif section.settings.container == '1470' %}container-1470{% elsif section.settings.container == '1570' %}container-1570{% elsif container == '1770' %}container-1770{% elsif container == '1920' %}container-1920{% elsif container == 'fullwidth'%}container-full{% else %}container layout-body--custom_width{% endif %}">
         {%- if section.settings.enable_categories or section.settings.enable_banner -%}
         <div class="wrapper-category-banner{% if section.settings.enable_categories %} has-categories{% endif %}{% if section.settings.enable_banner %} has-banner{% endif %}">
         {%- endif -%}
