@@ -1,10 +1,6 @@
 {{ 'component-product-tab-popup.css' | asset_url | stylesheet_tag }}
 
-{% comment %} outerEdgeLimit: true, 
- variableWidth: true,     
- {% endcomment %}
 {%- liquid
-    assign container = section.settings.container
     assign limit = section.settings.product_block_limit
     assign show_product = section.settings.show_product
     assign image_ratio = settings.product_block_image_ratio
@@ -24,29 +20,13 @@
     assign fontsize_title_mb = section.settings.fontsize_title_mb
     assign title_line_height = section.settings.title_line_height
 
-    assign mg_top_desktop = section.settings.mg_top_desktop
-    assign mg_top_tablet = section.settings.mg_top_tablet
-    assign mg_top_mobile = section.settings.mg_top_mobile
-
-    assign mg_bottom_desktop = section.settings.mg_bottom_desktop
-    assign mg_bottom_tablet = section.settings.mg_bottom_tablet
-    assign mg_bottom_mobile = section.settings.mg_bottom_mobile
-
-    assign mg_top_desktop_banner = section.settings.mg_top_desktop_banner
-    assign mg_top_tablet_banner = section.settings.mg_top_tablet_banner
-    assign mg_top_mobile_banner = section.settings.mg_top_mobile_banner
-
-    assign mg_bottom_desktop_banner = section.settings.mg_bottom_desktop_banner
-    assign mg_bottom_tablet_banner = section.settings.mg_bottom_tablet_banner
-    assign mg_bottom_mobile_banner = section.settings.mg_bottom_mobile_banner
-
-    assign padding_full_width = section.settings.padding_full_width
-
     assign mg_bottom_title = section.settings.mg_bottom_title
     assign mg_bottom_description = section.settings.mg_bottom_description
 
     assign fontsize_title_banner = section.settings.fontsize_title_banner
     assign fontsize_title_banner_mb = section.settings.fontsize_title_banner_mb
+    assign fontsize_des_banner = section.settings.fontsize_des_banner
+    assign fontsize_des_banner_mb = section.settings.fontsize_des_banner_mb
 -%}
 
 <style>
@@ -56,6 +36,7 @@
     .section-block-{{section.id}} .section-introduction .sub-title {
         font-size: {{ fontsize_sub_title | append: 'px'  }}; 
         margin: 0;
+        line-height: 1.2;
     }
     .section-block-{{section.id}} .section-introduction .title {
         color: {{ color_title }};
@@ -74,7 +55,7 @@
 
 </style>
 
-<div class="section-block-{{section.id}}">
+<product-tab-popup class="section-block-{{section.id}}">
     <div class="product-tab-popup_wrapper">
         <div class="product-tab-popup_modal">
             <div class="product-tab-popup__quit">
@@ -139,7 +120,7 @@
                                 -%}
                                 {%- for block in block_tabs -%}
                                     <div class="tab-content{% if forloop.first %} active{% endif %}" data-product-TabContent id="product-tab-{{ section.id }}-{{ block.id }}">
-                                        <div class="products-carousel products-load column-{{ column }}" data-item-to-show="1" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}">
+                                        <div class="products-carousel products-load column-{{ column }}" data-item-to-show="1" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}" data-variable-width="true" data-outer-edge-limit="true">
                                                 {%- liquid
                                                     assign collection = block.settings.collection
                                                     for tag in current_tags 
@@ -171,27 +152,25 @@
                                                     assign link_right = block.settings. link_right
                                                 %}
                                                 {% if image_right != blank %}
-                                                    <div class="product">
+                                                    <banner-tabs class="product">
                                                         <div class="column-banner">
                                                             <a href="{{- link_right -}}" class="image adaptive_height image-zoom w-100" style="padding-top: 100.0%" title="QMCar">
-                                                            
                                                                     <img src="{{ image_right | img_url: 'master' }}"
                                                                          width="{{ image_right.width }}"
                                                                          height="{{ image_right.height }}"
                                                                          alt="{{ image_right.alt | default: shop.name | escape }}">
-                                                            
                                                                 <div class="promo-text">
                                                                     <h4 class="promo-text-heading" style="--fontsize_title_banner: {{ fontsize_title_banner }}px; --fontsize_title_banner_mb: {{ fontsize_title_banner_mb }}px;">{{- title_right -}}</h4>
-                                                                    <span class="promo-text-des">{{- description_right -}}</span>
+                                                                    <span class="promo-text-des" style="--fontsize_des_banner: {{ fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ fontsize_des_banner_mb }}px;">{{- description_right -}}</span>
                                                                     {% if text_link_right != blank %}
-                                                                        <div class="button button--primary">
+                                                                        <div class="button button--primary" style="--fontsize_des_banner: {{ fontsize_des_banner }}px; --fontsize_des_banner_mb: {{ fontsize_des_banner_mb }}px;">
                                                                             <span>{{- text_link_right -}}</span>
                                                                         </div>
                                                                     {% endif %}
                                                                 </div>
                                                         </a>  
                                                     </div>
-                                                    </div>
+                                                    </banner-tabs>
                                                 {% endif %}
                                         </div>
                                     </div>
@@ -202,50 +181,43 @@
                 </div>
         </div>
     </div>
-</div>
+</product-tab-popup>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        class ProductTabPopup extends HTMLElement {
+            constructor() {
+                super();
+                const openButton = document.querySelectorAll("a[href='#show-product-tab-popup']");
+                const closeButton = this.querySelector(".product-tab-popup__quit");
+                openButton.forEach(button => {
+                    button.addEventListener("click", this.showModal);
+                });
+                closeButton.addEventListener("click", this.closeModal);
+            }
+            showModal = (e) => {
+                e.preventDefault();
+                this.classList.add("active");
+            };
+    
+            closeModal = () => {
+                this.classList.remove("active");
+            };
+        }       
+    
+        customElements.define("product-tab-popup", ProductTabPopup);
+    });
+</script>
 
 {% schema %}
     {
         "name": "Product tabs popup",
         "class": "sections-product-tab",
+        "limit": 1,
         "settings": [
             {
                 "type": "header",
                 "content": "t:settings_schema.general.name"
-            },
-            {
-                "type": "select",
-                "id": "container",
-                "label": "t:sections.layout.container.option",
-                "default": "container",
-                "options": [
-                    {
-                        "value": "container",
-                        "label": "t:sections.layout.container.option1"
-                    },
-                    {
-                        "value": "1170",
-                        "label": "t:sections.layout.container.option4"
-                    },
-                    {
-                        "value": "1770",
-                        "label": "t:sections.layout.container.option3"
-                    },
-                    {
-                        "value": "fullwidth",
-                        "label": "t:sections.layout.container.option2"
-                    }
-                ]
-            },
-            {
-                "type": "range",
-                "id": "padding_full_width",
-                "label": "t:sections.layout.container.padding_full_width",
-                "min": 0,
-                "max": 50,
-                "step": 5,
-                "unit": "t:sections.layout.fontsize.fontsize_title.unit",
-                "default": 0
             },
             {
                 "type" : "checkbox",
@@ -393,6 +365,26 @@
                 "default": 24
             },
             {
+                "type": "range",
+                "id": "fontsize_des_banner",
+                "label": "t:settings_schema.typography.settings.typography.des_font_size",
+                "min": 0,
+                "max": 50,
+                "step": 1,
+                "unit": "t:sections.layout.mg_desktop.unit",
+                "default": 16
+            },
+            {
+                "type": "range",
+                "id": "fontsize_des_banner_mb",
+                "label": "t:settings_schema.typography.settings.typography.des_font_size_mb",
+                "min": 10,
+                "max": 50,
+                "step": 1,
+                "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+                "default": 14
+            },
+            {
                 "type": "header",
                 "content": "t:sections.product_block.settings.slider.content"
             },
@@ -455,142 +447,6 @@
                     }
                 ],
                 "default": "4"
-            },
-            {
-                "type": "header",
-                "content": "t:sections.layout.margin_top"
-            },
-            {
-                "type": "range",
-                "id": "mg_top_desktop",
-                "label": "t:sections.layout.mg_desktop.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "range",
-                "id": "mg_top_tablet",
-                "label": "t:sections.layout.mg_tablet.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "range",
-                "id": "mg_top_mobile",
-                "label": "t:sections.layout.mg_mobile.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "header",
-                "content": "t:sections.layout.margin_bottom"
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_desktop",
-                "label": "t:sections.layout.mg_desktop.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_tablet",
-                "label": "t:sections.layout.mg_tablet.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_mobile",
-                "label": "t:sections.layout.mg_mobile.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 50
-            },
-            {
-                "type": "header",
-                "content": "Section top padding banner"
-            },
-            {
-                "type": "range",
-                "id": "mg_top_desktop_banner",
-                "label": "t:sections.layout.mg_desktop.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
-            },
-            {
-                "type": "range",
-                "id": "mg_top_tablet_banner",
-                "label": "t:sections.layout.mg_tablet.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
-            },
-            {
-                "type": "range",
-                "id": "mg_top_mobile_banner",
-                "label": "t:sections.layout.mg_mobile.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
-            },
-            {
-                "type": "header",
-                "content": "Section bottom padding banner"
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_desktop_banner",
-                "label": "t:sections.layout.mg_desktop.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_tablet_banner",
-                "label": "t:sections.layout.mg_tablet.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
-            },
-            {
-                "type": "range",
-                "id": "mg_bottom_mobile_banner",
-                "label": "t:sections.layout.mg_mobile.label",
-                "min": 0,
-                "max": 100,
-                "step": 5,
-                "unit": "t:sections.layout.mg_desktop.unit",
-                "default": 0
             }
         ],
         "blocks" : [
@@ -623,45 +479,6 @@
                         "type" : "collection",
                         "id" : "collection",
                         "label" : "t:settings_schema.typography.settings.typography.collection"
-                    },
-                    {
-                        "type": "header",
-                        "content": "Content left"
-                    },
-                    {
-                        "type": "checkbox",
-                        "id": "image_first",
-                        "label": "Image first",
-                        "default": true
-                    },
-                    {
-                        "type": "image_picker",
-                        "id": "image_left",
-                        "label": "Image"
-                    },
-                    {
-                        "type": "text",
-                        "id": "title_left",
-                        "label": "Title"
-                    },
-                    {
-                        "type": "richtext",
-                        "id": "description_left",
-                        "label": "Description"
-                    },
-                    {
-                        "type": "text",
-                        "id": "text_link_left",
-                        "label": "Text link"
-                    },
-                    {
-                        "type": "url",
-                        "id": "link_left",
-                        "label": "Link"
-                    },
-                    {
-                        "type": "header",
-                        "content": "Content right"
                     },
                     {
                         "type": "image_picker",

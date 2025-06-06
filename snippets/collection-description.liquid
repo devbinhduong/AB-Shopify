@@ -1,9 +1,18 @@
 <div class="changing on collection collection-info collection-info--{{ position }} align-{{ collection_description_align_tb }}{% if show_sub_collection %} show_sub_collection{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" {% if sub_collection_layout == 'slider' %}data-loader-script="{{ 'halo.slide-sub-collection.js' | asset_url }}"{% endif %} style="--desc-color: {{ collection_description_color }};">
 	{%- if show_breadcrumb -%}
-		<div class="collection-breadcrumb text-{{ breadcrumb_alignment }}" style="--breadcrumb-color: {{ breadcrumb_color }}; --breadcrumb-color-mb: {{ breadcrumb_color_mb }};--breadcrumb-bg: {% if breadcrumb_gradient != blank and breadcrumb_gradient != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient }}{% elsif breadcrumb_bg != blank and breadcrumb_bg != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg }}{% endif %};--breadcrumb-bg-mb: {% if breadcrumb_gradient_mb != blank and breadcrumb_gradient_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient_mb }}{% elsif breadcrumb_bg_mb != blank and breadcrumb_bg_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg_mb }}{% endif %}">
+		<div class="collection-breadcrumb text-{{ breadcrumb_alignment }}" style="--breadcrumb-color: {{ breadcrumb_color }}; --breadcrumb-color-active: {{ breadcrumb_color_active }}; --breadcrumb-color-mb: {{ breadcrumb_color_mb }};--breadcrumb-bg: {% if breadcrumb_gradient != blank and breadcrumb_gradient != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient }}{% elsif breadcrumb_bg != blank and breadcrumb_bg != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg }}{% endif %};--breadcrumb-bg-mb: {% if breadcrumb_gradient_mb != blank and breadcrumb_gradient_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient_mb }}{% elsif breadcrumb_bg_mb != blank and breadcrumb_bg_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg_mb }}{% endif %}">
         	{% render 'breadcrumb' %}
 		</div>
     {%- endif -%}
+
+    <a class="header-hero__subheader-link" href="/collections/all">
+      <span class="header-hero__subheader-icon">
+        <span class="icon icon-new icon-arrow-short ">
+            <svg svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 12.5h23m-9.2 9.4 9.2-9.4-9.2-9.4" stroke="currentColor" stroke-width="1.75"></path></svg>
+        </span>
+      </span>
+      Alle Produkte
+    </a>
     
 	  {%- if show_page_title -%}
         <h1 class="collection-title page-header text-{{ page_title_alignment }}">{{ collection.title | escape }}</h1>

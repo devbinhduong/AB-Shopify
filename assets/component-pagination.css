@@ -1,6 +1,5 @@
 .pagination-wrapper {
-  margin-top: 4rem;
-  margin-bottom: 7rem;
+  margin: 0;
 }
 
 .pagination-wrapper-small {
@@ -295,7 +294,8 @@ a.pagination__item:hover::after {
 }
 
 .pagination-page-infinite {
-  margin-top: 20px;
+  padding-top: 16px;
+  padding-bottom: 34px;
 }
 
 .pagination-page-infinite .button {
@@ -327,7 +327,7 @@ a.pagination__item:hover::after {
 
 @media screen and (min-width: 990px) {
   .pagination-wrapper {
-    margin-top: 5rem;
-    margin-bottom: 8rem;
+    margin-top: 16px;
+    margin-bottom: 34px;
   }
 }

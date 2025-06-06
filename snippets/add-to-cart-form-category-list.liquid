@@ -25,9 +25,9 @@
         <form action="{{ routes.cart_url }}/add" method="post" class="variants" id="{{ id }}-{{ product.id }}-{{ sectionId }}{{ list }}" data-product-id="{{ product.id }}" enctype="multipart/form-data">
             {%- if sold_out -%}
                 {%- if settings.show_notify_form -%}
-                    <a class="button button-ATC is-notify-me" href="{{ product.url }}" data-btn-addToCart>{{ 'notify_form.general.label' | t }}</a>
+                    <a class="button button-ATC is-notify-me" href="{{ product.url }}" data-btn-addToCart><span>{% render 'icon-plus' %}</span></a>
                 {%- else -%}
-                    <a class="button button-ATC" href="{{ product.url }}" disabled="disabled">{{ 'products.product.out_of_stock' | t }}</a>
+                    <a class="button button-ATC" href="{{ product.url }}" disabled="disabled"><span>{% render 'icon-plus' %}</span></a>
                 {%- endif -%}
             {%- else -%}
                 {%- if variantCount > 1 and product.variants.first.title != 'Default Title' -%}

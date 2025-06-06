@@ -1312,6 +1312,8 @@
                 itemArrows = productGrid.data('item-arrows'),
                 itemArrowsMb = productGrid.data('item-arrows-mb'),
                 itemInfinite = productGrid.data('infinite'),
+                itemVariableWidth = productGrid.data('variable-width'),
+                itemOuterEdgeLimit = productGrid.data('outer-edge-limit'),
                 swatchLabel = productGrid.find('.swatch .swatch-label'),
                 isProductCard06 = document.body.classList.contains('product-card-layout-06');
 
@@ -1336,7 +1338,7 @@
 
                     productGrid.slick({
                         mobileFirst: true,
-                        adaptiveHeight: true,
+                        adaptiveHeight: false,
                         vertical: false,
                         infinite: itemInfinite,
                         slidesToShow: 1,
@@ -1345,7 +1347,9 @@
                         dots: itemDotsMb,
                         nextArrow: window.arrows.icon_next,
                         prevArrow: window.arrows.icon_prev,
-                        rtl: window.rtl_slick,                                          
+                        rtl: window.rtl_slick,
+                        variableWidth: itemVariableWidth ? true : false,
+                        outerEdgeLimit: itemOuterEdgeLimit ? true : false,
                         responsive: 
                         [
                             {
@@ -5983,7 +5987,6 @@
             $doc.on('click', '[data-sidebar]', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-
                 $body.addClass('open-mobile-sidebar');
               
             });
