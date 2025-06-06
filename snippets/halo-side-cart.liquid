@@ -136,9 +136,17 @@
                                 <label class="form-label hiddenLabels" for="upsell-update-{{ item.id }}">
                                     {{ 'sections.cart.heading.quantity' | t }}
                                 </label>
-                                <a href="#" data-minus-quantity-cart="" class="minus btn-quantity"></a>
+                                <a href="#" data-minus-quantity-cart="" class="minus btn-quantity">
+                                    <span class="icon icon-new icon-minus-small ">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 10.75H.25v2.5H1.5v-2.5zm21 2.5h1.25v-2.5H22.5v2.5zm-21 0H12v-2.5H1.5v2.5zm10.5 0h10.5v-2.5H12v2.5z" fill="currentColor"></path></svg>
+                                    </span>
+                                </a>
                                 <input class="form-input quantity" name="quantity" id="upsell-update-{{ item.id }}" data-qtt-id1="quantity{{ item.id }}" value="{{ item.quantity }}" type="number"{% if item.variant.inventory_management != null and item.variant.inventory_quantity > 0 %} data-inventory-quantity="{{ item.variant.inventory_quantity }}"{% endif %} data-cart-quantity data-cart-quantity-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}"/>
-                                <a href="#" data-plus-quantity-cart="" class="plus btn-quantity"></a>
+                                <a href="#" data-plus-quantity-cart="" class="plus btn-quantity">
+                                    <span class="icon icon-new icon-plus-small ">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.25 1.5V.25h-2.5V1.5h2.5zm-2.5 21v1.25h2.5V22.5h-2.5zM1.5 10.75H.25v2.5H1.5v-2.5zm21 2.5h1.25v-2.5H22.5v2.5zm-21 0H12v-2.5H1.5v2.5zm10.5 0h10.5v-2.5H12v2.5zM10.75 1.5V12h2.5V1.5h-2.5zm0 10.5v10.5h2.5V12h-2.5z" fill="currentColor"></path></svg>
+                                    </span>
+                                </a>
                             </cart-update-quantity>
                             {%- if has_qty_rules or has_vol_pricing -%}
                                 <quantity-popover class="quantity-popover-container">
@@ -251,7 +259,7 @@
                 </div>
             {% endif %}
             <div class="previewCartProduct" data-product-collection-cart>
-                <div class="previewCartCarousel products-carousel" data-item-dots="{{ show_dots }}" data-item-arrows="{{ show_arrows }}"
+                <div class="previewCartCarousel" data-item-dots="{{ show_dots }}" data-item-arrows="{{ show_arrows }}" data-item-to-show="2"
                 >
                     {%- for product in collection.products limit: limit -%}
                         <div class="product">

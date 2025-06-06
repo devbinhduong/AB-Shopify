@@ -714,3 +714,19 @@
     height: 24px;
     margin: 0;
 }
+
+/* Mint add */
+.card-subtitle {
+	 margin: 0;
+	 min-height: 58px;
+	 font-size: 16px;
+	 line-height: 1.2;
+	 font-weight: 300;
+	 color: #212121;
+	 max-width: 70%;
+}
+ @media (max-width: 767px) {
+	 .card-subtitle {
+		 display: none;
+	}
+}

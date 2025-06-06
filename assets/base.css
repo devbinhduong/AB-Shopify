@@ -164,6 +164,7 @@ option.soldout {
     width: 10%;
 }
 
+
 .template-index .wrapper-body {
     padding-bottom: 0px;
     overflow: hidden;
@@ -1436,7 +1437,7 @@ button.disabled,
 .cart-sidebar-show .haloCalculatorShipping .progress .progress-meter {
     text-align: center;
     animation: 2s linear 0s infinite progress-bar-stripes;
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
         45deg,
         rgba(255, 255, 255, 0.15) 25%,
         transparent 25%,
@@ -1445,7 +1446,7 @@ button.disabled,
         rgba(255, 255, 255, 0.15) 75%,
         transparent 75%,
         transparent
-    );
+    ); */
     background-size: 40px 40px;
     transition: 0.9s linear;
     transition-property: width, background-color;
@@ -1550,7 +1551,7 @@ button.disabled,
 .haloCalculatorShipping__wrapper .cart-bar-details .icon.icon-checkmark {
     color: #59b79f;
     width: 24px;
-    height: 24px;
+    height: 24px;   
 }
 
 .haloCalculatorShipping__wrapper .cart-bar-details .icon-checkmark svg {
@@ -1629,6 +1630,24 @@ button.disabled,
 }
 .halo-cart-sidebar .previewCartItem-change .previewCartItem-qty {
     margin-top: 0;
+}
+
+.halo-cart-sidebar .previewCartItem-change .previewCartItem-qty .quantity {
+    padding: 6px 0;
+    border: 2px solid #212121;
+    border-radius: 4px;
+}
+
+.halo-cart-sidebar .previewCartItem-change .previewCartItem-qty .btn-quantity {
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.halo-cart-sidebar .previewCartItem-change .previewCartItem-qty .btn-quantity::before,
+.halo-cart-sidebar .previewCartItem-change .previewCartItem-qty .btn-quantity::after {
+    display: none;
 }
 /* END: Calculator Free Shipping Message */
 
@@ -2043,7 +2062,7 @@ label {
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--body-letter-spacing);
     line-height: var(--body-line-height);
-    text-transform: none;
+    text-transform: capitalize;
     text-align: left;
     color: var(--form-label);
 }
@@ -5215,6 +5234,10 @@ body.is-custom-information .background-overlay {
         padding-left: 8px;
         padding-right: 8px;
     }
+
+    .wrapper-body {
+        padding-bottom: 50px;
+    }
     /* END: Container; */
 
     /* START: Halo Row */
@@ -7561,4 +7584,3 @@ body.is-custom-information .background-overlay {
         padding-right: 32px;
     }
 }
-

@@ -3614,6 +3614,9 @@
                     event.stopPropagation();
                     
                     $body.addClass('cart-sidebar-show');
+
+                    console.log("add sidebar slick");
+                    this.sideCartSlick();    
                 });
             }
 
@@ -7263,6 +7266,10 @@
                     clonedLogo.remove();
                 }
             }
+        },
+
+        sideCartSlick: function() {
+            console.log("sideCartSlick function is called");
         }
     }
 })(jQuery);
