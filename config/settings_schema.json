@@ -6753,6 +6753,12 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "show_progress_shipping_2",
+        "label": "Show Progress Shipping 2",
+        "default": true
+      },
+      {
         "type": "select",
         "id": "discount_calculator_free_shipping",
         "default": "setup_discount",
@@ -6782,11 +6788,11 @@
         "type": "range",
         "id": "calculator_free_shipping_message_height",
         "label": "t:settings_schema.calculator_free_shipping_message.settings.progress_bar.label__1",
-        "min": 10,
+        "min": 5,
         "max": 20,
         "step": 1,
         "unit": "t:settings_schema.calculator_free_shipping_message.settings.progress_bar.unit",
-        "default": 10
+        "default": 5
       },
       {
         "type": "range",
@@ -6796,19 +6802,7 @@
         "max": 100,
         "step": 1,
         "unit": "t:settings_schema.calculator_free_shipping_message.settings.progress_bar.unit",
-        "default": 10
-      },
-      {
-        "type": "checkbox",
-        "id": "calculator_free_shipping_message_show_percent",
-        "label": "t:settings_schema.calculator_free_shipping_message.settings.progress_bar.label__12",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "calculator_free_shipping_message_show_truck",
-        "label": "t:settings_schema.calculator_free_shipping_message.settings.progress_bar.label__13",
-        "default": true
+        "default": 0
       },
       {
         "type": "color",
@@ -6820,7 +6814,7 @@
         "type": "color",
         "id": "calculator_free_shipping_message_bg",
         "label": "t:settings_schema.colors.settings.colors_name.background_color_2",
-        "default": "#a9a9a9"
+        "default": "#e4e4e4"
       },
       {
         "type": "color",

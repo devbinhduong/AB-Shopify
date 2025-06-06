@@ -1,17 +1,110 @@
 <free-shipping-component class="haloCalculatorShipping" data-free-shipping-wrapper style="display: block;">
-    <div class="progress{% if cart.item_count == 0 %} progress-hidden{% endif %}" data-text-enabled="{{ settings.calculator_free_shipping_message_show_percent  }}" data-shipping-progress>
-      <div class="progress_shipping" role="progressbar">
-            <div class="progress-meter" style="width: 0" data-free-shipping-progress-meter>
-            {% if settings.calculator_free_shipping_message_show_percent %}
-              <span class="text">0%</span>
-            {% endif %}
-            {% if settings.calculator_free_shipping_message_show_truck %}
-              <div class="progress-truck-wrapper">
-                {% render 'icon-shipping-truck' %}
-              </div>
-            {% endif %}
+    <div class="haloCalculatorShipping__wrapper">
+      <div class="progress progress--1" data-shipping-progress>
+        {%- liquid
+            assign price_1 = 500
+
+            if settings.currency_format_enable
+                assign money_target1 = price_1 | times: 100.0 | money_with_currency
+            else
+                assign money_target1 = price_1 | times: 100.0 | money
+            endif 
+        -%}
+
+        <div class="cart-bar-details">
+          <span class="icon icon-new icon-shipping-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="M16 3H1V16H16V3Z"
+                      stroke="#0A2923"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                  ></path>
+                  <path
+                      d="M16 8H20L23 11V16H16V8Z"
+                      stroke="#0A2923"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                  ></path>
+                  <path
+                      d="M5.5 21C6.88071 21 8 19.8807 8 18.5C8 17.1193 6.88071 16 5.5 16C4.11929 16 3 17.1193 3 18.5C3 19.8807 4.11929 21 5.5 21Z"
+                      stroke="#0A2923"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                  ></path>
+                  <path
+                      d="M18.5 21C19.8807 21 21 19.8807 21 18.5C21 17.1193 19.8807 16 18.5 16C17.1193 16 16 17.1193 16 18.5C16 19.8807 17.1193 21 18.5 21Z"
+                      stroke="#0A2923"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                  ></path>
+              </svg>
+          </span>
+          <span class="icon icon-new icon-checkmark">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="m1.88 11.988 6.21 6.103L22.467 3.83"
+                      stroke="currentColor"
+                      stroke-width="3.055"
+                  ></path>
+              </svg>
+          </span>
+          <div class="cart-bar-text" data-money-target-1="{{ price_1 | times: 100.0 | money }}">
+              kostenloser Versand (DE)
+              <span>Ab {{ money_target1 }}</span>
           </div>
         </div>
+        <div class="progress_shipping" role="progressbar">
+              <div class="progress-meter" style="width: 0" data-free-shipping-progress-meter-1>
+            </div>
+        </div>
+      </div>
+      <div class="progress progress--2" data-shipping-progress-2>
+         {%- liquid
+            assign price_2 = 800
+
+            if settings.currency_format_enable
+                assign money_target2 = price_2 | times: 100.0 | money_with_currency
+            else
+                assign money_target2 = price_2 | times: 100.0 | money
+            endif 
+        -%}
+        <div class="cart-bar-details">
+          <span class="icon icon-new icon-shipping-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 12V22H4V12" stroke="#0A2923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M22 7H2V12H22V7Z" stroke="#0A2923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22V7" stroke="#0A2923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C11 2 12 7 12 7Z" stroke="#0A2923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C13 2 12 7 12 7Z" stroke="#0A2923" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <span class="icon icon-new icon-checkmark">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                      d="m1.88 11.988 6.21 6.103L22.467 3.83"
+                      stroke="currentColor"
+                      stroke-width="3.055"
+                  ></path>
+              </svg>
+          </span>
+          <div class="cart-bar-text" data-money-target-2="{{ price_2 | times: 100.0 | money }}">
+              kostenloses Geschenk
+
+              <span>Ab {{ money_target2 }}</span>
+          </div>
+        </div>
+        <div class="progress_shipping" role="progressbar">
+              <div class="progress-meter" style="width: 0" data-free-shipping-progress-meter-2>
+            </div>
+        </div>
+      </div>
+
+      {% if settings.show_progress_shipping_2 %}
+      {% endif %}
     </div>
+    
     <div class="message" data-shipping-message=""></div>
 </free-shipping-component>

@@ -1353,10 +1353,6 @@ button.disabled,
     letter-spacing: 0;
 }
 
-.haloCalculatorShipping .progress.progress-hidden {
-    display: none;
-}
-
 .haloCalculatorShipping .progress .progress_shipping {
     height: var(--free-shipping-height);
     background-color: var(--free-shipping-bg);
@@ -1497,6 +1493,120 @@ button.disabled,
 
 .haloCalculatorShipping .progress-truck-wrapper .icon-shipping-truck .wheel {
     fill: white !important;
+}
+
+/* Mint add custom code */
+.haloCalculatorShipping__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.haloCalculatorShipping__wrapper .progress {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.haloCalculatorShipping {
+    background: #fafafa;
+    padding: 12px 20px;
+}
+.haloCalculatorShipping .message {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 15px 0 0;
+    color: #000;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details .icon-checkmark {
+    display: none;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details.done .icon-checkmark {
+    display: block;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details .icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: #fff;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details .icon svg {
+    width: 100%;
+    height: 100%;
+}
+.haloCalculatorShipping__wrapper .cart-bar-details .cart-bar-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.4px;
+    text-align: left;
+    color: #000;
+}
+@media (max-width: 767px) {
+    .haloCalculatorShipping__wrapper .cart-bar-details .cart-bar-text {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .halo-sidebar-header .title {
+        font-size: 24px;
+        line-height: 31px;
+        font-weight: 600;
+    }
+}
+.haloCalculatorShipping__wrapper .cart-bar-details .cart-bar-text > span {
+    color: #a0a0a0;
+    display: block;
+    margin: 1px 0 0;
+}
+.previewCart-wrapper .previewCart.previewCart--empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.previewCart-wrapper .previewCart .empty {
+    margin-bottom: 32px;
+}
+.previewCart-wrapper .previewCart .empty .text {
+    font-size: 24px;
+    line-height: 31px;
+    font-weight: 600;
+    color: #212121;
+}
+
+.haloCalculatorShipping__wrapper .progress::after {
+    content: "";
+    width: 3px;
+    height: 16px;
+    border-radius: 50px;
+    background: #000;
+    opacity: 1;
+    min-height: 16px;
+    min-width: 3px;
+    top: calc(100% - 10px);
+    right: -1px;
+    left: auto;
+    z-index: 1;
+    position: absolute;
+}
+
+.halo-cart-sidebar .previewCartItem-change {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0 0;
+    gap: 10px;
+}
+.halo-cart-sidebar .previewCartItem-change .previewCartItem-qty {
+    margin-top: 0;
 }
 /* END: Calculator Free Shipping Message */
 
@@ -3913,19 +4023,34 @@ body.term-condition-show .background-overlay {
 
 .halo-sidebar-header {
     position: relative;
-    padding: 24px 20px 0px 20px;
+    padding: 28px 20px 0px;
     background-color: #fff;
 }
 
 .halo-sidebar-header .title {
-    display: block;
-    font-size: calc(var(--font-body-size) + 4px);
+    display: inline-flex;
+    /* font-size: calc(var(--font-body-size) + 4px); */
+    font-size: 28px;
     font-style: var(--font-heading-style);
     font-weight: var(--font-weight-semibold);
     letter-spacing: var(--body-letter-spacing);
-    line-height: var(--body-line-height);
+    /* line-height: var(--body-line-height); */
+    line-height: 35px;
     color: var(--color-text);
     text-transform: capitalize;
+}
+
+.halo-sidebar-header .title .cartCount {
+    border-radius: 50%;
+    background-color: #000;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
 }
 
 .halo-sidebar-close {
@@ -6184,7 +6309,7 @@ body.is-custom-information .background-overlay {
         max-width: 370px;
     }
     .halo-sidebar.halo-cart-sidebar {
-        max-width: 420px;
+        max-width: 600px;
     }
     /* END: Sidebar */
 }
@@ -6896,13 +7021,6 @@ body.is-custom-information .background-overlay {
     }
     /* END: Popup */
 
-    /* START: Sidebar */
-    .halo-sidebar-header {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    /* END: Sidebar */
-
     /* START: Announcement */
     .announcement-bar__message .text {
         font-size: calc(var(--font-body-size) + 4px);
@@ -7041,7 +7159,7 @@ body.is-custom-information .background-overlay {
 
     /* START: Calculator Free Shipping Message */
     .haloCalculatorShipping {
-        padding: 0 30px;
+        padding: 0 20px;
     }
     /* END: Calculator Free Shipping Message */
 
@@ -7414,114 +7532,16 @@ body.is-custom-information .background-overlay {
         display: none;
     }
 }
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.eot?v=20539844811522526921747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.eot?%23iefix&v=20539844811522526921747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.woff2?v=109815922831787648081747730645") format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.woff?v=136793307190636280181747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.ttf?v=151832430591186289671747730645")
-            format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-BuchKursiv.svg%23Sohne-BuchKursiv?74412") format("svg");
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.eot?v=35119680669517150191747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.eot?%23iefix&v=35119680669517150191747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.woff2?v=51072198828685129951747730645") format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.woff?v=15360147311157995111747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.ttf?v=62423687347216411491747730645") format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Buch.svg%23Sohne-Buch?74412") format("svg");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.eot?v=111900190680538821871747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.eot?%23iefix&v=111900190680538821871747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.woff2?v=64201285280007999611747730645")
-            format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.woff?v=90973501021156268491747730645")
-            format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.ttf?v=73129506959918011981747730645")
-            format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-HalbfettKursiv.svg%23Sohne-HalbfettKursiv?74412") format("svg");
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.eot?v=34981581026468675161747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.eot?%23iefix&v=34981581026468675161747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.woff2?v=148299509340195472051747730645") format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.woff?v=39016467388041528781747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.ttf?v=54917459037056712721747730645") format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Halbfett.svg%23Sohne-Halbfett?74412") format("svg");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.eot?v=168034136023586516191747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.eot?%23iefix&v=168034136023586516191747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.woff2?v=144024452420719631171747730645")
-            format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.woff?v=83639696180645257641747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.ttf?v=126081619461421153421747730645")
-            format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-LeichtKursiv.svg%23Sohne-LeichtKursiv?74412") format("svg");
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.eot?v=170859112098800461181747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.eot?%23iefix&v=170859112098800461181747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.woff2?v=180697012596112419421747730645") format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.woff?v=173348966177555974571747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.ttf?v=61108018119024779751747730645") format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Leicht.svg%23Sohne-Leicht?74412") format("svg");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: "Copyright Klim Type Foundry";
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.eot?v=179625499140744099331747730645");
-    src: url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.eot?%23iefix&v=179625499140744099331747730645")
-            format("embedded-opentype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.woff2?v=99010241006795618911747730645") format("woff2"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.woff?v=114964470558618938691747730645") format("woff"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.ttf?v=9794193402707560531747730645") format("truetype"),
-        url("//my-ne.com/cdn/shop/t/237/assets/Sohne-Fett.svg%23Sohne-Fett?74412") format("svg");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
 
 .body-custom-width .container {
     max-width: var(--body-custom-width-container);
     padding-left: 20px;
     padding-right: 20px;
 }
-
 @media screen and (min-width: 960px) {
     .body-custom-width .container {
         padding-left: 32px;
         padding-right: 32px;
     }
 }
+

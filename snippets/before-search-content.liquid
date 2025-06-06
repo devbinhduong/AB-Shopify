@@ -286,14 +286,17 @@
     searchIcon.addEventListener("click", function () {
       console.log("Search results opened");
       
+      initialSlick();
       setTimeout(() => {
-        initialSlick();
-      }, 500);
+        $('.quickSearchTab__item--all').slick('setPosition');
+        console.log("Search results slick initialized");
+        
+      }, 700);
     });
 
     if (closeButton) {
       closeButton.addEventListener("click", function () {
-        $('.quickSearchTab__item--all').slick('unslick');
+        // $('.quickSearchTab__item--all').slick('unslick');
         console.log("Search results closed");
       });
     }

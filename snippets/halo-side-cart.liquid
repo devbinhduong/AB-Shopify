@@ -227,7 +227,7 @@
                         </div>
                     </div>
                     <button type="button" class="previewCartItem-remove{% if has_qty_rules or has_vol_pricing %} has_vol_pricing{% endif %}" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" title="{{ 'sections.cart.remove_title' | t: title: item.title }}">
-                        {% render 'icon-close' %}
+                        Entfernen
                     </button>
                 </li>
             {%- endfor -%}
@@ -440,14 +440,14 @@
         </div>
     </div>
 {% else %}
-    <div class="previewCart">
+    <div class="previewCart previewCart--empty">
         <div class="previewCart-emptyBody text-center">
             <div class="empty">
                 <span class="text">
                     {{ 'sections.cart.empty' | t }}
                 </span>
             </div>
-            <a class="button button-2 button-continue"
+            <a class="button button-1 button-continue"
                 {% if settings.quick_cart_redirect_button == 'go_back' %}
                     role="link" aria-disabled="true"
                     onclick="window.history.back();"
