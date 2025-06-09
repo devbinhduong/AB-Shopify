@@ -707,7 +707,7 @@
                                 assign arrows_mb = section.settings.product_block_arrows_mb
                                 assign enable_infinite = section.settings.enable_infinite
                             -%}
-                            <div class="products-carousel column-{{ column }}{% if section.settings.product_block_progress_bar %} enable_progress_bar{% endif %}{% if section.settings.product_block_counter_number %} enable_counter_number{% endif %}" data-item-to-show="{{ column }}" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{ enable_infinite }}">
+                            <div class="products-carousel column-{{ column }}{% if section.settings.product_block_progress_bar %} enable_progress_bar{% endif %}{% if section.settings.product_block_counter_number %} enable_counter_number{% endif %}" data-item-to-show="{{ column }}" data-variable-width="true" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{ enable_infinite }}">
                         {%- elsif layout == 'scroll' -%}
                             {%- liquid
                                 assign column = section.settings.product_block_per_view

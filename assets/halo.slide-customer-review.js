@@ -23,6 +23,7 @@
                         prevArrow: window.arrows.icon_prev,
                         rtl: window.rtl_slick,
                         infinite: true,
+                        adaptiveHeight: true,
                         responsive: [{
                                 breakpoint: 1200,
                                 settings: {

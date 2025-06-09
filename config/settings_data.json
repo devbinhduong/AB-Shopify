@@ -251,7 +251,7 @@
     "quick_cart_popular_product_title": "You May Also Like",
     "quick_cart_popular_product_collection": "suito",
     "quick_cart_popular_product_dots": false,
-    "quick_cart_popular_product_arrows": false,
+    "quick_cart_popular_product_arrows": true,
     "show_quick_edit_cart": true,
     "quick_edit_cart_picker_type": "button",
     "quick_view_layout": "3",

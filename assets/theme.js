@@ -3533,26 +3533,20 @@
 
                 if(productGrid.length > 0){
                     if(!productGrid.hasClass('slick-initialized')){
+                        console.log("add slick for product collection cart");
+                        
                         productGrid.slick({
                             mobileFirst: true,
                             adaptiveHeight: false,
                             infinite: false,
                             vertical: false,
-                            slidesToShow: 1,
+                            slidesToShow: 1.2,
                             slidesToScroll: 1,
-                            dots: true,
-                            arrows: false,
+                            dots: itemDots,
+                            arrows: itemArrows,
                             nextArrow: window.arrows.icon_next,
                             prevArrow: window.arrows.icon_prev,
-                            rtl: window.rtl_slick,
-                            responsive: [
-                            {
-                                breakpoint: 1025,
-                                settings: {
-                                    dots: itemDots,
-                                    arrows: itemArrows
-                                }
-                            }]
+                            rtl: window.rtl_slick
                         });
                     }
                 }
@@ -3614,9 +3608,6 @@
                     event.stopPropagation();
                     
                     $body.addClass('cart-sidebar-show');
-
-                    console.log("add sidebar slick");
-                    this.sideCartSlick();    
                 });
             }
 
@@ -7266,10 +7257,6 @@
                     clonedLogo.remove();
                 }
             }
-        },
-
-        sideCartSlick: function() {
-            console.log("sideCartSlick function is called");
         }
     }
 })(jQuery);
