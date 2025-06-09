@@ -7,28 +7,29 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "current": {
     "layout_body": "custom_width",
     "body_custom_width_size": 1470,
+    "collection_layout": "banner_adv",
     "type_font_1": "shopify_fonts",
     "type_font_1_name": "Merriweather",
-    "type_font_1_font": "inter_n4",
-    "type_font_2": "google_fonts",
+    "type_font_1_font": "roboto_n4",
+    "type_font_2": "shopify_fonts",
     "type_font_2_name": "Playfair Display",
-    "type_font_2_font": "abril_fatface_n4",
+    "type_font_2_font": "roboto_n4",
     "type_body": "font_1",
     "type_body_font_size": 16,
     "type_body_font_weight": "400",
     "type_body_line_height": 26,
-    "type_body_letter_spacing": ".02em",
+    "type_body_letter_spacing": ".00em",
     "type_heading": "font_1",
     "type_heading_font_size": 24,
     "type_heading_font_weight": "600",
     "type_heading_font_style": "normal",
     "type_heading_text_transform": "capitalize",
     "type_heading_line_height": 24,
-    "type_heading_letter_spacing": ".02em",
+    "type_heading_letter_spacing": ".00em",
     "type_menu_lv_1": "font_1",
     "type_menu_lv1_font_size": 16,
     "type_menu_lv1_font_size_mb": 20,
@@ -81,7 +82,8 @@
     "product_price_font_weight": "600",
     "product_price_line_height": 21,
     "product_price_letter_spacing": "0",
-    "badge_font_size": 16,
+    "badge_font_size": 14,
+    "badge_font_weight": "600",
     "badge_text_transform": "uppercase",
     "badge__line_height": 16,
     "badge_letter_spacing": "0",
@@ -186,7 +188,7 @@
     "product_quick_view_type": "default",
     "group_quickview_wishlist": "left",
     "product_content_text_align": "left",
-    "show_badge": false,
+    "show_badge": true,
     "badge_postion": "left",
     "sale_badge_type": "text",
     "point_product_swatch_custom": "30px",
@@ -251,7 +253,7 @@
     "quick_cart_popular_product_title": "You May Also Like",
     "quick_cart_popular_product_collection": "suito",
     "quick_cart_popular_product_dots": false,
-    "quick_cart_popular_product_arrows": false,
+    "quick_cart_popular_product_arrows": true,
     "show_quick_edit_cart": true,
     "quick_edit_cart_picker_type": "button",
     "quick_view_layout": "3",
@@ -259,12 +261,14 @@
     "show_countdown": false,
     "countdown_type": "all_product",
     "countdown_collection": "",
-    "calculator_free_shipping_message_height": 10,
-    "calculator_free_shipping_message_border_radius": 20,
+    "calculator_free_shipping_message_height": 5,
+    "calculator_free_shipping_message_border_radius": 0,
     "calculator_free_shipping_message_color": "#727272",
-    "calculator_free_shipping_message_bg": "#ededed",
-    "calculator_free_shipping_message_bg_1": "#f44336",
-    "calculator_free_shipping_message_bg_2": "#ffc206",
+    "calculator_free_shipping_message_bg": "#e4e4e4",
+    "calculator_free_shipping_message_bg_1": "#404040",
+    "calculator_free_shipping_message_bg_2": "#404040",
+    "calculator_free_shipping_message_bg_3": "#404040",
+    "calculator_free_shipping_message_bg_4": "#59b79f",
     "show_someone_purchase": false,
     "someone_purchase_position": "right",
     "show_gdpr_cookie_consent": false,
@@ -336,8 +340,8 @@
     "sale_badge_bg": "#ea4226",
     "sold_out_badge_color": "#ffffff",
     "sold_out_badge_bg": "#c1c1c1",
-    "custom_badge_color": "#ffffff",
-    "custom_badge_bg": "#505050",
+    "custom_badge_color": "#212121",
+    "custom_badge_bg": "#f2f2f2",
     "bundle_badge_color": "#ffffff",
     "bundle_badge_bg": "#232323",
     "colors_bg": "#ffffff",
@@ -577,7 +581,7 @@
           "6af60981-e602-4eaa-8501-8d4518fba450"
         ],
         "settings": {
-          "display_section": true,
+          "display_section": false,
           "font_size": 12,
           "font_weight": "500",
           "icon_size": 20,
@@ -588,6 +592,18 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   }
 }
