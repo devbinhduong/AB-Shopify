@@ -4070,6 +4070,7 @@ body.term-condition-show .background-overlay {
 
 .halo-sidebar-header .title {
     display: inline-flex;
+    align-items: center;
     /* font-size: calc(var(--font-body-size) + 4px); */
     font-size: 28px;
     font-style: var(--font-heading-style);
