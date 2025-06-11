@@ -382,32 +382,6 @@
     
     <div class="previewCartInfo">
         <ul class="previewCartTotalsPrice list-unstyled">
-            <li class="previewCartTotals subTotal clearfix">
-                <div class="previewCartTotals-label">
-                    {{ 'sections.cart.subtotal' | t }}:
-                </div>
-                <div class="previewCartTotals-value" data-cart-subtotal>
-                    {{ cart.original_total_price | money }}
-                </div>  
-            </li>       
-            <li class="previewCartTotals cart-total-savings" {% if cart.total_discount == 0 %}style="display: none;"{% endif %} data-saved-discount-display>
-                <div class="previewCartTotals-label">
-                    <span class="text">{{ 'general.cart.are_saving' | t }}</span>
-                </div>
-                <div class="previewCartTotals-value">
-                    <span class="text" data-saved-discount-value>
-                        {%- if cart.cart_level_discount_applications != blank -%}
-                            {%- for discount in cart.cart_level_discount_applications -%}
-                                {%- render 'icon-discount' -%}
-                                {{ discount.title }}
-                                (-{{ discount.total_allocated_amount | money }})
-                            {%- endfor -%}
-                        {%- else -%}
-                            {{ cart.total_discount | money | prepend: '-' }}
-                        {%- endif -%}
-                    </span>
-                </div>  
-            </li> 
             <li class="previewCartTotals total clearfix">
                 <div class="previewCartTotals-label">
                     {{ 'general.cart.total' | t }}
@@ -416,6 +390,30 @@
                     {{ cart.total_price | money }}
                 </div>
             </li>
+            <li> 
+                <p class="previewCartTotals-note">inkl. MwSt., zzgl.  Versandkosten
+                </p>
+            </li>
+
+            <li class="previewCartTotals cart-total-savings" {% if cart.total_discount == 0 %}style="display: none;"{% endif %} data-saved-discount-display>
+                <div class="previewCartTotals-label">
+                    <span class="icon icon-discount">{%- render 'icon-discount' -%}</span>
+                    <span class="text">{{ 'general.cart.are_saving' | t }}</span>
+                </div>
+                <div class="previewCartTotals-value">
+                    <span class="text" data-saved-discount-value>
+                        {%- if cart.cart_level_discount_applications != blank -%}
+                            {%- for discount in cart.cart_level_discount_applications -%}
+                                {{ discount.title }}
+                                ({{ discount.total_allocated_amount | money }})
+                            {%- endfor -%}
+                        {%- else -%}
+                            {{ cart.total_discount | money }}
+                        {%- endif -%}
+                    </span>
+                </div>  
+            </li> 
+
             {% if settings.show_shipping_note %}
                 <li class="previewCartTotals shipTotal clearfix">
                     <div class="previewCartTotals-value">
@@ -445,9 +443,13 @@
                 {% if additional_checkout_buttons %}
                   {{ content_for_additional_checkout_buttons }}
                 {% endif %}
-                <a class="button button-2 button-view-cart" href="{{ routes.cart_url }}">
+               {% if settings.show_sidebar_cart_cart_btn %}
+                 <a class="button button-2 button-view-cart" href="{{ routes.cart_url }}">
                     {{ 'sections.cart.view_cart' | t }}
                 </a>
+               {% endif %}
+
+               {% render 'sidecart-payment'%}
             </div>
         </div>
     </div>
