@@ -6123,7 +6123,7 @@
         "type": "checkbox",
         "id": "quick_cart_popular_product_arrows",
         "label": "t:sections.product_block.settings.slider.product_block_arrows",
-        "default": false
+        "default": true
       },
       {
         "type": "header",

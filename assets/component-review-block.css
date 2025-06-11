@@ -336,6 +336,7 @@
 @media (min-width: 768px) {
     .customer-review-block--custom .customer-review__item--right {
         width: 50%;
+        max-width: 700px;
         margin-left: 7%;
         display: flex;
         align-items: center;

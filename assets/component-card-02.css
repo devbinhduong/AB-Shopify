@@ -735,3 +735,27 @@
 		 display: none;
 	}
 }
+
+.product-block .products-carousel .slick-slide{
+    max-width: 348px;
+    width: 100%;
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .product-block .products-carousel .slick-slide{
+        max-width: 340px;
+        width: 100%;
+    }
+
+    .product-block .products-carousel .slick-slide .product{
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .product-block .products-carousel .slick-slide{
+        max-width: 241px;
+    }
+}
