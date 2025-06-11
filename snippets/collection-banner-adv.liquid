@@ -90,7 +90,12 @@
         #CollectionSection-{{ section.id }} .facets-horizontal .widget_filter {font-size: {{ sidebar_heading_font_size | append: 'px' }}}
     {%- endif -%}
 
-    @media (max-width: 1024px) {#CollectionSection-{{ section.id }}{padding-top: {{ padding_top_tablet }};padding-bottom: {{ padding_bottom_tablet }}}}
+    @media (max-width: 1024px) {
+        #CollectionSection-{{ section.id }}{padding-top: {{ padding_top_tablet }};padding-bottom: {{ padding_bottom_tablet }}}
+        {%- if has_sidebar -%}
+            #CollectionSection-{{ section.id }} .sidebarBlock-heading{font-weight: 600;}
+        {%- endif -%}
+    }
     @media (max-width: 550px) {#CollectionSection-{{ section.id }}{padding-top: {{ padding_top_mobile }};padding-bottom: {{ padding_bottom_mobile }}}}
 
     #CollectionProductGrid{
@@ -100,6 +105,15 @@
 
 </style>
 
+{% liquid  
+    assign total_active_values = 0
+    for filter in collection.filters
+        for value in filter.active_values
+            assign total_active_values = total_active_values | plus: 1
+        endfor
+    endfor
+%}
+
 <div data-section-id="{{ section.id }}" data-section-type="collection" id="CollectionSection-{{ section.id }}" data-section="{{ section.id }}" class="collection-banner-adv">
     <div class="halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
         {%- if has_sidebar -%}
@@ -107,15 +121,15 @@
                 {{ 'component-main-sidebar.css' | asset_url | stylesheet_tag }}
                 <div class="filter-bar">
                     <div class="mobile-filters">
-                        <a type="button" class="button button--primary button--arrow" data-sidebar>Filtern & Sortieren</a>
+                        <a type="button" class="button button--primary button--arrow" data-sidebar>Filtern & Sortieren
+                            <span class="facets__count custom-count" aria-hidden="true">{%if total_active_values > 0 %}{{ total_active_values }}{% endif %}</span>
+                        </a>
                         <a href="#show-product-tab-popup" class="button button--primary button--arrow">Schnellempfehlung</a>
                     </div>
                     <div class="filter-bar__inner">
                         <button type="button" class="filter-bar__button" aria-expanded="false" aria-controls="filter-bar-filters">
                             Filtern & Sortieren
-                            {% if total_active_values > 0 %}
-                                <span class="facets__count custom-count" aria-hidden="true"><span>{{ total_active_values }}</span></span>
-                            {% endif %}
+                            <span class="facets__count custom-count" aria-hidden="true">{%if total_active_values > 0 %}{{ total_active_values }}{% endif %}</span>
                             <span class="filter-bar__button-icon">
                                 {% render 'icon-arrow-down' %}
                             </span>
@@ -129,7 +143,8 @@
                     </div>
                     <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">
                         <button type="button" class="halo-sidebar-close" data-close-sidebar role="button"><span class="visually-hidden">{{ 'general.common.close' | t }}</span>Close</button>
-                        <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}</span></div>
+                        <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}<span class="facets__count custom-count" aria-hidden="true">{%if total_active_values > 0 %}{{ total_active_values }}{% endif %}</span></span>
+                        </div>
                         <div class="halo-sidebar-wrapper custom-scrollbar{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                             {% render 'collection-sidebar',
                                 results: collection,
@@ -376,13 +391,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const filterBarButton = document.querySelector('.filter-bar .filter-bar__button');
-        const filterBarFilters = document.querySelector('.filter-bar .halo-sidebar-wrapper');
+        const sidebarHorizontal = document.querySelector('.filter-bar .page-sidebar--horizontal');
 
-        if (filterBarButton && filterBarFilters) {
+        if (filterBarButton && sidebarHorizontal) {
             filterBarButton.addEventListener('click', function () {
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
                 this.setAttribute('aria-expanded', !isExpanded);
-                filterBarFilters.classList.toggle('is-visible');
+                sidebarHorizontal.classList.toggle('is-visible');
             });
         }
     });

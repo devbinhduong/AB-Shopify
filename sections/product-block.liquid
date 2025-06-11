@@ -327,6 +327,7 @@
         {%- if section.settings.product_block_progress_bar -%}
             line-height: 1;
         {%- endif -%}
+        max-width: 400px;
     }
     .section-block-{{section.id}} .halo-block-header .title svg {fill: {{ color_title }}}
     .section-block-{{section.id}} .halo-block-header .title:before {background-color: {{ border_color_title }};
@@ -392,9 +393,6 @@
         .section-block-{{section.id}} .halo-block-header .title {
             {%- if section.settings.view_all != blank -%}
             margin-bottom: 10px;
-            {%- endif -%}
-            {%- if fontsize_title > 30 -%}
-            font-size: {{ fontsize_title | plus: fontsize_title_mb | divided_by: 2 | append: 'px'  }};
             {%- endif -%}
         }
         {%- if product_bg_image != blank -%}
