@@ -7,7 +7,7 @@
     {%- if article.image -%}
         {%- assign image_alt = article.title | escape -%}
         {%- assign preview_img = article.image -%}
-        <a href="{{article.url}}" class="image-zoom adaptive_height" style="padding-top: {{ 1 | divided_by: preview_img.aspect_ratio | times: 100 }}%">
+        <a href="{{article.url}}" class="image-zoom">
             <img {% if settings.enable_lazyload %}data-{% endif %}srcset="
             {%- if article.image.src.width >= 165 -%}{{ article.image.src | img_url: '165x' }} 165w,{%- endif -%}
             {%- if article.image.src.width >= 360 -%}{{ article.image.src | img_url: '360x' }} 360w,{%- endif -%}

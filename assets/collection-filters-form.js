@@ -385,12 +385,28 @@ class CollectionFiltersForm extends HTMLElement {
         const parsedHTML = new DOMParser().parseFromString(html, 'text/html');
 
         const facetDetailsElements = parsedHTML.querySelectorAll('#CollectionFiltersForm .js-filter');
+        const facetsCount = parsedHTML.querySelector('.facets__count.custom-count');
+        const filterResultsCount = parsedHTML.querySelector('.filter-bar__results-count');
         const indexTarget = event?.target.closest('.js-filter')?.dataset.index;
         const matchesIndex = (element) => element.dataset.index === indexTarget;
         const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element));
         const countsToRender = Array.from(facetDetailsElements).find(matchesIndex);
-
         const sortByElement = document.querySelector('#CollectionFiltersForm .js-filter.sidebarBlock-SortBy');
+        const curFacetsCounts = document.querySelectorAll('.facets__count.custom-count');
+        if(facetsCount){
+            curFacetsCounts.forEach(item => {
+                item.innerHTML = facetsCount.innerHTML;
+            });
+        }else{
+            curFacetsCounts.forEach(item => {
+                item.innerHTML = "";
+            });
+        }
+        if(filterResultsCount){
+            document.querySelector('.filter-bar__results-count').innerHTML = filterResultsCount.innerHTML;
+        }else{
+            document.querySelector('.filter-bar__results-count').innerHTML = "";
+        }
         if(sortByElement){
             let sortByHeading = sortByElement.querySelector('.sidebarBlock-heading .facets__text');
             const textActive = sortByElement.querySelector('.facets__item input[type=radio]:checked + .form-label--radio');
@@ -489,7 +505,6 @@ class CollectionFiltersForm extends HTMLElement {
         countElementSelectors.forEach((selector) => {
             const targetElement = target.querySelector(selector);
             const sourceElement = source.querySelector(selector);
-
             if (sourceElement && targetElement) {
                 target.querySelector(selector).outerHTML = source.querySelector(selector).outerHTML;
             }

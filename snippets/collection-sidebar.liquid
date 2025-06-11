@@ -36,7 +36,7 @@
                     <input type="hidden" name="type" value="product">
                     <input type="hidden" name="options[prefix]" value="last" />
                 {%- endif -%}
-                <div class="sidebarBlock refined-widgets js-filter" {% if total_active_values == 0 %} style="display: none;"{% endif %} data-index="0">
+                <div class="sidebarBlock refined-widgets js-filter" data-index="0">
                     <div class="results-count"><span class="results" style="display: none;"><span class="count">{{ collection.products_count }}</span> {{ 'sections.collection_template.results' | t }}</span></div>
                     <div class="sidebarBlock-content sidebarBlock-content--list">
                         <ul class="facets__list--refined list-unstyled" role="list">
@@ -66,7 +66,8 @@
                                 {%- endif -%}
                             {%- endfor -%}
                         </ul>
-                        <a href="{{ results_url }}" class="active-facets__button facets__clear-all link link-underline js-facet-remove"><span class="text">{{ 'sections.collection_template.clear_all' | t }}</span></a>
+                        <a href="#" data-close-sidebar class="button button--primary">1 Ergebnisse anzeigen<span></span></a>
+                        <a href="{{ results_url }}" class="active-facets__button facets__clear-all link link-underline js-facet-remove" {% if total_active_values == 0 %} style="display: none;"{% endif %}><span class="text">{{ 'sections.collection_template.clear_all' | t }}</span></a>
                     </div>                  
                 </div>
                 {%- if results.current_vendor or results.current_type -%}
