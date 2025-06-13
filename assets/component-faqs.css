@@ -459,7 +459,7 @@ faqs-item{
         font-size: calc(var(--font-body-size) + 2px);
     }
 
-    .faqs-item .card-header .icon-plus {
+    .faqs-item .card-header .icon-plus, .faqs-item .card-header .icon-minus {
         right: 32px;
     }
 
