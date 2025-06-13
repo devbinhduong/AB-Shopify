@@ -5050,7 +5050,7 @@
         "type": "checkbox",
         "id": "show_cart_note",
         "label": "t:settings_schema.quick_cart.settings.tool_cart.label__1",
-        "default": true
+        "default": false
       },
       {
         "type": "paragraph",
@@ -5060,7 +5060,7 @@
         "type": "checkbox",
         "id": "show_cart_gift",
         "label": "t:settings_schema.quick_cart.settings.tool_cart.label__2",
-        "default": true
+        "default": false
       },
       {
         "type": "product",
@@ -5085,7 +5085,7 @@
         "type": "checkbox",
         "id": "show_cart_shipping",
         "label": "t:settings_schema.quick_cart.settings.tool_cart.label__3",
-        "default": true
+        "default": false
       },
       {
         "type": "select",
@@ -6069,7 +6069,7 @@
         "type": "checkbox",
         "id": "show_cart_discount",
         "label": "t:settings_schema.quick_cart.settings.tool_cart.label__5",
-        "default": true
+        "default": false
       },
       {
         "type": "text",

@@ -21,7 +21,7 @@
     endif
 -%}
 
-<form action="{{ routes.cart_url }}/add" method="post" class="variants tets1221212121212" id="{{ id }}-{{ product.id }}-{{ sectionId }}{% if check %}-list{% endif %}" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+<form action="{{ routes.cart_url }}/add" method="post" class="variants" id="{{ id }}-{{ product.id }}-{{ sectionId }}{% if check %}-list{% endif %}" data-product-id="{{ product.id }}" enctype="multipart/form-data">
     {%- if sold_out -%}
         {%- if settings.show_notify_form -%}
             <a class="button button-ATC card-button is-notify-me" href="{{ product.url }}" data-btn-addToCart>
@@ -71,33 +71,37 @@
                 assign first_inventory_grid = current_variant_grid.inventory_quantity
             -%}
             {%- if current_variant_grid.inventory_management -%}
-                <button type="submit" name="add" data-btn-addToCart data-available="{{ allowOutStockSale }}" class="product-form__submit button button--primary an-{{ atc_animation }}{% if first_inventory_grid == 0 %} button-text-change{% else %}{% if show_subtotal_text %} button-text-change{% endif %}{% endif %}" id="product-add-to-cart">
+                <button type="submit" name="add" data-btn-addToCart data-available="{{ allowOutStockSale }}" class="product-form__submit button button-2 an-{{ atc_animation }}{% if first_inventory_grid == 0 %} button-text-change{% else %}{% if show_subtotal_text %} button-text-change{% endif %}{% endif %}" id="product-add-to-cart">
                     {%- if first_inventory_grid > 0 -%}
                         {%- if show_subtotal_text and subtotal_style == '2' -%}
                             {%- assign subtotal = subtotal | strip_html -%}
                             {{ 'products.product.sub_total' | t : value : subtotal }}
                         {%- else -%}
-                            {%- unless settings.product_card_layout == '06' -%}
+                            {% comment %} {%- unless settings.product_card_layout == '06' -%}
                                 {{ 'products.product.add_to_cart' | t }}
                             {%- else -%}
                                 {{ 'products.product.select_options_plus' | t }}
-                            {%- endunless -%}
+                            {%- endunless -%} {% endcomment %}
+
+                            Hinzufügen
                         {%- endif -%}
                     {%- else -%}
                         {{ 'products.product.pre_order' | t }}
                     {%- endif -%}
                 </button>
             {%- else -%}
-                <button type="submit" name="add" data-btn-addToCart class="product-form__submit button button--secondary an-{{ atc_animation }}{% if show_subtotal_text %} button-text-change{% endif %}" id="product-add-to-cart">
+                <button type="submit" name="add" data-btn-addToCart class="product-form__submit button button-2 an-{{ atc_animation }}{% if show_subtotal_text %} button-text-change{% endif %}" id="product-add-to-cart">
                     {%- if show_subtotal_text and subtotal_style == '2' -%}
                         {%- assign subtotal = subtotal | strip_html -%}
                         {{ 'products.product.sub_total' | t : value : subtotal }}
                     {%- else -%}
-                        {%- unless settings.product_card_layout == '06' -%}
+                        {% comment %} {%- unless settings.product_card_layout == '06' -%}
                             {{ 'products.product.add_to_cart' | t}}
                         {%- else -%}
                             {{ 'products.product.select_options_plus' | t }}
-                        {%- endunless -%}
+                        {%- endunless -%} {% endcomment %}
+
+                        Hinzufügen
                     {%- endif -%}
                 </button>
             {%- endif -%}
