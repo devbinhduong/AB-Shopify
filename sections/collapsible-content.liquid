@@ -33,11 +33,18 @@
 	        assign border_color = section.settings.border_color
 	    -%}
 
+		.section-block-{{section.id}} .container {
+			max-width: 900px;
+			padding-inline: 0;
+		}
         .section-block-{{section.id}},
         .section-block-{{section.id}} .halo-block-header .title .text {
             background: {% if collapsible_bg_gradient != blank %}{{ collapsible_bg_gradient }}{% else %}{{ collapsible_bg }}{% endif %};
         }
-
+			
+	    .section-block-{{section.id}} .halo-block-header {
+    		margin-bottom: 0;
+	    }
 	    .section-block-{{section.id}} .halo-block-header .title {
 	        color: {{ color_title }};
 	        font-size: {{ fontsize_title | append: 'px'  }};
@@ -69,7 +76,6 @@
 		    width: 100%;
 		    align-items: flex-start;
 		    justify-content: space-between;
-		    margin-top: 45px;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid {
@@ -83,28 +89,33 @@
 	    .section-block-{{section.id}} .collapsible-grid .faqs-item {
 	    	background-color: {{ bg_content_color }};
 	    }
+	    .section-block-{{section.id}} .collapsible-grid .faqs-item .card{
+	    	margin-bottom: 0;
+	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .faqs-item+.faqs-item {
 	    	margin-top: 0;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .collapsible-grid__item {
-	    	border-bottom: 2px solid {{ border_color }};
+	    	border-bottom: 1px solid #f8f8f8;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .card-header {
-	    	border-top: 2px solid {{ border_color }};
+	    	border-top: 1px solid {{ border_color }};
+	    }
+	    .section-block-{{section.id}} .collapsible-grid .faqs-item:first-child .card-header {
+	    	border-top: 0;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .faqs-item .title {
 	    	color: {{ title_color }};
 	    	background-color: transparent;
 	    	padding-left: 0;
-	    	font-size: 20px;
+	    	font-size: 16px;
 		    font-weight: 700;
-		    text-transform: uppercase;
-		    padding-top: 30px;
-    		padding-bottom: 30px;
+		    padding-top: 25px;
+    		padding-bottom: 25px;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .faqs-item .title:after {
@@ -112,28 +123,40 @@
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .card-header .arrow{
+			display: flex;
 	    	border: none;
-		    transform: none;
-		    top: 27%;
+		    transform: translateY(-50%);
+		    top: 50%;
+			padding: 0;
+			width: 20px;
+		    height: 20px;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .card-header .arrow svg{
 	    	fill: {{ icon_color }};
-		    width: 34px;
-		    height: 34px;
-		    transform: rotate(90deg);
+		    width: 100%;
+		    height: 100%;
 	    }
 
-	    .section-block-{{section.id}} .collapsible-grid .card-header:not(.collapsed) .arrow svg {
-	    	transform: rotate(-90deg);
+	    .section-block-{{section.id}} .collapsible-grid .card-header .icon-minus {
+	    	display: none;
+	    }
+	    .section-block-{{section.id}} .collapsible-grid .card-header:not(.collapsed) .icon-minus {
+	    	display: block;
+	    }
+	    .section-block-{{section.id}} .collapsible-grid .card-header:not(.collapsed) .icon-plus {
+	    	display: none;
 	    }
 
 	    .section-block-{{section.id}} .collapsible-grid .faqs-item .card-body {
 	    	color: {{ content_color }};
 	    	padding-left: 0;
 	    	margin-top: 0;
+			padding-bottom: 40px;
 	    }
-
+		.section-block-{{section.id}} .collapsible-grid .faqs-item .card-body p {
+			margin-block: 0;
+		}
 	    .section-block-{{section.id}} .card-body table {
 	    	border-collapse: collapse;
     		border-spacing: 0;
@@ -170,6 +193,9 @@
 	    }
 
 	    @media (max-width: 1024px) {
+			.section-block-{{section.id}} .container {
+				padding-inline: 24px;
+			}
 	    	.section-block-{{section.id}} .collapsible-image {
 		    	width: calc(52.86% - 20px);
 		    	margin-top: 0;
@@ -185,8 +211,8 @@
 		    }
 
 		    .section-block-{{section.id}} .collapsible-grid .card-header .arrow svg{
-			    width: 24px;
-			    height: 24px;
+			    width: 100%;
+			    height: 100%;
 		    }
 	    }
 
@@ -220,7 +246,7 @@
 
 	        .section-block-{{section.id}} .halo-block-header .title {
 	            font-size: {{ fontsize_title_mb | append: 'px'  }};
-	            margin-bottom: 20px;
+	            margin-bottom: 32px;
 	        }
 
 	        .section-block-{{section.id}} .halo-block-header .rte {
@@ -237,16 +263,16 @@
 	    	}
 
 	    	.section-block-{{section.id}} .collapsible-grid .faqs-item .title {
-			    padding-top: 16px;
-	    		padding-bottom: 16px;
-		    }
-
-		    .section-block-{{section.id}} .collapsible-grid .card-header .arrow{
-	    		top: 25%;
+				font-size: 14px;
+				line-height: 22px;
+			    padding-top: 20px;
+	    		padding-bottom: 20px;
 		    }
 
 		    .section-block-{{section.id}} .collapsible-grid .faqs-item .card-body {
-		    	padding-bottom: 20px;
+				font-size: 14px;
+				line-height: 22px;
+		    	padding-bottom: 40px;
 		    }
 
 		    .cart-count-bubble, .wishlist-count-bubble {
@@ -313,7 +339,12 @@
                                                 <div class="title" role="button" tabindex="0">
                                                     {{ heading }}
                                                 </div>
-                                                <span class="icon-plus arrow" role="none"><svg aria-hidden="true" focusable="false" role="presentation" data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><polygon points="150.46 478 129.86 456.5 339.11 256 129.86 55.49 150.46 34 382.14 256 150.46 478"/></svg></span>
+                                                <span class="icon-minus arrow" role="none">
+													{% render 'icon-minus' %}
+												</span>
+                                                <span class="icon-plus arrow" role="none">
+													{% render 'icon-plus' %}
+												</span>
                                             </div>
                                             <div id="collapse-{{ block.id }}-{{ forloop.index }}" class="collapse" data-parent="#accordion"{% if forloop.first %} style="max-height: max-content"{% endif %}>
                                                 <div class="card-body" id="answer-{{ block.id }}-{{ forloop.index }}">

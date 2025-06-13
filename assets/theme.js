@@ -1237,7 +1237,10 @@
                 },
                 complete: function () {
                     if (curTabContent.hasClass('products-carousel')) {
+                      const isNoProduct = $(curTabContent).find('p.loading')
+                      if(isNoProduct.length == 0){
                         halo.productBlockSilder(curTabContent.parent());
+                      }
                     }
 
                     if ($('body').hasClass('cursor-fixed__show')){
