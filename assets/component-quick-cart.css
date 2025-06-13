@@ -722,15 +722,21 @@ body.cart-sidebar-show .halo-cart-sidebar {
 
 .halo-cart-sidebar .previewCartItem-price .previewCartItem-saving-price {
     display: flex;
-    gap: 7px;
+    flex-direction: column;
+}
+
+.halo-cart-sidebar .previewCartItem-price .previewCartItem-saving-price .discounted-price {
+
+    color: var(--product-sale-price-color);
 }
 
 .halo-cart-sidebar .previewCartItem-price .before-discount-price,
 .halo-cart-sidebar .previewCartItem-price .discounted-price {
-    font-size: calc(var(--product-price-font-size) - 2px);
+    font-size: 14.2px;
     letter-spacing: var(--product-price-letter-spacing);
     font-weight: var(--product-price-font-weight);
-    line-height: var(--product-price-line-height);
+    font-weight: 400;
+    line-height: 21.3px;
 }
 
 .halo-cart-sidebar .previewCartItem-price .before-discount-price {
@@ -739,8 +745,8 @@ body.cart-sidebar-show .halo-cart-sidebar {
 }
 
 .halo-cart-sidebar .previewCartItem-price .discounted-price {
-    font-size: var(--product-price-font-size);
     color: var(--product-sale-price-color);
+    margin-left: 8px;
 }
 
 .previewCartTotalsPrice .cart-total-savings {
@@ -1343,4 +1349,101 @@ body:not(.quick_shop_option_3) .previewCartCollection .product-card__button2 {
 
 .previewCartProduct .previewCartCarousel:hover .slick-arrow {
     opacity: 1;
+}
+
+#halo-cart-sidebar .previewCartInfo {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    border-top: 1px solid #b4b4b4;
+    padding-top: 16px;
+    padding-bottom: 100px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#halo-cart-sidebar .previewCartTotals {
+    line-height: 1;
+}
+
+#halo-cart-sidebar .previewCartTotals-label {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #212121;
+}
+
+#halo-cart-sidebar .previewCartTotals-value {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+#halo-cart-sidebar .previewCartTotals-note {
+    opacity: 0.65;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #8b8b8b;
+    margin: 0;
+}
+
+#halo-cart-sidebar .icon-discount {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+#halo-cart-sidebar .icon-discount svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    stroke: none;
+}
+
+#halo-cart-sidebar .cart-total-savings {
+    margin: 0;
+}
+
+#halo-cart-sidebar .cart-total-savings .previewCartTotals-label {
+    display: inline-flex;
+    align-content: center;
+}
+
+#halo-cart-sidebar .cart-total-savings .previewCartTotals-value {
+    color: #212121;
+    font-weight: 600;
+}
+
+#halo-cart-sidebar .previewCartGroup button {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 8px 0;
+}
+
+#halo-cart-sidebar .payment-methods {
+    margin-top: 18px;
+    margin-bottom: 53px;
+}
+
+#halo-cart-sidebar .payment-methods ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#halo-cart-sidebar .payment-methods li {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#halo-cart-sidebar .payment-methods li svg {
+    width: auto;
+    height: auto;
+    stroke: none;
 }

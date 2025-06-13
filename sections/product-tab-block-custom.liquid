@@ -178,7 +178,7 @@
                         -%}
                         {%- for block in block_tabs -%}
                             <div class="tab-content{% if forloop.first %} active{% endif %}" data-product-TabContent id="product-tab-{{ section.id }}-{{ block.id }}">
-                                <div class="products-carousel products-load column-{{ column }}" data-item-to-show="{{ column }}" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}">
+                                <div class="products-carousel products-load column-{{ column }}" data-item-to-show="{{ column }}" data-item-dots="{{ dots }}" data-item-dots-mb="{{ dots_mb }}" data-item-arrows="{{ arrows }}" data-item-arrows-mb="{{ arrows_mb }}" data-infinite="{{enable_infinite}}" data-variable-width="true">
                                         {%- liquid
                                             assign collection = block.settings.collection
                                             for tag in current_tags 

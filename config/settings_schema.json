@@ -6185,9 +6185,9 @@
         "id": "thumbnail_to_show",
         "label": "t:sections.main-product.settings.general.thumbnail_to_show",
         "min": 3,
-        "max": 6,
+        "max": 7,
         "step": 1,
-        "default": 4
+        "default": 7
       },
       {
         "type": "header",
@@ -7576,7 +7576,7 @@
         "type": "color",
         "id": "product_price_sale_color",
         "label": "t:settings_schema.product_card.settings.product_price.label__3",
-        "default": "#D12442"
+        "default": "#d50000"
       },
       {
         "type": "color",

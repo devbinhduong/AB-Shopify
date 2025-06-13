@@ -455,7 +455,7 @@
     <link rel="stylesheet" href="{{ 'component-fancybox.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript>{{ 'component-fancybox.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
-<div class="{{tab_layout_mobile}} product-details product-default{% if has_sidebar %} has-sidebar{% endif %}" data-section-id="{{ section.id }}" data-section-type="product" id="ProductSection-{{ section.id }}" data-has-combo="{{ has_product_combo }}" data-image-opo>
+<div class="{{tab_layout_mobile}} product-details product-default product-custom{% if has_sidebar %} has-sidebar{% endif %}" data-section-id="{{ section.id }}" data-section-type="product" id="ProductSection-{{ section.id }}" data-has-combo="{{ has_product_combo }}" data-image-opo>
     {% if has_breadcrumb %}
         {%- liquid
             if breadcrumb_gradient != 'rgba(0,0,0,0)' or breadcrumb_bg != 'rgba(0,0,0,0)' or breadcrumb_gradient_mb != 'rgba(0,0,0,0)' or breadcrumb_bg_mb != 'rgba(0,0,0,0)'
@@ -772,7 +772,7 @@
                                 {%- endif -%}
                             </div>
                             {%- if thumnail_layout != '4' -%}
-                                <div class="productView-thumbnail-wrapper{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}">
+                                <div class="productView-thumbnail-wrapper no-top{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}">
                                     <div class="productView-for clearfix" data-max-thumbnail-to-show="{{ max_thumbnail_to_show }}">
                                         {%- for media in product.media -%}
                                             {%- case media.media_type -%}
@@ -875,6 +875,10 @@
                                                 check_show_share: check_show_share,
                                                 share_layout: check_show_share
                                             %}
+                                        </div>
+
+                                        <div class="productView-attributes">
+                                            {% render 'product-attributes' %}
                                         </div>
                                     {%- when 'meta' -%}
                                         {%- liquid 
@@ -1032,6 +1036,14 @@
                                                     current_variant: current_variant,
                                                     picker_type: picker_type,
                                                     show_variant_image_group: show_variant_image_group
+                                                %}
+                                            </div>
+
+                                            <div class="productView-countVariants">
+                                                {% render 'count-variants',
+                                                    block: block,
+                                                    product: product,
+                                                    current_variant: current_variant
                                                 %}
                                             </div>
                                         {% endunless %}

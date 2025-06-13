@@ -22,10 +22,7 @@
                         -%}
                         <fieldset class="js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
                             <legend class="form__label">
-                                {{ option.name | append: ':' }}
-                                <span data-header-option>
-                                    {{ option.selected_value }}
-                                </span>
+                                {{ option.name }}
                             </legend>
                             {%- assign values = '' -%}
                             {%- liquid
@@ -113,8 +110,14 @@
                                             {% endif %}
                                         </label>
                                     {%- else -%}   
-                                        <label class="product-form__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
-                                            <span class="text">{{ value }}</span>
+                                        <label class="product-form__label customVariant__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
+                                            <span class="text customVariant__text">
+                                                {{ value }}
+                                                {% if variant.metafields.custom.month != blank %}
+                                                    <span class="customVariant__time">{{ variant.metafields.custom.month }}</span>
+                                                {% endif %}
+                                            </span>
+                                            
                                         </label>
                                     {%- endif -%}
                                 {%- endunless -%}
@@ -130,10 +133,7 @@
                     {%- for option in product.options_with_values -%}
                         <div class="product-form__input product-form__input--dropdown" data-product-attribute="set-select" data-option-index="{{ forloop.index0 }}">
                             <label class="form__label" for="option-{{ forloop.index0 }}">
-                                {{ option.name | append: ':' }}
-                                <span data-header-option>
-                                    {{ option.selected_value }}
-                                </span>
+                                {{ option.name }}
                             </label>
                             <div class="form__select select">
                                 <select id="option-{{ forloop.index0 }}"

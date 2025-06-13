@@ -1,0 +1,116 @@
+{% assign discount_percent_list = product.metafields.custom.discountpercent |
+split : ','%}
+{% assign firstVariant = product.selected_or_first_available_variant %}
+
+{% if discount_percent_list.size > 4 %}
+{% assign discount_percent_list = discount_percent_list | slice: 0, 4 %}
+{% endif %}
+
+<div class="variantCountOption__wrapper">
+   {% for discount_item in discount_percent_list %}
+   <label
+      class="variantCountOption__item {% if forloop.index == 1 %} is-checked{% endif %}">
+      <input type="radio" name="volume_discount" value="{{ forloop.index }}"
+         data-discount-percentage="{{ discount_item }}" {% if forloop.index==1
+         %} checked{% endif %}>
+      <div class="variantCountOption__ImagesContainer">
+         <div class="variantCountOption__Images">
+            {% for i in (1..forloop.index) %}
+            <div class="variantCountOption__Image">
+               <img
+                  srcset="{{ firstVariant.image.src | product_img_url: '75x'}}"
+                  src="{{ firstVariant.image.src | product_img_url: '75x'}}"
+                  sizes="75px" loading="lazy"
+                  alt="{{ firstVariant.image.alt | escape }}">
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+      {% unless discount_item == '0' %}
+      <b class="variantCountOption__Badge">-{{ discount_item }}%</b>
+      {% endunless %}
+      <b class="variantCountOption__Text">{{ forloop.index }}x<span
+            data-selected-size-option-value="">{{ firstVariant.title }}</span>
+      </b>
+   </label>
+   {% endfor %}
+</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+   const originalPrice = {{ firstVariant.price | divided_by: 100.0}};
+   const radios = document.querySelectorAll('input[name="volume_discount"]');
+
+   function updatePrice() {
+      const priceElement = document.querySelector('.productView-price .price__last .price-item--regular .money');
+
+      const checked = document.querySelector('input[name="volume_discount"]:checked');
+
+      if (!checked) return;
+      const discount = parseFloat(checked.getAttribute('data-discount-percentage')) || 0;
+
+      let newPrice = originalPrice;
+      if (discount > 0) {
+         newPrice = originalPrice * (1 - discount / 100);
+      } else {
+         newPrice = originalPrice;
+      }
+
+      if (priceElement) {
+         priceElement.textContent = newPrice.toLocaleString(undefined, { style: 'currency', currency: '{{ shop.currency }}' });
+      }
+   }
+
+   function updateQuantity() {
+      console.log("Updating quantity based on selected discount...");
+      
+      const quantityInput = document.querySelector('.productView-quantity input[type="number"]');
+      const buttons = document.querySelectorAll('.productView-quantity button');
+
+      if (quantityInput) {
+         const checked = document.querySelector('input[name="volume_discount"]:checked');
+         if (checked) {
+            quantityInput.value = checked.value;
+         }
+      }
+
+      function showValue() {
+         let value = quantityInput.value;
+
+         const checkList = document.querySelectorAll('input[name="volume_discount"]');
+         checkList.forEach((item) => {
+            if (item.value === value && value <= 4) {
+               item.click();
+            }
+         });
+
+      }
+
+      quantityInput.addEventListener('input', showValue);
+
+      buttons.forEach(btn => {
+         btn.addEventListener('click', function (e) {
+            showValue();
+         });
+      });
+
+   }
+
+   function handleRadioChange(event) {
+      const checked = event?.target;
+      if (checked) {
+         radios.forEach(radio => radio.parentElement.classList.remove('is-checked'));
+         checked.parentElement.classList.add('is-checked');
+      }
+
+      updateQuantity();
+      updatePrice();
+   }
+
+   radios.forEach(radio => {
+      radio.addEventListener('change', handleRadioChange);
+   });
+
+   handleRadioChange();
+});
+</script>
