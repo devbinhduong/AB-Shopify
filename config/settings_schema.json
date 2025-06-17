@@ -6755,30 +6755,20 @@
       {
         "type": "checkbox",
         "id": "show_progress_shipping_2",
-        "label": "Show Progress Shipping 2",
+        "label": "Show free shipping calculator message 2",
         "default": true
       },
       {
-        "type": "select",
-        "id": "discount_calculator_free_shipping",
-        "default": "setup_discount",
-        "label": "t:sections.main-sidebar.settings.general.label__3",
-        "options": [
-          {
-            "value": "setup_discount",
-            "label": "t:sections.product-bundle.settings.header__4.content"
-          },
-          {
-            "value": "setup_shipping_delivery",
-            "label": "t:sections.product-bundle.settings.header__4.label__2"
-          }
-        ]
+        "type": "text",
+        "id": "free_shipping_price_1",
+        "label": "Require Price 1",
+        "default": "50"
       },
       {
         "type": "text",
-        "id": "calculator_free_shipping_message_price",
-        "label": "t:settings_schema.calculator_free_shipping_message.settings.general.label__3",
-        "default": "800"
+        "id": "free_shipping_price_2",
+        "label": "Require Price 2",
+        "default": "80"
       },
       {
         "type": "header",

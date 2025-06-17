@@ -153,6 +153,7 @@ class FreeShippingMeter extends HTMLElement {
             if (this.textEnabled) {
                 const textWrapper = this.progressMeter1.querySelector('.text').innerHTML = `${freeShipBar1.toFixed(2)}%`;
             }
+            
             if (text2 != "") {
                 this.messageElement.innerHTML = text2;
             } else {

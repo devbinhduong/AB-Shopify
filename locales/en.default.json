@@ -390,7 +390,7 @@
     "cart": {
       "title": "Your cart",
       "caption": "Cart items",
-      "checkout": "Checkout",
+      "checkout": "Zur Kasse",
       "proceed_to_checkout": "Proceed to checkout",
       "my_cart": "Dein Warenkorb",
       "items": "items",

@@ -20,14 +20,14 @@ class VariantSelects extends HTMLElement {
         } else {
             this.updateAttribute(false, !this.currentVariant.available);
         }
-        this.updateVariantStatuses();
+        // this.updateVariantStatuses();
     }
     
     onVariantChange(event) {
         this.updateOptions();
         this.updateMasterId();
         this.updatePickupAvailability();
-        this.updateVariantStatuses();
+        // this.updateVariantStatuses();
       
         if (!this.currentVariant) {
             this.updateAttribute(true);

@@ -62,8 +62,6 @@ split : ','%}
    }
 
    function updateQuantity() {
-      console.log("Updating quantity based on selected discount...");
-      
       const quantityInput = document.querySelector('.productView-quantity input[type="number"]');
       const buttons = document.querySelectorAll('.productView-quantity button');
 
@@ -71,6 +69,7 @@ split : ','%}
          const checked = document.querySelector('input[name="volume_discount"]:checked');
          if (checked) {
             quantityInput.value = checked.value;
+            handleQtyButtons(checked.value)
          }
       }
 
@@ -83,7 +82,8 @@ split : ','%}
                item.click();
             }
          });
-
+         
+         handleQtyButtons(value)
       }
 
       quantityInput.addEventListener('input', showValue);
@@ -105,6 +105,18 @@ split : ','%}
 
       updateQuantity();
       updatePrice();
+   }
+
+   function handleQtyButtons(value) {
+      const minusButton = document.querySelector(".quantity__container .minus");
+
+      if(value == 1) {
+         minusButton.style.opacity = '0';
+         minusButton.classList.add('disabled');
+      } else {
+         minusButton.style.opacity = '1';
+         minusButton.classList.remove('disabled');
+      }
    }
 
    radios.forEach(radio => {

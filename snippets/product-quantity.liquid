@@ -4,7 +4,7 @@
 	        {{ 'products.product.quantity.label__2' | t }}
 	    </label>
 	    <div class="quantity__container">
-		    <button type="button" name="minus" class="minus btn-quantity">
+		    <button type="button" name="minus" class="minus btn-quantity disabled" style="opacity: 0;">
 		    	<span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
 		    </button>
 		    <input class="form-input quantity__input" type="number" name="quantity" min="1" value="1" inputmode="numeric" pattern="[0-9]*" id="quantity-{{ product.id }}{%- if quantity_stt > 1 -%}-{{ quantity_stt }}{%- endif -%}" data-product="{{ product.id }}" data-price="{{ current_variant.price }}">

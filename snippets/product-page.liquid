@@ -995,6 +995,8 @@
                                                 {%- endif -%}
                                             {% endif %}
                                         </div>
+                                    {% comment %} Price note {% endcomment %}
+                                     <p class="productView-priceNote">inkl. MwSt., zzgl. <a href="#" title="Zahlung &amp; Versand"><span style="text-decoration:underline">Versand</span></a></p>
                                     {%- when 'countdown' -%}
                                         {%- liquid
                                             assign show_countdown = settings.show_countdown
@@ -1040,6 +1042,11 @@
                                             </div>
 
                                             <div class="productView-countVariants">
+                                                <div class="productView-variants">
+                                                    <legend class="form__label">
+                                                        Kaufoptionen
+                                                    </legend>
+                                                </div>
                                                 {% render 'count-variants',
                                                     block: block,
                                                     product: product,

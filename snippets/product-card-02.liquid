@@ -174,7 +174,21 @@
                 <div class="card-rating">
                   <!-- Start of Judge.me code --> 
                     <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}'> 
-                      {{ product_card_product.metafields.judgeme.badge }} 
+                       {% if product_card_product.metafields.judgeme.badge %}
+                          {{ product_card_product.metafields.judgeme.badge }}
+                        {% else %}
+                          <div class="jdgm-star jdgm--no-review">
+                            <span class="jdgm-prev-badge__stars" data-score="0.00" tabindex="0"
+                               aria-label="0.00 stars" role="button"> 
+                            <span
+                               class="jdgm-star jdgm--off"></span><span
+                               class="jdgm-star jdgm--off"></span><span
+                               class="jdgm-star jdgm--off"></span><span
+                               class="jdgm-star jdgm--off"></span><span
+                               class="jdgm-star jdgm--off"></span> 
+                            </span>
+                          </div>
+                        {% endif %}
                     </div> 
                   <!-- End of Judge.me code -->
                 </div>

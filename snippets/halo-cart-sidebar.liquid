@@ -9,6 +9,16 @@
 		</span>
 	</div>
     <div class="halo-sidebar-wrapper custom-scrollbar {{cart.items}}">
+		{% comment %} count down {% endcomment %}
+		 <tb-timer class="CartReservationCountdown" style="display: block;">
+			<div style="display: block;">
+				<span>Dein Warenkorb ist für</span>
+				<strong data-timer="">09:59</strong>
+				<span>reserviert.</span>
+			</div>
+
+			<div style="display: none;"><strong>Reservierung abgelaufen.</strong> Gegebenenfalls nicht mehr alles verfügbar.</div>
+		</tb-timer>
       	{%- if settings.show_calculator_free_shipping_message -%}
           <div class="previewCartMessage">{% render 'free-shipping-component' %}</div>
         {%- endif -%}
@@ -22,3 +32,85 @@
   	</div>
 </div>
 <script src="{{ 'halo-toolcart.js' | asset_url }}" defer="defer"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const timerElement = document.querySelector('[data-timer]');
+  const expiredText = document.querySelector('tb-timer > div:nth-child(2)');
+  const countdownWrapper = document.querySelector('tb-timer > div:nth-child(1)');
+
+  const STORAGE_KEY = 'cart_timer_start';
+  const COUNTDOWN_MINUTES = 10;
+
+  function getMidnightTimestamp() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0);
+    return midnight.getTime();
+  }
+
+  // Function to save start time and reset date
+  function initializeTimer() {
+    const now = Date.now();
+    const expireAt = now + COUNTDOWN_MINUTES * 60 * 1000;
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      start: now,
+      expireAt: expireAt,
+      resetAt: getMidnightTimestamp()
+    }));
+
+    return expireAt;
+  }
+
+  function getSavedTimer() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      return null;
+    }
+  }
+
+  function clearTimer() {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  function startCountdown(durationMs) {
+    let remaining = durationMs;
+
+    const interval = setInterval(() => {
+      remaining -= 1000;
+
+      if (remaining <= 0) {
+        clearInterval(interval);
+        countdownWrapper.style.display = 'none';
+        expiredText.style.display = 'block';
+        return;
+      }
+
+      const minutes = Math.floor(remaining / 1000 / 60);
+      const seconds = Math.floor((remaining / 1000) % 60);
+      timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+  }
+
+  const saved = getSavedTimer();
+  const now = Date.now();
+
+  if (!saved || now > saved.resetAt) {
+    // No data or new date then initialize again
+    const newExpire = initializeTimer();
+    startCountdown(newExpire - now);
+  } else {
+    // Valid data
+    if (now >= saved.expireAt) {
+      countdownWrapper.style.display = 'none';
+      expiredText.style.display = 'block';
+    } else {
+      startCountdown(saved.expireAt - now);
+    }
+  }
+});
+</script>

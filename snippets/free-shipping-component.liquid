@@ -2,7 +2,7 @@
     <div class="haloCalculatorShipping__wrapper">
       <div class="progress progress--1" data-shipping-progress>
         {%- liquid
-            assign price_1 = 50
+            assign price_1 = settings.free_shipping_price_1
 
             if settings.currency_format_enable
                 assign money_target1 = price_1 | times: 100.0 | money_with_currency
@@ -67,7 +67,7 @@
       </div>
       <div class="progress progress--2" data-shipping-progress-2>
          {%- liquid
-            assign price_2 = 80
+            assign price_2 = settings.free_shipping_price_2
 
             if settings.currency_format_enable
                 assign money_target2 = price_2 | times: 100.0 | money_with_currency
