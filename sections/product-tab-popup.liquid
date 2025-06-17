@@ -30,108 +30,28 @@ assign fontsize_des_banner_mb = section.settings.fontsize_des_banner_mb
 -%}
 
 <style>
-    .section-block- {
-            {
-            section.id
-        }
+    .section-block-{{section.id}} {
+        background: {{ product_bg }};
     }
-
-        {
-        background: {
-                {
-                product_bg
-            }
-        }
-
-        ;
-    }
-
-    .section-block- {
-            {
-            section.id
-        }
-    }
-
-    .section-introduction .sub-title {
-        font-size: {
-                {
-                fontsize_sub_title | append: 'px'
-            }
-        }
-
-        ;
+    .section-block-{{section.id}} .section-introduction .sub-title {
+        font-size: {{ fontsize_sub_title | append: 'px'  }}; 
         margin: 0;
-        line-height: 1.2;
     }
-
-    .section-block- {
-            {
-            section.id
-        }
+    .section-block-{{section.id}} .section-introduction .title {
+        color: {{ color_title }};
+        font-size: {{ fontsize_title | append: 'px'  }}; 
+        line-height: {{ title_line_height }};
+        margin-top: 0; 
+        margin-bottom: {{ mg_bottom_title | append: 'px' }}
     }
-
-    .section-introduction .title {
-        color: {
-                {
-                color_title
-            }
-        }
-
-        ;
-
-        font-size: {
-                {
-                fontsize_title | append: 'px'
-            }
-        }
-
-        ;
-
-        line-height: {
-                {
-                title_line_height
-            }
-        }
-
-        ;
-        margin-top: 0;
-
-        margin-bottom: {
-                {
-                mg_bottom_title | append: 'px'
-            }
-        }
-    }
-
-    .section-block- {
-            {
-            section.id
-        }
-    }
-
-    .section-introduction .description {
-        margin-bottom: {
-                {
-                mg_bottom_description | append: 'px'
-            }
-        }
+    .section-block-{{section.id}} .section-introduction .description {
+        margin-bottom: {{ mg_bottom_description | append: 'px' }}
     }
 
     @media (max-width: 767px) {
-        .section-block- {
-                {
-                section.id
-            }
-        }
-
-        .section-introduction .title {
-            font-size: {
-                    {
-                    fontsize_title_mb | append: 'px'
-                }
-            }
-        }
+        .section-block-{{section.id}} .section-introduction .title {font-size: {{ fontsize_title_mb | append: 'px'  }}}
     }
+
 </style>
 
 <product-tab-popup class="section-block-{{section.id}}">
@@ -312,340 +232,340 @@ assign fontsize_des_banner_mb = section.settings.fontsize_des_banner_mb
 
 {% schema %}
 {
-"name": "Product tabs popup",
-"class": "sections-product-tab",
-"limit": 1,
-"settings": [
-{
-"type": "header",
-"content": "t:settings_schema.general.name"
-},
-{
-"type" : "checkbox",
-"id" : "show_product",
-"label": "Show product",
-"default" : true
-},
-{
-"type" : "color",
-"id" : "product_bg",
-"label": "t:settings_schema.colors.settings.colors_name.background_color_2",
-"default" : "#f8f8f8"
-},
-{
-"type": "range",
-"id": "product_block_limit",
-"label": "t:settings_schema.quick_search.settings.general.label__2",
-"min": 3,
-"max": 20,
-"step": 1,
-"default": 8
-},
-{
-"type": "header",
-"content": "t:sections.image-banner.blocks.image.settings.content.section_header"
-},
-{
-"type": "text",
-"id": "product_block_sub_title",
-"label": "Sub title",
-"default": "Schnellempfehlung"
-},
-{
-"type": "range",
-"id": "fontsize_sub_title",
-"label": "Sub title font size",
-"min": 10,
-"max": 100,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 12
-},
-{
-"type": "text",
-"id": "product_block_title",
-"label": "t:sections.image-banner.blocks.image.settings.content.label__1",
-"default": "Trending Now"
-},
-{
-"type": "range",
-"id": "fontsize_title",
-"label": "t:settings_schema.typography.settings.typography.title_font_size",
-"min": 10,
-"max": 100,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 28
-},
-{
-"type": "range",
-"id": "fontsize_title_mb",
-"label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
-"min": 10,
-"max": 100,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 28
-},
-{
-"type": "range",
-"id": "title_line_height",
-"label": "t:settings_schema.typography.settings.typography.label__1",
-"min": 0,
-"max": 10,
-"step": 0.1,
-"default": 1.3
-},
-{
-"type": "range",
-"id": "mg_bottom_title",
-"label": "t:settings_schema.typography.settings.typography.title_margin_bottom",
-"min": 0,
-"max": 50,
-"step": 1,
-"unit": "t:sections.layout.mg_desktop.unit",
-"default": 20
-},
-{
-"type" : "color",
-"id" : "color_title",
-"label": "t:settings_schema.typography.settings.typography.title_color",
-"default" : "#232323"
-},
-{
-"type": "select",
-"id": "title_align",
-"label": "t:sections.general.settings.aligmnent.label__1",
-"options": [
-{
-"value": "left",
-"label": "t:settings_schema.typography.settings.type_button_font.left"
-},
-{
-"value": "center",
-"label": "t:settings_schema.typography.settings.type_button_font.center"
-},
-{
-"value": "right",
-"label": "t:settings_schema.typography.settings.type_button_font.right"
-}],
-"default": "center"
-},
-{
-"type": "range",
-"id": "mg_bottom_description",
-"label": "t:settings_schema.typography.settings.typography.des_margin_bottom",
-"min": 0,
-"max": 50,
-"step": 1,
-"unit": "t:sections.layout.mg_desktop.unit",
-"default": 32
-},
-{
-"type": "header",
-"content": "Tab banner"
-},
-{
-"type": "range",
-"id": "fontsize_title_banner",
-"label": "t:settings_schema.typography.settings.typography.title_font_size",
-"min": 10,
-"max": 100,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 28
-},
-{
-"type": "range",
-"id": "fontsize_title_banner_mb",
-"label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
-"min": 10,
-"max": 100,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 24
-},
-{
-"type": "range",
-"id": "fontsize_des_banner",
-"label": "t:settings_schema.typography.settings.typography.des_font_size",
-"min": 0,
-"max": 50,
-"step": 1,
-"unit": "t:sections.layout.mg_desktop.unit",
-"default": 16
-},
-{
-"type": "range",
-"id": "fontsize_des_banner_mb",
-"label": "t:settings_schema.typography.settings.typography.des_font_size_mb",
-"min": 10,
-"max": 50,
-"step": 1,
-"unit": "t:sections.layout.fontsize.fontsize_title.unit",
-"default": 14
-},
-{
-"type": "header",
-"content": "t:sections.product_block.settings.slider.content"
-},
-{
-"type": "checkbox",
-"id": "product_block_dots",
-"label": "t:sections.product_block.settings.slider.product_block_dots_desk",
-"default": false
-},
-{
-"type": "checkbox",
-"id": "product_block_dots_mb",
-"label": "t:sections.product_block.settings.slider.product_block_dots_mb",
-"default": false
-},
-{
-"type": "checkbox",
-"id": "product_block_arrows",
-"label": "t:sections.product_block.settings.slider.product_block_arrows_desk",
-"default": true
-},
-{
-"type": "checkbox",
-"id": "enable_infinite",
-"label": "t:sections.instagram.settings.enable_infinite",
-"default": true
-},
-{
-"type": "select",
-"id": "product_block_show",
-"label": "t:sections.product_block.settings.grid.product_block_per_row",
-"options": [
-{
-"value": "3",
-"label": "3"
-},
-{
-"value": "3.5",
-"label": "3.5"
-},
-{
-"value": "4",
-"label": "4"
-},
-{
-"value": "4.5",
-"label": "4.5"
-},
-{
-"value": "5",
-"label": "5"
-},
-{
-"value": "5.5",
-"label": "5.5"
-},
-{
-"value": "6",
-"label": "6"
-}
-],
-"default": "4"
-}
-],
-"blocks" : [
-{
-"type" : "ProductTabs",
-"name" : "t:sections.product_tab_block.block_name",
-"settings":[
-{
-"type": "text",
-"id": "tab_type",
-"label": "Tab type"
-},
-{
-"type": "color",
-"id": "bg_tab",
-"label": "Background"
-},
-{
-"type": "textarea",
-"id": "icon",
-"label": "Icon"
-},
-{
-"type" : "text",
-"id" : "title",
-"label" : "t:sections.image-banner.blocks.image.settings.content.label__1",
-"default" : "Womens"
-},
-{
-"type" : "collection",
-"id" : "collection",
-"label" : "t:settings_schema.typography.settings.typography.collection"
-},
-{
-"type": "image_picker",
-"id": "image_right",
-"label": "Image"
-},
-{
-"type": "text",
-"id": "title_right",
-"label": "Title"
-},
-{
-"type": "richtext",
-"id": "description_right",
-"label": "Description"
-},
-{
-"type": "text",
-"id": "text_link_right",
-"label": "Text link"
-},
-{
-"type": "url",
-"id": "link_right",
-"label": "Link"
-}
-]
-},
-{
-"type": "tab_type",
-"name": "Tab type",
-"settings": [
-{
-"type": "text",
-"id": "tab_type",
-"label": "Type"
-},
-{
-"type": "text",
-"id": "title",
-"label": "Title"
-},
-{
-"type": "richtext",
-"id": "description",
-"label": "Description",
-"default": "<p>Von Achtsamkeit über Sport bis Anti-Aging: Entdecke unsere <strong>Kategorien für jeden Lifestyle. </strong>Unterstütze deinen Körper von innen, um immer in deinem Element zu sein.</p>"
-}
-]
-}
-],
-"presets": [
-{
-"name": "Product tabs popup",
-"blocks": [
-{
-"type": "ProductTabs"
-},
-{
-"type": "ProductTabs"
-},
-{
-"type": "ProductTabs"
-}
-]
-}
-]
+    "name": "Product tabs popup",
+    "class": "sections-product-tab",
+    "limit": 1,
+    "settings": [
+        {
+        "type": "header",
+        "content": "t:settings_schema.general.name"
+        },
+        {
+        "type" : "checkbox",
+        "id" : "show_product",
+        "label": "Show product",
+        "default" : true
+        },
+        {
+        "type" : "color",
+        "id" : "product_bg",
+        "label": "t:settings_schema.colors.settings.colors_name.background_color_2",
+        "default" : "#f8f8f8"
+        },
+        {
+        "type": "range",
+        "id": "product_block_limit",
+        "label": "t:settings_schema.quick_search.settings.general.label__2",
+        "min": 3,
+        "max": 20,
+        "step": 1,
+        "default": 8
+        },
+        {
+        "type": "header",
+        "content": "t:sections.image-banner.blocks.image.settings.content.section_header"
+        },
+        {
+        "type": "text",
+        "id": "product_block_sub_title",
+        "label": "Sub title",
+        "default": "Schnellempfehlung"
+        },
+        {
+        "type": "range",
+        "id": "fontsize_sub_title",
+        "label": "Sub title font size",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 12
+        },
+        {
+        "type": "text",
+        "id": "product_block_title",
+        "label": "t:sections.image-banner.blocks.image.settings.content.label__1",
+        "default": "Trending Now"
+        },
+        {
+        "type": "range",
+        "id": "fontsize_title",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 28
+        },
+        {
+        "type": "range",
+        "id": "fontsize_title_mb",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 28
+        },
+        {
+        "type": "range",
+        "id": "title_line_height",
+        "label": "t:settings_schema.typography.settings.typography.label__1",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "default": 1.3
+        },
+        {
+        "type": "range",
+        "id": "mg_bottom_title",
+        "label": "t:settings_schema.typography.settings.typography.title_margin_bottom",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 20
+        },
+        {
+        "type" : "color",
+        "id" : "color_title",
+        "label": "t:settings_schema.typography.settings.typography.title_color",
+        "default" : "#232323"
+        },
+        {
+        "type": "select",
+        "id": "title_align",
+        "label": "t:sections.general.settings.aligmnent.label__1",
+        "options": [
+        {
+        "value": "left",
+        "label": "t:settings_schema.typography.settings.type_button_font.left"
+        },
+        {
+        "value": "center",
+        "label": "t:settings_schema.typography.settings.type_button_font.center"
+        },
+        {
+        "value": "right",
+        "label": "t:settings_schema.typography.settings.type_button_font.right"
+        }],
+        "default": "center"
+        },
+        {
+        "type": "range",
+        "id": "mg_bottom_description",
+        "label": "t:settings_schema.typography.settings.typography.des_margin_bottom",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 32
+        },
+        {
+        "type": "header",
+        "content": "Tab banner"
+        },
+        {
+        "type": "range",
+        "id": "fontsize_title_banner",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 28
+        },
+        {
+        "type": "range",
+        "id": "fontsize_title_banner_mb",
+        "label": "t:settings_schema.typography.settings.typography.title_font_size_mb",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 24
+        },
+        {
+        "type": "range",
+        "id": "fontsize_des_banner",
+        "label": "t:settings_schema.typography.settings.typography.des_font_size",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.mg_desktop.unit",
+        "default": 16
+        },
+        {
+        "type": "range",
+        "id": "fontsize_des_banner_mb",
+        "label": "t:settings_schema.typography.settings.typography.des_font_size_mb",
+        "min": 10,
+        "max": 50,
+        "step": 1,
+        "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+        "default": 14
+        },
+        {
+        "type": "header",
+        "content": "t:sections.product_block.settings.slider.content"
+        },
+        {
+        "type": "checkbox",
+        "id": "product_block_dots",
+        "label": "t:sections.product_block.settings.slider.product_block_dots_desk",
+        "default": false
+        },
+        {
+        "type": "checkbox",
+        "id": "product_block_dots_mb",
+        "label": "t:sections.product_block.settings.slider.product_block_dots_mb",
+        "default": false
+        },
+        {
+        "type": "checkbox",
+        "id": "product_block_arrows",
+        "label": "t:sections.product_block.settings.slider.product_block_arrows_desk",
+        "default": true
+        },
+        {
+        "type": "checkbox",
+        "id": "enable_infinite",
+        "label": "t:sections.instagram.settings.enable_infinite",
+        "default": true
+        },
+        {
+        "type": "select",
+        "id": "product_block_show",
+        "label": "t:sections.product_block.settings.grid.product_block_per_row",
+        "options": [
+        {
+        "value": "3",
+        "label": "3"
+        },
+        {
+        "value": "3.5",
+        "label": "3.5"
+        },
+        {
+        "value": "4",
+        "label": "4"
+        },
+        {
+        "value": "4.5",
+        "label": "4.5"
+        },
+        {
+        "value": "5",
+        "label": "5"
+        },
+        {
+        "value": "5.5",
+        "label": "5.5"
+        },
+        {
+        "value": "6",
+        "label": "6"
+        }
+        ],
+        "default": "4"
+        }
+        ],
+        "blocks" : [
+        {
+        "type" : "ProductTabs",
+        "name" : "t:sections.product_tab_block.block_name",
+        "settings":[
+        {
+        "type": "text",
+        "id": "tab_type",
+        "label": "Tab type"
+        },
+        {
+        "type": "color",
+        "id": "bg_tab",
+        "label": "Background"
+        },
+        {
+        "type": "textarea",
+        "id": "icon",
+        "label": "Icon"
+        },
+        {
+        "type" : "text",
+        "id" : "title",
+        "label" : "t:sections.image-banner.blocks.image.settings.content.label__1",
+        "default" : "Womens"
+        },
+        {
+        "type" : "collection",
+        "id" : "collection",
+        "label" : "t:settings_schema.typography.settings.typography.collection"
+        },
+        {
+        "type": "image_picker",
+        "id": "image_right",
+        "label": "Image"
+        },
+        {
+        "type": "text",
+        "id": "title_right",
+        "label": "Title"
+        },
+        {
+        "type": "richtext",
+        "id": "description_right",
+        "label": "Description"
+        },
+        {
+        "type": "text",
+        "id": "text_link_right",
+        "label": "Text link"
+        },
+        {
+        "type": "url",
+        "id": "link_right",
+        "label": "Link"
+        }
+        ]
+        },
+        {
+        "type": "tab_type",
+        "name": "Tab type",
+        "settings": [
+        {
+        "type": "text",
+        "id": "tab_type",
+        "label": "Type"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>Von Achtsamkeit über Sport bis Anti-Aging: Entdecke unsere <strong>Kategorien für jeden Lifestyle.</strong>Unterstütze deinen Körper von innen, um immer in deinem Element zu sein.</p>"
+        }
+        ]
+        }
+        ],
+        "presets": [
+        {
+        "name": "Product tabs popup",
+        "blocks": [
+        {
+        "type": "ProductTabs"
+        },
+        {
+        "type": "ProductTabs"
+        },
+        {
+        "type": "ProductTabs"
+        }
+        ]
+        }
+    ]
 }
 {% endschema %}

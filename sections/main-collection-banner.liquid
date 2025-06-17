@@ -75,6 +75,8 @@
             assign sub_collection_mg_top = block.settings.sub_collection_mg_top | append: 'px'
             assign show_sub_collection_image = block.settings.show_sub_collection_image
             assign sub_collection_layout = block.settings.sub_collection_layout
+            assign collection_all_text = block.settings.collection_all_text
+            assign collection_all_url = block.settings.collection_all_url
         endfor
     endif
 -%}
@@ -148,7 +150,9 @@
                                 show_sub_collection_image: show_sub_collection_image,
                                 sub_collection_layout: sub_collection_layout,
                                 maxheight_sub_collection: maxheight_sub_collection,
-                                collection_description_color: collection_description_color
+                                collection_description_color: collection_description_color,
+                                collection_all_text: collection_all_text,
+                                collection_all_url: collection_all_url
                             %}
                         {%- endif -%}
                     {%- endif -%}
@@ -202,7 +206,9 @@
                             show_sub_collection_image: show_sub_collection_image,
                             sub_collection_layout: sub_collection_layout,
                             maxheight_sub_collection: maxheight_sub_collection,
-                            collection_description_color: collection_description_color
+                            collection_description_color: collection_description_color,
+                            collection_all_text: collection_all_text,
+                            collection_all_url: collection_all_url
                         %}
                     </div>
                 {%- endif -%}
@@ -256,7 +262,9 @@
                         show_sub_collection_image: show_sub_collection_image,
                         sub_collection_layout: sub_collection_layout,
                         maxheight_sub_collection: maxheight_sub_collection,
-                        collection_description_color: collection_description_color
+                        collection_description_color: collection_description_color,
+                        collection_all_text: collection_all_text,
+                        collection_all_url: collection_all_url
                     %}
                 </div>
             {%- endif -%}
@@ -329,7 +337,9 @@
                             sub_collection_layout: sub_collection_layout,
                             maxheight_sub_collection: maxheight_sub_collection,
                             collection_description_color: collection_description_color,
-                            show_page_title: show_page_title
+                            show_page_title: show_page_title,
+                            collection_all_text: collection_all_text,
+                            collection_all_url: collection_all_url
                         %}
                     {%- endif -%}
                 {%- endif -%}
@@ -791,6 +801,21 @@
                         "type": "color_background",
                         "id": "collection_description_bg_gradient",
                         "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Collection all"
+                    },
+                    {
+                        "type": "text",
+                        "id": "collection_all_text",
+                        "label": "Text",
+                        "default": "Alle Produkte"
+                    },
+                    {
+                        "type": "url",
+                        "id": "collection_all_url",
+                        "label": "URL"
                     },
                     {
                         "type": "header",

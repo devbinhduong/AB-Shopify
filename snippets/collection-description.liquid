@@ -4,16 +4,16 @@
         	{% render 'breadcrumb' %}
 		</div>
     {%- endif -%}
-
-    <a class="header-hero__subheader-link" href="/collections/all">
+    {%- if collection_all_text != blank -%}
+    <a class="header-hero__subheader-link" href="{{ collection_all_url }}"> 
       <span class="header-hero__subheader-icon">
         <span class="icon icon-new icon-arrow-short ">
             <svg svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 12.5h23m-9.2 9.4 9.2-9.4-9.2-9.4" stroke="currentColor" stroke-width="1.75"></path></svg>
         </span>
       </span>
-      Alle Produkte
+      {{ collection_all_text }}
     </a>
-    
+    {%- endif -%}
 	  {%- if show_page_title -%}
         <h1 class="collection-title page-header text-{{ page_title_alignment }}">{{ collection.title | escape }}</h1>
     {%- endif -%}

@@ -321,9 +321,15 @@
     #ProductSection-{{ section.id }} .tabs-contents .toggleLink,
     #ProductSection-{{ section.id }} .tabs .tab .tab-title {
         font-size: {{ title_font_size | append: 'px' }};
+        line-height: {{ title_font_size | plus: 10 | append: 'px' }};
         font-weight: {{ font_weight_title }};
         text-transform: {{ title_text_transform }};
         padding-top: {{ title_padding_top_bottom | append: 'px' }};
+        padding-bottom: {{ title_padding_top_bottom | append: 'px' }};
+        margin-bottom: 16px;
+    }
+    #ProductSection-{{ section.id }} .tabs-contents .toggle-content {
+        padding-top: 0;
         padding-bottom: {{ title_padding_top_bottom | append: 'px' }};
     }
 
@@ -362,13 +368,6 @@
         {% endif %}
     }
 
-    @media (max-width: 550px) {
-        #ProductSection-{{ section.id }} .tabs-contents .toggleLink,
-        #ProductSection-{{ section.id }} .tabs .tab .tab-title {
-            font-size: {{ title_font_size_mb | append: 'px' }};
-        }
-    }
-
     @media (max-width: 767px) {
         #ProductSection-{{ section.id }} {
             padding-top: {{ mg_top_mobile | append: 'px' }};
@@ -397,6 +396,11 @@
                 left: 0px !important;
             }
         {% endif %}
+        #ProductSection-{{ section.id }} .tabs-contents .toggleLink,
+        #ProductSection-{{ section.id }} .tabs .tab .tab-title {
+            font-size: {{ title_font_size_mb | append: 'px' }};
+            line-height: {{ title_font_size_mb | plus: 10 | append: 'px' }};
+        }
     }
 
     @media (min-width: 1025px) {
@@ -824,6 +828,19 @@
                                         {%- endfor -%}
                                     </div>
                                 </div>
+                            {%- endif -%}
+                        </div>
+                        <div class="hidden-mobile">
+                            {%- if show_tab -%}
+                                {%- if tab_layout == 'vertical' or tab_layout == 'vertical_sidebar' or tab_layout == 'popup' -%}
+                                    {% render 'halo-product-tab',
+                                        product: product,
+                                        section: section,
+                                        tab_layout: tab_layout,
+                                        tab_layout_mobile: tab_layout_mobile,
+                                        icon_style_layout: icon_style_layout
+                                    %}
+                                {%- endif -%}
                             {%- endif -%}
                         </div>
                     </div>
@@ -1543,6 +1560,7 @@
                                         </div>
                                 {%- endcase -%}
                             {%- endfor -%}
+                            <div class="hidden-pc">
                             {%- if show_tab -%}
                                 {%- if tab_layout == 'vertical' or tab_layout == 'vertical_sidebar' or tab_layout == 'popup' -%}
                                     {% render 'halo-product-tab',
@@ -1554,6 +1572,7 @@
                                     %}
                                 {%- endif -%}
                             {%- endif -%}
+                        </div>
                         </div>
                     </div>
                 </div>
