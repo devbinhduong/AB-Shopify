@@ -13,19 +13,16 @@
             {{ icon }}
         </div>
     {%- endif -%}
-    {%- if text != blank or text_icon != blank -%}
-        <div class="product-customInformation__content">
-            {%- if text != blank -%}
+    {%- if text != blank or text_description != blank -%}
+        <div class="product-customInformation__content {% if content_popup != blank %} hasPopupContent{% endif %}">
                 <div class="product__text title" {{ block.shopify_attributes }} 
                     style="--fontsize-text:{{ fontsize_text | append: 'px' }};
                     --color-title: {{ color_title }}"
                 >
-                    <h2 class="title">{{ text }}</h2>
-                    {%- if content_popup != blank -%}
-                        {% render 'icon-info-note' %}
+                    {%- if text != blank -%}
+                        <h2 class="title">{{ text }}</h2>
                     {%- endif -%}
                 </div>
-            {%- endif -%}
             {%- if text_description != blank -%}
                 <div class="product__text des" {{ block.shopify_attributes }} 
                     style="--fontsize-text:{{ fontsize_text | append: 'px' }};

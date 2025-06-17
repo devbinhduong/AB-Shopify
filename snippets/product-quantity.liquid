@@ -1,6 +1,6 @@
 {%- if qty_style == '1' -%}
 	<quantity-input class="productView-quantity quantity__group quantity__group--{{ quantity_stt }} quantity__style--{{ qty_style }} clearfix{% if check_hidden %} hidden{% endif %}">
-	    <label class="form-label quantity__label" for="quantity-{{ product.id }}{%- if quantity_stt > 1 -%}-{{ quantity_stt }}{%- endif -%}">
+	    <label class="form-label quantity__label hidden" for="quantity-{{ product.id }}{%- if quantity_stt > 1 -%}-{{ quantity_stt }}{%- endif -%}">
 	        {{ 'products.product.quantity.label__2' | t }}
 	    </label>
 	    <div class="quantity__container">
