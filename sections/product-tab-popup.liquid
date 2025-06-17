@@ -30,108 +30,28 @@ assign fontsize_des_banner_mb = section.settings.fontsize_des_banner_mb
 -%}
 
 <style>
-    .section-block- {
-            {
-            section.id
-        }
+    .section-block-{{section.id}} {
+        background: {{ product_bg }};
     }
-
-        {
-        background: {
-                {
-                product_bg
-            }
-        }
-
-        ;
-    }
-
-    .section-block- {
-            {
-            section.id
-        }
-    }
-
-    .section-introduction .sub-title {
-        font-size: {
-                {
-                fontsize_sub_title | append: 'px'
-            }
-        }
-
-        ;
+    .section-block-{{section.id}} .section-introduction .sub-title {
+        font-size: {{ fontsize_sub_title | append: 'px'  }}; 
         margin: 0;
-        line-height: 1.2;
     }
-
-    .section-block- {
-            {
-            section.id
-        }
+    .section-block-{{section.id}} .section-introduction .title {
+        color: {{ color_title }};
+        font-size: {{ fontsize_title | append: 'px'  }}; 
+        line-height: {{ title_line_height }};
+        margin-top: 0; 
+        margin-bottom: {{ mg_bottom_title | append: 'px' }}
     }
-
-    .section-introduction .title {
-        color: {
-                {
-                color_title
-            }
-        }
-
-        ;
-
-        font-size: {
-                {
-                fontsize_title | append: 'px'
-            }
-        }
-
-        ;
-
-        line-height: {
-                {
-                title_line_height
-            }
-        }
-
-        ;
-        margin-top: 0;
-
-        margin-bottom: {
-                {
-                mg_bottom_title | append: 'px'
-            }
-        }
-    }
-
-    .section-block- {
-            {
-            section.id
-        }
-    }
-
-    .section-introduction .description {
-        margin-bottom: {
-                {
-                mg_bottom_description | append: 'px'
-            }
-        }
+    .section-block-{{section.id}} .section-introduction .description {
+        margin-bottom: {{ mg_bottom_description | append: 'px' }}
     }
 
     @media (max-width: 767px) {
-        .section-block- {
-                {
-                section.id
-            }
-        }
-
-        .section-introduction .title {
-            font-size: {
-                    {
-                    fontsize_title_mb | append: 'px'
-                }
-            }
-        }
+        .section-block-{{section.id}} .section-introduction .title {font-size: {{ fontsize_title_mb | append: 'px'  }}}
     }
+
 </style>
 
 <product-tab-popup class="section-block-{{section.id}}">
