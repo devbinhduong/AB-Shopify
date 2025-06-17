@@ -233,6 +233,10 @@
                                             {%- render 'icon-discount-2' -%}
                                         </span>
                                         {{ discount.discount_application.title }}
+
+                                        {% if discount.discount_application.total_allocated_amount != _blank %}
+                                            (-{{ discount.discount_application.total_allocated_amount | money }})
+                                        {% endif %}
                                     </li>
                                 {%- endfor -%}
                             </ul>

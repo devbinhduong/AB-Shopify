@@ -181,6 +181,7 @@
             
             this.handleHeaderMainMenu();
             this.handleFooterLayout();
+            this.handleVariantCountOption();
 
             let checkMenuMobile;
             window.innerWidth > 1024 ? checkMenuMobile = true : checkMenuMobile = false;
@@ -4817,7 +4818,7 @@
                         asNavFor: checkNav,
                         arrows: true,
                         dots: false,
-                        draggable: false,
+                        draggable: true,
                         adaptiveHeight: false,
                         focusOnSelect: true,
                         vertical: true,
@@ -7260,6 +7261,18 @@
                     clonedLogo.remove();
                 }
             }
+        },
+
+        handleVariantCountOption: function() {
+            const variantCountOption = document.querySelectorAll('.variantCountOption__item');
+            if (!variantCountOption.length) return;
+
+            variantCountOption.forEach(item => {
+                item.addEventListener('click', function() {
+                    variantCountOption.forEach(el => el.classList.remove('is-checked'));
+                    this.classList.add('is-checked');
+                });
+            });
         }
     }
 })(jQuery);
