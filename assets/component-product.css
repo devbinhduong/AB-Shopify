@@ -496,17 +496,25 @@
 
 .productView-tab.layout-vertical {
     display: block;
-    margin-top: 17px;
+    margin-top: 20px;
 }
 
+.productView-tab .tabs-contents-vertical .tab-content {
+    border-top: 1px solid #a0a0a0;
+}
 .productView-tab .tabs-contents-vertical .tab-content:first-child {
-    border-top: 1px solid #d3d3d3;
+    border-top: none;
 }
-
-.productView-tab .tabs-contents-vertical .tab-content:last-child {
-    border-bottom: none;
+.productView-tab  .tabs-contents .toggleLink .icon-plus{
+    right: 20px;
 }
-
+.productView-tab  .tabs-contents .toggleLink .icon-plus:before{
+    right: 6px;
+    height: 14px;
+}
+.productView-tab  .tabs-contents .toggleLink .icon-plus:after {
+    width: 14px;
+}
 .productView-tab .tab-content .icon-dropdown {
     position: absolute;
     top: 50%;
